@@ -1,4 +1,4 @@
-package com.eshop.framwork.domain;
+package com.base.framwork.domain;
 
 /**
  * 所有domain的通用接口
@@ -6,17 +6,17 @@ package com.eshop.framwork.domain;
  *2013年08月11日
  */
 
-public interface BizDomain {
+public interface IBizDomain {
 	
 	/**
 	 * 取得主键
 	 */
-	public long getId();
+	public String getId();
 	
 	/**
 	 * 设置主键
 	 */
-	public void setId(long id);
+	public void setId(String id);
 	
 	/**
 	 * equals

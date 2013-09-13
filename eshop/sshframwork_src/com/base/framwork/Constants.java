@@ -1,4 +1,4 @@
-package com.eshop.framwork;
+package com.base.framwork;
 
 public class Constants {
 

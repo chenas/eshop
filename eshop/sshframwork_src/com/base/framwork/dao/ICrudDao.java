@@ -1,11 +1,10 @@
-package com.eshop.framwork.dao;
+package com.base.framwork.dao;
 
 import java.io.Serializable;
 import java.sql.Connection;
 import java.util.List;
 
-import com.eshop.framwork.queryfilter.IFilter;
-import com.eshop.framwork.queryfilter.QueryFilter;
+import com.base.framwork.queryfilter.QueryFilter;
 
 /**
  * 数据访问同一接口
@@ -47,41 +46,71 @@ public interface ICrudDao extends IBaseDao{
 	public Boolean delObject(Object object);
 	
 	/**
+	 *  条件装载指定类的所有持久化对象 
+	 * @param clazz
+	 * @return
+	 */
+	public List findAllObjListByFilter(String clazz, QueryFilter filter);
+
+	/**
 	 *  装载指定类的所有持久化对象 
 	 * @param clazz
 	 * @return
 	 */
-	public List findObjList(String clazz);
+	public List findAllObjList(String clazz);
+
+	/**
+	 * 自定义装载持久化对象 
+	 * @param hqlString
+	 * @param filter
+	 * @return
+	 */
+	public List findObjListByHql(String hqlString);
 	
 	/**
-	 *  分页装载指定类的所有持久化对象 
+	 * 装载指定类的所有持久化对象 
 	 * @param clazz
 	 * @param filter
 	 * @return
 	 */
-	public List findObjListByFilter(String clazz,IFilter filter);
+	public List findObjListByFilter(String clazz,QueryFilter filter);
 	
 	/**
-	 *  统计指定类的所有持久化对象 
+	 * 自定义装载持久化对象 
+	 * @param hqlString
+	 * @param filter
+	 * @return
+	 */
+	public List findObjListByHqlAndFilter(String hqlString,QueryFilter filter);
+	
+	/**
+	 *  统计指定类的所有持久化对象数目
 	 * @param clazz
 	 * @return
 	 */
 	public int countObj(String clazz);
+
+	/**
+	 * 自定义Hql统计指定类的所有持久化对象数目
+	 * @param hqlString
+	 * @return
+	 */
+	public int countObjByHql(String hqlString);
 	
 	/**
-	 *  根据过滤条件统计指定对象 
+	 *  根据过滤条件统计指定对象数目 
 	 * @param clazz
 	 * @param filter
 	 * @return
 	 */
-	public int countObjByFilter(String clazz, IFilter filter);
+	public int countObjByFilter(String clazz, QueryFilter filter);
 	
 	/**
 	 *  条件更新数据 
-	 * @param hql
+	 * @param hqlString
 	 * @return 被更新的数量
 	 */
-	public int update(String hql, IFilter filter);
+	public int update(String hqlString);
 	
 	/**
 	 *  从连接池中取得一个JDBC连接 

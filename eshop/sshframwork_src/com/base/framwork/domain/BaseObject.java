@@ -1,4 +1,4 @@
-package com.eshop.framwork.domain;
+package com.base.framwork.domain;
 
 import java.io.Serializable;
 

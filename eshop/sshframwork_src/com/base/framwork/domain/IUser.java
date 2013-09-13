@@ -1,4 +1,4 @@
-package com.eshop.framwork.domain;
+package com.base.framwork.domain;
 
 /**
  * 用户domain接口 在具体的业务系统中，用户帐号domain User必须实现此接口
@@ -6,7 +6,7 @@ package com.eshop.framwork.domain;
  * 2013.08.11
  */
 
-public interface IUser extends BizDomain{
+public interface IUser extends IBizDomain{
 	
 	/**
 	 * 取得用户登录名

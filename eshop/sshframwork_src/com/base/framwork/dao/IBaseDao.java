@@ -1,4 +1,4 @@
-package com.eshop.framwork.dao;
+package com.base.framwork.dao;
 
 /**
  * dao的统一接口

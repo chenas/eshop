@@ -1,4 +1,4 @@
-package com.eshop.framwork.service;
+package com.base.framwork.service;
 
 /**
  * 业务类统一接口

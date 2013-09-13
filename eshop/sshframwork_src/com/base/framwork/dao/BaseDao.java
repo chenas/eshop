@@ -1,4 +1,6 @@
-package com.eshop.framwork.dao;
+package com.base.framwork.dao;
+
+import javax.annotation.Resource;
 
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
@@ -7,17 +9,12 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
  * @author chenas
  *2013Äê08ÔÂ11ÈÕ
  */
-
 public class BaseDao implements IBaseDao{
 
+	@Resource
 	private HibernateTemplate hibernateTemplate;
 
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
-
-	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-		this.hibernateTemplate = hibernateTemplate;
-	}
-	
 }
