@@ -101,4 +101,19 @@ public interface IEntityService<T extends BaseModel> extends IBaseService {
 	 */
 	public void updateEntity(T entity, IUser optUser);
 	
+	/**
+	 * 根据计数过滤条件统计记录数
+	 * @param entity
+	 * @param filter
+	 * @return
+	 */
+	public int countEntityByFilter(QueryFilter filter);
+	
+	/**
+	 * 自定义统计记录数
+	 * @param entity
+	 * @return
+	 */
+	public int countEntityByHql(String hql);
+	
 }

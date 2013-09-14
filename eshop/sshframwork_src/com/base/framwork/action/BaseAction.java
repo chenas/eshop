@@ -14,6 +14,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.base.framwork.Constants;
 import com.base.framwork.domain.IUser;
 import com.base.framwork.service.IUtilService;
+import com.base.framwork.util.SpringBeanUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -69,6 +70,18 @@ ServletRequestAware, ParameterAware, ServletResponseAware {
 		return this.session;
 	}
 
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	public Map<String, String[]> getParameters() {
+		return parameters;
+	}
+	
 	@Resource
 	private IUtilService utilService;
 	
@@ -104,6 +117,13 @@ ServletRequestAware, ParameterAware, ServletResponseAware {
 	 */
 	public Object doGetSessionObject(String key) {
 		return getSession().get(key);
+	}
+	
+	/**
+	 * 根据spring bean id获取spring bean
+	 */
+	public Object getService(String serviceBeanId) {
+		return SpringBeanUtil.getSpringService(serviceBeanId);
 	}
 	
 }

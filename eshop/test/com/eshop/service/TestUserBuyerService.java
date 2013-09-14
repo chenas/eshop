@@ -17,7 +17,7 @@ public class TestUserBuyerService {
 	
 	@Before
 	public void init(){
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		userBuyerService = (IUserBuyerService) ctx.getBean("userBuyerService");
 	}
 
@@ -39,5 +39,9 @@ public class TestUserBuyerService {
 		for(int i=0; i<users.size(); i++){
 			System.out.println(users.get(i).getName());
 		}
+	}
+	@Test
+	public void testHasUser(){
+		System.out.println(userBuyerService.hasUser("Tom", "1234"));
 	}
 }

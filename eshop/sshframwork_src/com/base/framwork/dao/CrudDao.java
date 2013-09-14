@@ -21,6 +21,8 @@ import com.base.framwork.queryfilter.QueryFilter;
  */
 public class CrudDao extends BaseDao implements ICrudDao{
 
+	private static StringBuilder strBuilder = new StringBuilder();
+	
 	/**
 	 *  保存或更新指定的持久化对象 
 	 * @param obj
@@ -125,14 +127,16 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	 */
 	@Override
 	public List findAllObjListByFilter(String clazz, QueryFilter filter){
-		String hql = "from "+clazz+" as a "+filter.getQueryString();
+		String hql = "from "+clazz+" as a";
+		strBuilder.append(hql);
+		strBuilder.append(filter.getQueryString()==null?"" : " "+filter.getQueryString());
 		if(filter.getQueryString() !=null && !filter.getOrderByString().equals("")){
-			hql += filter.getOrderByString();
+			strBuilder.append(" "+filter.getOrderByString());
 		}else{
-			hql += "order by a.id desc";
+			strBuilder.append(" order by a.id desc");
 		}
-System.out.println(hql);
-		return this.getHibernateTemplate().find(hql);
+System.out.println(strBuilder.toString());
+		return this.getHibernateTemplate().find(strBuilder.toString());
 	}
 	
 	/**
@@ -148,14 +152,14 @@ System.out.println(hql);
 		}
 		final int pNo = filter.getPageNo();
 		final int pSize = filter.getPageSize();
-		StringBuilder sb = new StringBuilder("from "+clazz+ " as a");
-		sb.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
+		strBuilder = strBuilder.append("from "+clazz+ " as a");
+		strBuilder.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
 		if(filter.getQueryString() != null && !filter.getOrderByString().equals("")){
-			sb.append(filter.getOrderByString());
+			strBuilder.append(" "+filter.getOrderByString());
 		}else{
-			sb.append(" order by a.id desc");
+			strBuilder.append(" order by a.id desc");
 		}
-		final String hql = sb.toString();
+		final String hql = strBuilder.toString();
 System.out.println(hql);
 		List list = this.getHibernateTemplate().executeFind(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
@@ -244,7 +248,14 @@ System.out.println(hql);
 	 */
 	@Override
 	public int countObjByFilter(String clazz, QueryFilter filter) {
-		final String hql = "select count(*) from "+clazz+ " as a "+filter.getQueryString();
+		strBuilder.append("select count(*) from "+clazz+ " as a");
+		strBuilder.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
+		if(filter.getQueryString() != null && !filter.getOrderByString().equals("")){
+			strBuilder.append(" "+filter.getOrderByString());
+		}else{
+			strBuilder.append(" order by a.id desc");
+		}
+		final String hql = strBuilder.toString();
 		@SuppressWarnings("unchecked")
 		Long count = (Long)this.getHibernateTemplate().execute(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{

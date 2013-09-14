@@ -190,6 +190,27 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		
 	}
 
+	/**
+	 * 根据计数过滤条件统计记录数
+	 * @param entity
+	 * @param filter
+	 * @return
+	 */
+	@Override
+	public int countEntityByFilter(QueryFilter filter){
+		return getCrudDao().countObjByFilter(getTClass().getName(), filter);
+	}
+	
+	/**
+	 * 自定义统计记录数
+	 * @param entity
+	 * @return
+	 */
+	@Override
+	public int countEntityByHql(String hql){
+		return getCrudDao().countObjByHql(hql);
+	}
+	
 	//得到T.class
 	protected Class<T> getTClass(){
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];

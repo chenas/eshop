@@ -65,13 +65,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 		}
 		return "list";
 	}
-
-	private void savedMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
+	
 	/**
 	 * 提交修改执行的方法
 	 * @return 列表页
@@ -84,12 +78,6 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 		}
 		return "list";
 	}
-
-	private void updatedMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	/**
 	 * 提交删除执行的方法
@@ -104,12 +92,6 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 		}
 		return "list";
 	}
-	
-	private void deletedOneMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	/**
 	 * 提交批量删除执行的方法
@@ -123,6 +105,39 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 			deletedOneMessage();
 		}
 		return "list";
+	}
+
+
+	/**
+	 * 添加的提示信息
+	 * 
+	 */
+	protected void savedMessage() {
+		saveMessage("common.messages.saveSuccess");
+	}
+
+	/**
+	 * 修改的提示信息
+	 * 
+	 */
+	protected void updatedMessage() {
+		saveMessage("common.messages.updateSuccess");
+	}
+
+	/**
+	 * 删除提示信息
+	 * 
+	 */
+	protected void deletedOneMessage() {
+		saveMessage("common.messages.deleteOneSuccess");
+	}
+
+	/**
+	 * 删除选中提示信息
+	 * 
+	 */
+	protected void deletedManyMessage() {
+		saveMessage("common.messages.deleteManySuccess");
 	}
 
 

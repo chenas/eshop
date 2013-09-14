@@ -23,5 +23,13 @@ public interface IUtilService {
 	 * @return 系统当前日期＋时间组成的字符串
 	 */
 	public String getSystemDateTimeString();
+	
+	/**
+	 * 获得字符串的md5编码
+	 * @param resString
+	 * @return
+	 *  	md5字符串
+	 */
+	public String getMD5String(String resString);
 
 }
