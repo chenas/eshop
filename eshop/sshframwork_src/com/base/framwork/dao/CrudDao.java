@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.stereotype.Component;
 
 import com.base.framwork.queryfilter.QueryFilter;
 
@@ -18,7 +19,6 @@ import com.base.framwork.queryfilter.QueryFilter;
  * @author chenas
  * 2013.08.11
  */
-
 public class CrudDao extends BaseDao implements ICrudDao{
 
 	/**
@@ -36,6 +36,22 @@ public class CrudDao extends BaseDao implements ICrudDao{
 		return true;
 	}
 
+	/**
+	 * 直接从数据库取一条记录
+	 * @param clazz
+	 * @param id
+	 * @return
+	 */
+	public Object getById(Class clazz, Serializable id){
+		Object entity = null;
+		try{
+			entity = this.getHibernateTemplate().get(clazz, id);
+		}catch(Exception ex){
+			return null;
+		}
+		return entity;
+	}
+	
 	/** 
 	 * 加载指定ID的持久化对象 
 	 * @param clazz
@@ -110,11 +126,12 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	@Override
 	public List findAllObjListByFilter(String clazz, QueryFilter filter){
 		String hql = "from "+clazz+" as a "+filter.getQueryString();
-		if(!filter.getOrderByString().equals("")){
+		if(filter.getQueryString() !=null && !filter.getOrderByString().equals("")){
 			hql += filter.getOrderByString();
 		}else{
 			hql += "order by a.id desc";
 		}
+System.out.println(hql);
 		return this.getHibernateTemplate().find(hql);
 	}
 	
@@ -131,13 +148,15 @@ public class CrudDao extends BaseDao implements ICrudDao{
 		}
 		final int pNo = filter.getPageNo();
 		final int pSize = filter.getPageSize();
-		String hqlString = "from "+clazz+ " as a "+filter.getQueryString();
-		if(!filter.getOrderByString().equals("")){
-			hqlString += filter.getOrderByString();
+		StringBuilder sb = new StringBuilder("from "+clazz+ " as a");
+		sb.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
+		if(filter.getQueryString() != null && !filter.getOrderByString().equals("")){
+			sb.append(filter.getOrderByString());
 		}else{
-			hqlString += "order by a.id desc";
+			sb.append(" order by a.id desc");
 		}
-		final String hql = hqlString;
+		final String hql = sb.toString();
+System.out.println(hql);
 		List list = this.getHibernateTemplate().executeFind(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
 				Query query = session.createQuery(hql);

@@ -50,7 +50,7 @@ public class BaseModel extends BaseObject implements IBizDomain{
 	 */
 	public String createTime;
 	
-	@Column(name="create_time",length=15)
+	@Column(name="create_time",length=20)
 	public String getCreateTime() {
 		return createTime;
 	}

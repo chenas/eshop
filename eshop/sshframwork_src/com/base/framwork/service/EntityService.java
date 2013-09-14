@@ -19,7 +19,7 @@ import com.base.framwork.queryfilter.QueryFilter;
 public class EntityService<T extends BaseModel> extends BaseService implements IEntityService<T>{
 
 	/**
-	 * 根据Id查找
+	 * 根据Id查找 load
 	 * @param id
 	 * 			主键
 	 * @return
@@ -27,6 +27,17 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	@Override
 	public T findEntityById(String id) {
 		return (T) getCrudDao().loadById(getTClass(), id);
+	}
+
+	/**
+	 * 根据Id查找 get
+	 * @param id
+	 * 			主键
+	 * @return
+	 */
+	@Override
+	public T getEntityById(String id) {
+		return (T) getCrudDao().getById(getTClass(), id);
 	}
 
 	/**
@@ -46,7 +57,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	 */
 	@Override
 	public List<T> findEntityListByFilter(QueryFilter filter) {
-		return getCrudDao().findAllObjListByFilter(getTClass().getName(), filter);
+		return getCrudDao().findObjListByFilter(getTClass().getName(), filter);
 	}
 
 	/**

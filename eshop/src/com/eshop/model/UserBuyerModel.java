@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 
 import com.base.framwork.domain.BaseModel;
 
+/**
+ * Êý¾Ý¿â±í
+ * @author chenas
+ *
+ */
 @Entity(name="USER_BUYER")
 public class UserBuyerModel extends BaseModel{
 

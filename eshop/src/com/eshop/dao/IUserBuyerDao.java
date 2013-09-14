@@ -1,4 +1,4 @@
-package com.eshop.dao.impl;
+package com.eshop.dao;
 
 import com.base.framwork.dao.ICrudDao;
 

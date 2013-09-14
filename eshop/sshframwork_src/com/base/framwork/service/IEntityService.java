@@ -23,6 +23,14 @@ public interface IEntityService<T extends BaseModel> extends IBaseService {
 	 * @return
 	 */
 	public T findEntityById(String id);
+
+	/**
+	 * 根据Id查找 get
+	 * @param id
+	 * 			主键
+	 * @return
+	 */
+	public T getEntityById(String id);
 	
 	/**
 	 * 查找数据库中所有的记录

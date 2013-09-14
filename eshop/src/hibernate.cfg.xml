@@ -42,8 +42,8 @@
         <!--
         <mapping resource="com/bjsxt/hibernate/Student.hbm.xml"/>   -->
         
-		<mapping class="com.eshop.model.UserBuyer"/>
-		<mapping class="com.eshop.model.UserShop"/>
+		<mapping class="com.eshop.model.UserBuyerModel"/>
+		<mapping class="com.eshop.model.UserShopModel"/>
 
     </session-factory>
 

@@ -3,6 +3,8 @@ package com.base.framwork.service;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import com.base.framwork.util.DateUtil;
 
 /**
@@ -10,7 +12,7 @@ import com.base.framwork.util.DateUtil;
  * @author chenas
  *
  */
-
+@Component
 public class UtilService implements IUtilService{
 
 	/**

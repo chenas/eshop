@@ -21,8 +21,18 @@ public interface ICrudDao extends IBaseDao{
 	 */
 	public Boolean saveOrUpdate(Object obj);
 	
+	/**
+	 * 直接从数据库取一条记录
+	 * @param clazz
+	 * @param id
+	 * @return
+	 */
+	public Object getById(Class clazz, Serializable id);
+	
 	/** 
-	 * 加载指定ID的持久化对象 
+	 * 加载指定ID的持久化对象
+	 * 		此方法执行时会先从缓存取对象，缓存没有的话则到数据库取
+	 * 		涉及到session问题
 	 * @param clazz
 	 * @param id
 	 * @return

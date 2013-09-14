@@ -11,7 +11,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.eshop.dao.UserBuyerDao;
+import com.eshop.dao.impl.UserBuyerDao;
 
 public class HibernateORMappingTest {
 	private static SessionFactory sessionFactory;

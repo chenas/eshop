@@ -3,6 +3,11 @@ package com.eshop.domain;
 import com.base.framwork.domain.IUser;
 import com.eshop.model.UserBuyerModel;
 
+/**
+ * userbuyer±íµÄdomain
+ * @author chenas
+ *
+ */
 public class UserBuyer extends UserBuyerModel implements IUser{
 	
 	private String admin;
