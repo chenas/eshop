@@ -8,7 +8,7 @@ import com.base.framwork.domain.IUser;
 import com.base.framwork.queryfilter.QueryFilter;
 
 /**
- * ÔöÉ¾¸Ä²éÍ¨ÓÃService
+ * ï¿½ï¿½É¾ï¿½Ä²ï¿½Í¨ï¿½ï¿½Service
  * @author chenas
  *
  * @param <T>
@@ -19,9 +19,9 @@ import com.base.framwork.queryfilter.QueryFilter;
 public class EntityService<T extends BaseModel> extends BaseService implements IEntityService<T>{
 
 	/**
-	 * ¸ù¾ÝId²éÕÒ load
+	 * ï¿½ï¿½ï¿½ï¿½Idï¿½ï¿½ï¿½ï¿½ load
 	 * @param id
-	 * 			Ö÷¼ü
+	 * 			ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	@Override
@@ -30,9 +30,9 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ¸ù¾ÝId²éÕÒ get
+	 * ï¿½ï¿½ï¿½ï¿½Idï¿½ï¿½ï¿½ï¿½ get
 	 * @param id
-	 * 			Ö÷¼ü
+	 * 			ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	@Override
@@ -41,7 +41,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ²éÕÒÊý¾Ý¿âÖÐËùÓÐµÄ¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¼ï¿½Â¼
 	 * @return
 	 */
 	@Override
@@ -50,9 +50,9 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ¸ù¾Ý¹ýÂËÆ÷²éÑ¯ËùÓÐ¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ð¼ï¿½Â¼
 	 * @param filter
-	 * 			¹ýÂËÆ÷
+	 * 			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	@Override
@@ -61,11 +61,11 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ²åÈëÒ»Ìõ¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 	 * @param entity
-	 *            domain¶ÔÏó
+	 *            domainï¿½ï¿½ï¿½ï¿½
 	 * @param user
-	 * 			²Ù×÷ÓÃ»§
+	 * 			ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * @return id
 	 */
 	@Override
@@ -78,18 +78,18 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		return null;
 	}
 
-	//ÐÂÔöÒ»Ìõ¼ÇÂ¼Ö®Ç°µÄ²Ù×÷
+	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Â¼Ö®Ç°ï¿½Ä²ï¿½ï¿½ï¿½
 	protected void beforeInsertEntity(T entity, IUser optUser){
 		
 	}
-	//ÐÂÔöÒ»Ìõ¼ÇÂ¼Ö®ºóµÄ²Ù×÷
+	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Â¼Ö®ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
 	protected void afterInsertEntity(T entity, IUser optUser){
 		
 	}
 
 
 	/**
-	 * É¾³ý³Ö¾Ã»¯ÊµÌå
+	 * É¾ï¿½ï¿½ï¿½Ö¾Ã»ï¿½Êµï¿½ï¿½
 	 * @param entity
 	 * @param optUser
 	 */
@@ -102,12 +102,12 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 	
 	/**
-	 * ¸ù¾ÝÖ÷¼üidÉ¾³ýÊý¾Ý¿â¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½Â¼
 	 * 
 	 * @param id
-	 *            Ö÷¼üid
+	 *            ï¿½ï¿½ï¿½ï¿½id
 	 * @param optUser
-	 *            ²Ù×÷ÓÃ»§
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 *            
 	 */  
 	@Override
@@ -117,31 +117,31 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		AfterDeleteEntity(id, optUser);
 	}
 	
-	//É¾³ý²Ù×÷Ö®Ç°
+	//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°
 	protected void beforeDeleteEntity(T entity, IUser optUser){
 		
 	}
-	//É¾³ý²Ù×÷Ö®ºó
+	//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
 	protected void AfterDeleteEntity(T entity, IUser optUser){
 		
 	}
 	
-	//É¾³ý²Ù×÷Ö®Ç°
+	//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°
 	protected void beforeDeleteEntity(String id, IUser optUser){
 		
 	}
-	//É¾³ý²Ù×÷Ö®ºó
+	//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
 	protected void AfterDeleteEntity(String id, IUser optUser){
 		
 	}
 
 	/**
-	 * ¸ù¾ÝidsÉ¾³ý¶à¸öÊý¾Ý¿â¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½idsÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½Â¼
 	 * 
 	 * @param ids
-	 *            Ö÷¼üidÊý×é
+	 *            ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½
 	 * @param optUser
-	 *            ²Ù×÷ÓÃ»§
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 */
 	@Override
 	public void deleteManyEntityById(String[] ids, IUser optUser) {
@@ -153,7 +153,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 	
 	/**
-	 * ÅúÁ¿É¾³ý
+	 * ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½
 	 * @param entitys
 	 * @param optUser
 	 */
@@ -167,12 +167,12 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ¸üÐÂÊý¾Ý¿â¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½Â¼
 	 * 
 	 * @param entity
-	 *            domain¶ÔÏó
+	 *            domainï¿½ï¿½ï¿½ï¿½
 	 * @param optUser
-	 *            ²Ù×÷ÓÃ»§
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 */
 	@Override
 	public void updateEntity(T entity, IUser optUser) {
@@ -181,17 +181,17 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		afterUpdate(entity, optUser);
 	}
 
-	//¸üÐÂÇ°²Ù×÷
+	//ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
 	protected void beforUpdate(T entity, IUser optUser){
 		
 	}
-	//¸üÐÂºó²Ù×÷
+	//ï¿½ï¿½ï¿½Âºï¿½ï¿½ï¿½ï¿½ï¿½
 	protected void afterUpdate(T entity, IUser optUser){
 		
 	}
 
 	/**
-	 * ¸ù¾Ý¼ÆÊý¹ýÂËÌõ¼þÍ³¼Æ¼ÇÂ¼Êý
+	 * ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³ï¿½Æ¼ï¿½Â¼ï¿½ï¿½
 	 * @param entity
 	 * @param filter
 	 * @return
@@ -202,7 +202,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 	
 	/**
-	 * ×Ô¶¨ÒåÍ³¼Æ¼ÇÂ¼Êý
+	 * ï¿½Ô¶ï¿½ï¿½ï¿½Í³ï¿½Æ¼ï¿½Â¼ï¿½ï¿½
 	 * @param entity
 	 * @return
 	 */
@@ -211,7 +211,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		return getCrudDao().countObjByHql(hql);
 	}
 	
-	//µÃµ½T.class
+	//ï¿½Ãµï¿½T.class fdsdfds
 	protected Class<T> getTClass(){
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
