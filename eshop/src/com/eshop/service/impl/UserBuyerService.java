@@ -36,9 +36,9 @@ public class UserBuyerService extends EntityService<UserBuyerModel> implements I
 		}
 	}
 	
-	/*public static void main(String[] args){
+	public static void main(String[] args){
 		UserBuyerService us = new UserBuyerService();
 		System.out.println(us.getTClass());
-	}*/
+	}
 	
 }

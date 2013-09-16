@@ -10,8 +10,6 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <display-name>eshop</display-name>
-
 	<!-- tomcat默认生成的地方是classes下面 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>

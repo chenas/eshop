@@ -25,14 +25,14 @@ public class TestUserBuyerDao {
 	@Test
 	public void testSave(){
 		for(int i=0; i<5;i++){
-			//±¨unknown entity exception
+			//ï¿½ï¿½unknown entity exception
 //			UserBuyer buyer = new UserBuyer();
 			
 			UserBuyerModel buyer = new UserBuyerModel();
 			buyer.setPassword("23423432");
 			buyer.setName("jack");
 			buyer.setIsValidate("0");
-			buyerDao.saveOrUpdate(buyer);
+			buyerDao.save(buyer);
 		}
 	}
 	@Test

@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.base.framwork.domain.IUser;
 import com.base.framwork.queryfilter.QueryFilter;
 import com.eshop.domain.UserBuyer;
 import com.eshop.model.UserBuyerModel;
@@ -45,5 +46,12 @@ public class TestUserBuyerService {
 		QueryFilter filter = new QueryFilter();
 		System.out.println(userBuyerService.hasUser("Tom", "1234"));
 		System.out.println(userBuyerService.countEntityByFilter(filter));
+	}
+	@Test
+	public void testUpdate(){
+		IUser optuser = new UserBuyer();
+		UserBuyerModel user = userBuyerService.getEntityById("0001900b-1921-4658-b76e-29d634dcb95e");
+		user.setName("Jack");
+		userBuyerService.updateEntity(user, optuser);
 	}
 }

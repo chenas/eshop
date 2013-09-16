@@ -19,7 +19,7 @@
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
-			<value>classpath:jdbc.properties</value>
+			<value>classpath*:*.properties</value>
 		</property>
 	</bean>
 
@@ -72,7 +72,7 @@
 	<aop:config>
 		<!-- 定义一个事务切入点，拦截 com.assistant.service.impl包中所有类的所有方法 -->
 		<aop:pointcut id="bussinessService"
-			expression="execution(public * com.security.service.impl.*.*(..))" />
+			expression="execution(public * com.*.service.*.*(..))" />
 		<!-- 引用txAdvice事务通知 -->
 		<aop:advisor pointcut-ref="bussinessService" advice-ref="txAdvice" />
 	</aop:config>
@@ -83,14 +83,19 @@
 			<tx:method name="find*" read-only="true" />
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="load*" read-only="true" />
-			<tx:method name="add*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="save*" propagation="REQUIRED" />
-			<!-- 设置所有方法均进行事务控制，如果当前没有事务，则新建一个事务 -->
-			<tx:method name="*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="execute*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="create*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
+	<!-- 引用外部文件 -->
+	<import resource="applicationContext-mail.xml"/>
+	
 	<!-- 发送邮件 -->
 	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.163.com" />

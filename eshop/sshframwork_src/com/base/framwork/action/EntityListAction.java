@@ -2,19 +2,30 @@ package com.base.framwork.action;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.struts2.ServletActionContext;
+import org.springframework.stereotype.Component;
 
 import com.base.framwork.domain.BaseModel;
 import com.base.framwork.domain.PageList;
 import com.base.framwork.queryfilter.QueryFilter;
-
+/**
+ * åˆ—è¡¨action
+ * @author chenas
+ *
+ * @param <T>
+ */
+@Component
 public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 	
 	private List<T> entityList;
 	
-	//´æ·Åentity£¬ÉèÖÃ·ÖÒ³
+	//ï¿½ï¿½ï¿½entityï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½Ò³
+	@Resource
 	protected PageList pageList;
 	
+	@Resource
 	protected QueryFilter filter;
 	
 	protected int pageNo;
@@ -37,7 +48,7 @@ public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 	}
 	
 	/**
-	 * Ä¬ÈÏ²éÑ¯
+	 * Ä¬ï¿½Ï²ï¿½Ñ¯
 	 * @param filter
 	 * @return
 	 */

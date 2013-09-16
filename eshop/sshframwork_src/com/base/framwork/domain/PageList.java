@@ -2,15 +2,18 @@ package com.base.framwork.domain;
 
 import java.util.List;
 import java.util.Map;
-/** 用于封装当前分页数据的PaginatedList实现类 */
+
+import org.springframework.stereotype.Component;
+/** 锟斤拷锟节凤拷装锟斤拷前锟斤拷页锟斤拷莸锟絇aginatedList实锟斤拷锟斤拷 */
+@Component
 public class PageList{
 	@SuppressWarnings("rawtypes")
-	private List list;//每页的列表
-    private Map<?, ?> map; //每页的列表
-    private int pageNumber=1;//当前页码
-    private int objectsPerPage=15;//每页记录数
-    private int fullListSize = 0;//总记录数
-    private int totalPage = 0;  //一共有多少页
+	private List list;//每页锟斤拷锟叫憋拷
+    private Map<?, ?> map; //每页锟斤拷锟叫憋拷
+    private int pageNumber=1;//锟斤拷前页锟斤拷
+    private int objectsPerPage=15;//每页锟斤拷录锟斤拷
+    private int fullListSize = 0;//锟杰硷拷录锟斤拷
+    private int totalPage = 0;  //一锟斤拷锟叫讹拷锟斤拷页
     
     private String sortCriterion;
     private String searchId;

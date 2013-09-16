@@ -1,61 +1,73 @@
 package com.base.framwork.action;
 
+import net.sf.cglib.core.ReflectUtils;
+
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
 
+
+
+import org.springframework.stereotype.Component;
+
 import com.base.framwork.domain.BaseModel;
+import com.base.framwork.util.ReflectUtil;
 
 /**
- * 增删改查通用action
+ * 澧炲垹鏀规煡action
  * @author chenas
  *
  * @param <T>
  */
+@Component
 public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	
 	protected T entity;
 	
-	//设置提示信息是否开启
+	//model绫诲悕
+	protected String modelName;
+	
+	//鎻愮ず淇℃伅
 	private boolean enableMessage = true;
 	
 	/**
-	 * 进入新增页面
-	 * @return 进入成功
+	 * 杩涘叆鏂板椤甸潰
+	 * @return  
 	 * @throws Exception
 	 */
 	@SkipValidation
 	public String intoAdd() throws Exception{
 		commonOperations();
-		return SUCCESS;
+		return ADD;
 	}
 
 
 	/**
-	 * 进入修改页执行的方法
-	 * @return 执行成功
+	 * 杩涘叆缂栬緫椤甸潰
+	 * @return 执锟叫成癸拷
 	 * @throws Exception
 	 */
 	@SkipValidation
 	public String intoEdit() throws Exception {
 		commonOperations();
-		setEntity(entityService.findEntityById(getId()));
-		return SUCCESS;
+		setEntity(entityService.getEntityById(getId()));
+		return EDIT;
 	}
 	
 	/**
-	 * 进入查看执行的方法
-	 * @return 执行成功
+	 * 杩涘叆鏌ョ湅椤甸潰
+	 * @return 
 	 * @throws Exception
 	 */
 	@SkipValidation
 	public String intoView() throws Exception {
 		commonOperations();
 		setEntity(entityService.findEntityById(getId()));
-		return SUCCESS;
+		return VIEW;
 	}
 
 	/**
-	 * 提交新增执行的方法
-	 * @return 列表页
+	 * 鎻愪氦鏂板淇℃伅
+	 * @return  
 	 * @throws Exception
 	 */
 	public String submitAdd() throws Exception {
@@ -63,12 +75,12 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 		if (isEnableMessage()) {
 			savedMessage();
 		}
-		return "list";
+		return LIST;
 	}
 	
 	/**
-	 * 提交修改执行的方法
-	 * @return 列表页
+	 * 鎻愪氦缂栬緫淇℃伅
+	 * @return 
 	 * @throws Exception
 	 */
 	public String submitEdit() throws Exception {
@@ -76,12 +88,12 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 		if (isEnableMessage()) {
 			updatedMessage();
 		}
-		return "list";
+		return LIST;
 	}
 
 	/**
-	 * 提交删除执行的方法
-	 * @return 列表页
+	 * 鍒犻櫎
+	 * @return 锟叫憋拷页
 	 * @throws Exception
 	 */
 	@SkipValidation
@@ -90,12 +102,12 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 		if (isEnableMessage()) {
 			deletedOneMessage();
 		}
-		return "list";
+		return LIST;
 	}
 
 	/**
-	 * 提交批量删除执行的方法
-	 * @return 列表页
+	 * 鎵归噺鍒犻櫎
+	 * @return 
 	 * @throws Exception
 	 */
 	@SkipValidation
@@ -104,12 +116,12 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 		if (isEnableMessage()) {
 			deletedOneMessage();
 		}
-		return "list";
+		return LIST;
 	}
 
 
 	/**
-	 * 添加的提示信息
+	 * 娑堟伅鎻愮ず
 	 * 
 	 */
 	protected void savedMessage() {
@@ -117,7 +129,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	}
 
 	/**
-	 * 修改的提示信息
+	 * 娑堟伅鎻愮ず
 	 * 
 	 */
 	protected void updatedMessage() {
@@ -125,7 +137,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	}
 
 	/**
-	 * 删除提示信息
+	 * 娑堟伅鎻愮ず
 	 * 
 	 */
 	protected void deletedOneMessage() {
@@ -133,7 +145,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	}
 
 	/**
-	 * 删除选中提示信息
+	 * 娑堟伅鎻愮ず
 	 * 
 	 */
 	protected void deletedManyMessage() {
@@ -142,12 +154,27 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 
 
 	public T getEntity() {
-		return entity;
+		Object result;
+		try {
+			result = MethodUtils.invokeMethod(this, ReflectUtil
+					.getGetterOfField(getModelName()), null);
+		} catch (Exception e) {
+			System.out.println("Reflect error, when get entity of "
+					+ getClass().getName() + ".");
+			result = null;
+		}
+		return (T) result;
 	}
 
 
 	public void setEntity(T entity) {
-		this.entity = entity;
+		try {
+			MethodUtils.invokeMethod(this, ReflectUtil
+					.getSetterOfField(getModelName()), entity);
+		} catch (Exception e) {
+			System.out.println("Reflect error, when set entity of "
+					+ getClass().getName() + ".");
+		}
 	}
 
 
@@ -157,6 +184,20 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 
 	public void setEnableMessage(boolean enableMessage) {
 		this.enableMessage = enableMessage;
+	}
+
+
+	public String getModelName() {
+		String suffix = "Action";
+		String className = this.getClass().getSimpleName();
+		modelName = className.substring(0, className.length() - suffix.length())+"Model";
+System.out.println(modelName);
+		return modelName;
+	}
+
+
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
 	}
 
 }

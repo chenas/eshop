@@ -2,14 +2,15 @@ package com.base.framwork.service;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Component;
+
 import com.base.framwork.dao.ICrudDao;
 
 /**
- * IBaseService实现类
+ * IBaseService实锟斤拷锟斤拷
  * @author chenas
  * 2013.08.11
  */
-
 public class BaseService implements IBaseService{
 	
 	@Resource

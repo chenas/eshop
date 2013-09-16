@@ -3,6 +3,7 @@ package com.base.framwork.action;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import com.base.framwork.Constants;
 import com.base.framwork.domain.BaseModel;
@@ -10,14 +11,14 @@ import com.base.framwork.service.EntityService;
 
 
 /**
- * ËùÓÐÊµÌåÀàactionµÄ»ùÀà
+ * å®žä½“ç±»action
  * @author chenas
  *
  * @param <T>
  */
 public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 	
-	//actionµ÷ÓÃ´«µÝµÄÖ÷¼ü
+	//actionï¿½ï¿½ï¿½Ã´ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½ï¿½
 	private String id;
 	
 	@Resource
@@ -25,13 +26,13 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 
 
 	/**
-	 * domainÀàÃû³Æ
+	 * domainï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	protected String domainName = null;
 
 	/**
-	 * Èç¹ûactionÊÇDomain+Action/Domain+ListAction/Domain+JsonListActionÃüÃûµÄ·½Ê½£¬ÕâÀï×Ô¶¯×¢Èë£¬
-	 * ·ñÔò×ÓÀàÖØÐ´¸Ã·½·¨À´ÉèÖÃentityService
+	 * ï¿½ï¿½ï¿½actionï¿½ï¿½Domain+Action/Domain+ListAction/Domain+JsonListActionï¿½ï¿½ï¿½ï¿½Ä·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½×¢ï¿½ë£¬
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½entityService
 	 * 
 	 * @param entityService
 	 */
@@ -54,7 +55,7 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 							+ "or you can overwrite the method setEntityService in your Action!");
 			domainName = "";
 		}
-		// µÚÒ»¸ö×Ö·û¸Ä³ÉÐ¡Ð´
+		// ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö·ï¿½Ä³ï¿½Ð¡Ð´
 		domainName = domainName.substring(0, 1).toLowerCase()
 				+ domainName.substring(1);
 		this.entityService = (EntityService<T>) getService(domainName
@@ -62,26 +63,26 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 	}*/
 
 	/**
-	 * ¹²Í¨·½·¨£¬Í¨³£ÓÃÀ´Ð£Ñé
+	 * ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½
 	 * 
 	 * @throws Exception
-	 *             Å×³öµÄÒì³£
+	 *             ï¿½×³ï¿½ï¿½ï¿½ï¿½ì³£
 	 */
 	protected void commonOperations() throws Exception {
 	}
 
 	/**
-	 * ±£´æÌáÊ¾ÐÅÏ¢
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢
 	 * 
 	 * @param paramString
-	 *            ÌáÊ¾ÐÅÏ¢
+	 *            ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢
 	 */
 	protected void saveMessage(String paramString) {
 		String str = getText(paramString);
-		getRequest().getSession().setAttribute(Constants.POP_MESSAGE_KEY, str);
+		//getRequest().getSession().setAttribute(Constants.POP_MESSAGE_KEY, str);
 	}
 	/**
-	 * »ñµÃÇ°Ì¨Ìá½»µÄid
+	 * ï¿½ï¿½ï¿½Ç°Ì¨ï¿½á½»ï¿½ï¿½id
 	 * @return id
 	 */
 	public String getId() {
@@ -89,7 +90,7 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 	}
 
 	/**
-	 * ÉèÖÃÇ°Ì¨Ìá½»µÄid
+	 * ï¿½ï¿½ï¿½ï¿½Ç°Ì¨ï¿½á½»ï¿½ï¿½id
 	 * @param id
 	 */
 	public void setId(String id) {
@@ -97,12 +98,12 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 	}
 
 	/**
-	 * »ñµÃÇ°Ì¨Ìá½»µÄ¶à¸öid
-	 * @return id×éÊý
+	 * ï¿½ï¿½ï¿½Ç°Ì¨ï¿½á½»ï¿½Ä¶ï¿½ï¿½id
+	 * @return idï¿½ï¿½ï¿½ï¿½
 	 */
 	public String[] getIds() {
 		if (StringUtils.isNotEmpty(id)) {
-			return id.split(", ");// struts2¶àÌá½»ÊÇ¶ººÅ¼Ó¿Õ¸ñ¸ô¿ªµÄ
+			return id.split(", ");// 
 		} else {
 			return new String[0];
 		}

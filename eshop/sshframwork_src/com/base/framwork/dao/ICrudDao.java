@@ -7,22 +7,29 @@ import java.util.List;
 import com.base.framwork.queryfilter.QueryFilter;
 
 /**
- * Êı¾İ·ÃÎÊÍ¬Ò»½Ó¿Ú
+ * ï¿½ï¿½İ·ï¿½ï¿½ï¿½Í¬Ò»ï¿½Ó¿ï¿½
  * @author chenas
- * 2013Äê08ÔÂ11ÈÕ
+ * 2013ï¿½ï¿½08ï¿½ï¿½11ï¿½ï¿½
  */
 
 public interface ICrudDao extends IBaseDao{
 	
 	/**
-	 *  ±£´æ»ò¸üĞÂÖ¸¶¨µÄ³Ö¾Ã»¯¶ÔÏó 
+	 *  
 	 * @param obj
 	 * @return true if success
 	 */
-	public Boolean saveOrUpdate(Object obj);
+	public Boolean save(Object obj);
+
+	/**
+	 *  
+	 * @param obj
+	 * @return true if success
+	 */
+	public Boolean update(Object obj);
 	
 	/**
-	 * Ö±½Ó´ÓÊı¾İ¿âÈ¡Ò»Ìõ¼ÇÂ¼
+	 * Ö±ï¿½Ó´ï¿½ï¿½ï¿½İ¿ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 	 * @param clazz
 	 * @param id
 	 * @return
@@ -30,9 +37,9 @@ public interface ICrudDao extends IBaseDao{
 	public Object getById(Class clazz, Serializable id);
 	
 	/** 
-	 * ¼ÓÔØÖ¸¶¨IDµÄ³Ö¾Ã»¯¶ÔÏó
-	 * 		´Ë·½·¨Ö´ĞĞÊ±»áÏÈ´Ó»º´æÈ¡¶ÔÏó£¬»º´æÃ»ÓĞµÄ»°Ôòµ½Êı¾İ¿âÈ¡
-	 * 		Éæ¼°µ½sessionÎÊÌâ
+	 * ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½IDï¿½Ä³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * 		ï¿½Ë·ï¿½ï¿½ï¿½Ö´ï¿½ï¿½Ê±ï¿½ï¿½ï¿½È´Ó»ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ó£¬»ï¿½ï¿½ï¿½Ã»ï¿½ĞµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½È¡
+	 * 		ï¿½æ¼°ï¿½ï¿½sessionï¿½ï¿½ï¿½ï¿½
 	 * @param clazz
 	 * @param id
 	 * @return
@@ -40,7 +47,7 @@ public interface ICrudDao extends IBaseDao{
 	public Object loadById(Class clazz,Serializable id);
 	
 	/**
-	 *  É¾³ıÖ¸¶¨IDµÄ³Ö¾Ã»¯¶ÔÏó 
+	 *  É¾ï¿½ï¿½Ö¸ï¿½ï¿½IDï¿½Ä³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param clazz
 	 * @param id
 	 * @return true if success
@@ -49,28 +56,28 @@ public interface ICrudDao extends IBaseDao{
 	public Boolean delById(Class clazz,Serializable id);
 	
 	/**
-	 * É¾³ı³Ö¾Ã»¯¶ÔÏó
+	 * É¾ï¿½ï¿½Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param object
 	 * @return true if success
 	 */
 	public Boolean delObject(Object object);
 	
 	/**
-	 *  Ìõ¼ş×°ÔØÖ¸¶¨ÀàµÄËùÓĞ³Ö¾Ã»¯¶ÔÏó 
+	 *  ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param clazz
 	 * @return
 	 */
 	public List findAllObjListByFilter(String clazz, QueryFilter filter);
 
 	/**
-	 *  ×°ÔØÖ¸¶¨ÀàµÄËùÓĞ³Ö¾Ã»¯¶ÔÏó 
+	 *  ×°ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param clazz
 	 * @return
 	 */
 	public List findAllObjList(String clazz);
 
 	/**
-	 * ×Ô¶¨Òå×°ÔØ³Ö¾Ã»¯¶ÔÏó 
+	 * ï¿½Ô¶ï¿½ï¿½ï¿½×°ï¿½Ø³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param hqlString
 	 * @param filter
 	 * @return
@@ -78,7 +85,7 @@ public interface ICrudDao extends IBaseDao{
 	public List findObjListByHql(String hqlString);
 	
 	/**
-	 * ×°ÔØÖ¸¶¨ÀàµÄËùÓĞ³Ö¾Ã»¯¶ÔÏó 
+	 * ×°ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param clazz
 	 * @param filter
 	 * @return
@@ -86,7 +93,7 @@ public interface ICrudDao extends IBaseDao{
 	public List findObjListByFilter(String clazz,QueryFilter filter);
 	
 	/**
-	 * ×Ô¶¨Òå×°ÔØ³Ö¾Ã»¯¶ÔÏó 
+	 * ï¿½Ô¶ï¿½ï¿½ï¿½×°ï¿½Ø³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param hqlString
 	 * @param filter
 	 * @return
@@ -94,21 +101,21 @@ public interface ICrudDao extends IBaseDao{
 	public List findObjListByHqlAndFilter(String hqlString,QueryFilter filter);
 	
 	/**
-	 *  Í³¼ÆÖ¸¶¨ÀàµÄËùÓĞ³Ö¾Ã»¯¶ÔÏóÊıÄ¿
+	 *  Í³ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
 	 * @param clazz
 	 * @return
 	 */
 	public int countObj(String clazz);
 
 	/**
-	 * ×Ô¶¨ÒåHqlÍ³¼ÆÖ¸¶¨ÀàµÄËùÓĞ³Ö¾Ã»¯¶ÔÏóÊıÄ¿
+	 * ï¿½Ô¶ï¿½ï¿½ï¿½HqlÍ³ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
 	 * @param hqlString
 	 * @return
 	 */
 	public int countObjByHql(String hqlString);
 	
 	/**
-	 *  ¸ù¾İ¹ıÂËÌõ¼şÍ³¼ÆÖ¸¶¨¶ÔÏóÊıÄ¿ 
+	 *  ï¿½ï¿½İ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ 
 	 * @param clazz
 	 * @param filter
 	 * @return
@@ -116,14 +123,14 @@ public interface ICrudDao extends IBaseDao{
 	public int countObjByFilter(String clazz, QueryFilter filter);
 	
 	/**
-	 *  Ìõ¼ş¸üĞÂÊı¾İ 
+	 *  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param hqlString
-	 * @return ±»¸üĞÂµÄÊıÁ¿
+	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public int update(String hqlString);
 	
 	/**
-	 *  ´ÓÁ¬½Ó³ØÖĞÈ¡µÃÒ»¸öJDBCÁ¬½Ó 
+	 *  ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½ï¿½JDBCï¿½ï¿½ï¿½ï¿½ 
 	 * @return
 	 */
 	public Connection getConnection();

@@ -7,7 +7,7 @@
 	<package name="userLogin" namespace="/pages/common" extends="default">
 		<action name="login" class="com.eshop.action.BuyerLoginAction">
 			<result name="success" >/pages/index.jsp</result>
-			<result name="error">/pages/common/login.jsp</result>
+			<result name="error">/pages/commonsys/login.jsp</result>
 		</action>
 	</package>
 </struts>

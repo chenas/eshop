@@ -2,49 +2,51 @@ package com.base.framwork.queryfilter;
 
 import java.util.Map;
 
-/**
- * ²éÑ¯Ìõ¼þ¹ýÂËÀà
- * @author chenas
- * 2013Äê08ÔÂ11ÈÕ
- */
+import org.springframework.stereotype.Component;
 
+/**
+ * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @author chenas
+ * 2013ï¿½ï¿½08ï¿½ï¿½11ï¿½ï¿½
+ */
+@Component
 public class QueryFilter{
 	
 	/**
-	 * ÊÇ·ñ·ÖÒ³
-	 * Ä¬ÈÏÎªtrue£¬±íÊ¾·ÖÒ³
+	 * ï¿½Ç·ï¿½ï¿½Ò³
+	 * Ä¬ï¿½ï¿½Îªtrueï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ò³
 	 */
 	private boolean isLimited = true;
 	
 	/**
-	 * ±íÊ¾µÚ¼¸Ò³
+	 * ï¿½ï¿½Ê¾ï¿½Ú¼ï¿½Ò³
 	 */
 	private int pageNo = 1;
 	
 	/**
-	 * Ã¿Ò³µÄ¼ÇÂ¼Êý
-	 * Ä¬ÈÏÒ»Ò³ÏÔÊ¾10Ìõ
+	 * Ã¿Ò³ï¿½Ä¼ï¿½Â¼ï¿½ï¿½
+	 * Ä¬ï¿½ï¿½Ò»Ò³ï¿½ï¿½Ê¾10ï¿½ï¿½
 	 */
 	private int pageSize = 10;
 	
 	/**
-	 * ¸ù¾Ý´Ë×Ö·û´®ÅÅÐò
+	 * ï¿½ï¿½Ý´ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private String orderByString;
 	
 	/**
-	 * ²éÑ¯Óï¾ä(½áÎ²¼ÓÉÏ¿Õ¸ñ)
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½(ï¿½ï¿½Î²ï¿½ï¿½ï¿½Ï¿Õ¸ï¿½)
 	 * 	where +
 	 * 	between
 	 */
 	private String queryString;
 	
 	/**
-	 * ¹ýÂËÌõ¼þ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * String:
-	 * 		¶ÔÓ¦Êý¾Ý¿âÖÐµÄÁÐÃû
-	 * Object£º
-	 * 		¸÷ÖÖÊý¾ÝÀàÐÍµÄÖµ
+	 * 		ï¿½ï¿½Ó¦ï¿½ï¿½Ý¿ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
+	 * Objectï¿½ï¿½
+	 * 		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½Öµ
 	 * 
 	 */
 	

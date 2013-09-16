@@ -10,6 +10,7 @@ import org.apache.struts2.interceptor.ParameterAware;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.stereotype.Component;
 
 import com.base.framwork.Constants;
 import com.base.framwork.domain.IUser;
@@ -18,21 +19,25 @@ import com.base.framwork.util.SpringBeanUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
- * ËùÓÐActionµÄ»ùÀà
+ * æ‰€æœ‰actionçš„åŸºç±»
  * @author chenas
  *
  */
 public class BaseAction extends ActionSupport implements SessionAware,
 ServletRequestAware, ParameterAware, ServletResponseAware {
 
-
+	protected static String EDIT = "Edit";
+	protected static String ADD = "Add";
+	protected static String VIEW = "View";
+	protected static String LIST = "list";
+	
 	/**
-	 * HTTP requestÇëÇó¶ÔÏó
+	 * HTTP requestï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private HttpServletRequest request;
 
 	/**
-	 * HTTP ÏìÓ¦Í·
+	 * HTTP ï¿½ï¿½Ó¦Í·
 	 */
 	private HttpServletResponse response;
 
@@ -87,9 +92,9 @@ ServletRequestAware, ParameterAware, ServletResponseAware {
 	
 
 	/**
-	 * È¡µÃµ±Ç°sessionÖÐµÄµÇÂ½ÓÃ»§
+	 * È¡ï¿½Ãµï¿½Ç°sessionï¿½ÐµÄµï¿½Â½ï¿½Ã»ï¿½
 	 * 
-	 * @return µÇÂ½ÓÃ»§
+	 * @return ï¿½ï¿½Â½ï¿½Ã»ï¿½
 	 */
 	public IUser getLoginUser() {
 		IUser user = (IUser) doGetSessionObject(Constants.CURRENT_USER_KEY);
@@ -97,30 +102,30 @@ ServletRequestAware, ParameterAware, ServletResponseAware {
 	}
 
 	/**
-	 * ½«²ÎÊývalue·Åµ½ÒÔkeyÎªÖ÷¼üµÄsessionÖÐ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½valueï¿½Åµï¿½ï¿½ï¿½keyÎªï¿½ï¿½ï¿½ï¿½ï¿½sessionï¿½ï¿½
 	 * 
 	 * @param key
-	 *            Ö÷¼ü
+	 *            ï¿½ï¿½ï¿½ï¿½
 	 * @param value
-	 *            ²ÎÊý
+	 *            ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void doPutSessionObject(String key, Object value) {
 		this.getSession().put(key, value);
 	}
 
 	/**
-	 * »ñµÃsesion¶ÔÏó
+	 * ï¿½ï¿½ï¿½sesionï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param key
-	 *            ¼ü
-	 * @return sessionµÄÖµ
+	 *            ï¿½ï¿½
+	 * @return sessionï¿½ï¿½Öµ
 	 */
 	public Object doGetSessionObject(String key) {
 		return getSession().get(key);
 	}
 	
 	/**
-	 * ¸ù¾Ýspring bean id»ñÈ¡spring bean
+	 * ï¿½ï¿½ï¿½spring bean idï¿½ï¿½È¡spring bean
 	 */
 	public Object getService(String serviceBeanId) {
 		return SpringBeanUtil.getSpringService(serviceBeanId);

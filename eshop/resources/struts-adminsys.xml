@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="userbuyer" namespace="/pages/adminsys/buyer" extends="default">
+		<action name="list" class="com.eshop.adminsys.action.UserBuyerListAction">
+			<result name="list" >/pages/adminsys/buyer/buyerList.jsp</result>
+			<result name="error">/pages/commonsys/login.jsp</result>
+		</action>
+		<action name="into*" class="com.eshop.adminsys.action.UserBuyerAction" method="into{1}">
+			<result name="{1}" >/pages/adminsys/buyer/buyerEdit.jsp</result>
+			<result name="error">/pages/commonsys/login.jsp</result>
+		</action>
+		<action name="submit*" class="com.eshop.adminsys.action.UserBuyerAction" method="submit{1}">
+			<result name="list" type="redirect">/pages/adminsys/buyer/list.action</result>
+			<result name="input">/pages/adminsys/buyer/buyerEdit.jsp</result>
+			<result name="error">/pages/commonsys/login.jsp</result>
+		</action>
+	</package>
+</struts>

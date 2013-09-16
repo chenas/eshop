@@ -3,7 +3,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>mainIndex</title>
+<title>buyerIndex</title>
 </head>
 <body>
 <a href="<%=path %>/pages/adminsys/buyer/list.action">进入用户管理</a><br>

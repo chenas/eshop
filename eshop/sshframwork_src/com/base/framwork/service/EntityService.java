@@ -3,19 +3,21 @@ package com.base.framwork.service;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.base.framwork.domain.BaseModel;
 import com.base.framwork.domain.IUser;
 import com.base.framwork.queryfilter.QueryFilter;
 
 /**
- * ��ɾ�Ĳ�ͨ��Service
+ * 实体类service
  * @author chenas
  *
  * @param <T>
  * 
  * 2013.09.13
  */
-
+@Component
 public class EntityService<T extends BaseModel> extends BaseService implements IEntityService<T>{
 
 	/**
@@ -73,7 +75,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		entity.setCreateTime(utilService.getSystemDateTimeString());
 		entity.setCreateUser(optUser.getTrueName());
 		beforeInsertEntity(entity, optUser);
-		getCrudDao().saveOrUpdate(entity);
+		getCrudDao().save(entity);
 		afterInsertEntity(entity, optUser);;
 		return null;
 	}
@@ -176,8 +178,9 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	 */
 	@Override
 	public void updateEntity(T entity, IUser optUser) {
+		entity.setUpdateTime(utilService.getSystemDateTimeString());
 		beforUpdate(entity, optUser);
-		getCrudDao().saveOrUpdate(entity);
+		getCrudDao().update(entity);
 		afterUpdate(entity, optUser);
 	}
 

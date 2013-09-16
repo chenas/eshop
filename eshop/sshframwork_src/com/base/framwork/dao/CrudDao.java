@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import com.base.framwork.queryfilter.QueryFilter;
 
 /**
- * ICrudDaoÊµÏÖÀà
+ * ICrudDaoÊµï¿½ï¿½ï¿½ï¿½
  * @author chenas
  * 2013.08.11
  */
@@ -24,14 +24,29 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	private static StringBuilder strBuilder = new StringBuilder();
 	
 	/**
-	 *  ±£´æ»ò¸üÐÂÖ¸¶¨µÄ³Ö¾Ã»¯¶ÔÏó 
+	 *  
 	 * @param obj
 	 * @return true if success
 	 */
 	@Override
-	public Boolean saveOrUpdate(Object obj) {
+	public Boolean save(Object obj) {
 		try{
-			this.getHibernateTemplate().saveOrUpdate(obj);
+			this.getHibernateTemplate().save(obj);
+		}catch(DataAccessException ex){
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 *  
+	 * @param obj
+	 * @return true if success
+	 */
+	@Override
+	public Boolean update(Object obj) {
+		try{
+			this.getHibernateTemplate().update(obj);
 		}catch(DataAccessException ex){
 			return false;
 		}
@@ -39,7 +54,7 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	}
 
 	/**
-	 * Ö±½Ó´ÓÊý¾Ý¿âÈ¡Ò»Ìõ¼ÇÂ¼
+	 * Ö±ï¿½Ó´ï¿½ï¿½ï¿½Ý¿ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 	 * @param clazz
 	 * @param id
 	 * @return
@@ -55,7 +70,7 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	}
 	
 	/** 
-	 * ¼ÓÔØÖ¸¶¨IDµÄ³Ö¾Ã»¯¶ÔÏó 
+	 * ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½IDï¿½Ä³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param clazz
 	 * @param id
 	 * @return
@@ -73,7 +88,7 @@ public class CrudDao extends BaseDao implements ICrudDao{
 
 
 	/**
-	 *  É¾³ýÖ¸¶¨IDµÄ³Ö¾Ã»¯¶ÔÏó 
+	 *  É¾ï¿½ï¿½Ö¸ï¿½ï¿½IDï¿½Ä³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param clazz
 	 * @param id
 	 * @return true if success
@@ -85,7 +100,7 @@ public class CrudDao extends BaseDao implements ICrudDao{
 
 
 	/**
-	 * É¾³ý³Ö¾Ã»¯¶ÔÏó
+	 * É¾ï¿½ï¿½Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param object
 	 * @return true if success
 	 */
@@ -100,7 +115,7 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	}
 
 	/**
-	 *  ×°ÔØÖ¸¶¨ÀàµÄËùÓÐ³Ö¾Ã»¯¶ÔÏó 
+	 *  ×°ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param clazz
 	 * @return
 	 */
@@ -110,7 +125,7 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	}
 
 	/**
-	 * ×Ô¶¨Òå×°ÔØ³Ö¾Ã»¯¶ÔÏó 
+	 * ï¿½Ô¶ï¿½ï¿½ï¿½×°ï¿½Ø³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param hql
 	 * @param filter
 	 * @return
@@ -121,7 +136,7 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	}
 
 	/**
-	 * Ìõ¼þ×°ÔØÖ¸¶¨ÀàµÄËùÓÐ³Ö¾Ã»¯¶ÔÏó 
+	 * ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param clazz
 	 * @return
 	 */
@@ -136,17 +151,19 @@ public class CrudDao extends BaseDao implements ICrudDao{
 			strBuilder.append(" order by a.id desc");
 		}
 System.out.println(strBuilder.toString());
+		//æ¸…ç©º
+		strBuilder.setLength(0);
 		return this.getHibernateTemplate().find(strBuilder.toString());
 	}
 	
 	/**
-	 * ·ÖÒ³×°ÔØÖ¸¶¨ÀàµÄËùÓÐ³Ö¾Ã»¯¶ÔÏó 
+	 * ï¿½ï¿½Ò³×°ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param clazz
 	 * @return
 	 */
 	@Override
 	public List findObjListByFilter(String clazz, QueryFilter filter) {
-		//²»·ÖÒ³
+		//ï¿½ï¿½ï¿½ï¿½Ò³
 		if(filter.isLimited() == false){
 			findAllObjListByFilter(clazz, filter);
 		}
@@ -171,24 +188,27 @@ System.out.println(hql);
 				return result;
 			}
 		});	
+		//æ¸…ç©º
+		strBuilder.setLength(0);
 		return list;
 	}
 
 	/**
-	 * ×Ô¶¨Òå×°ÔØ³Ö¾Ã»¯¶ÔÏó 
+	 * ï¿½Ô¶ï¿½ï¿½ï¿½×°ï¿½Ø³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param hql
 	 * @param filter
 	 * @return
 	 */
 	@Override
 	public List findObjListByHqlAndFilter(String hql,QueryFilter filter){
-		//²»·ÖÒ³
+		//ï¿½ï¿½ï¿½ï¿½Ò³
 		if(filter.isLimited() == false){
 			findObjListByHql(hql);
 		}
 		final int pNo = filter.getPageNo();
 		final int pSize = filter.getPageSize();
 		final String hqlexe = hql;
+System.out.println(hql);
 		List list = this.getHibernateTemplate().executeFind(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
 				Query query = session.createQuery(hqlexe);
@@ -203,13 +223,14 @@ System.out.println(hql);
 	}
 
 	/**
-	 *  Í³¼ÆÖ¸¶¨ÀàµÄËùÓÐ³Ö¾Ã»¯¶ÔÏó ×ÜÊý
+	 *  Í³ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	 * @param clazz
 	 * @return
 	 */
 	@Override
 	public int countObj(String clazz) {
 		final String hql = "select count(*) from "+clazz+ " as a";
+System.out.println(hql);
 		@SuppressWarnings("unchecked")
 		Long count = (Long)this.getHibernateTemplate().execute(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
@@ -222,13 +243,14 @@ System.out.println(hql);
 	}
 
 	/**
-	 * ×Ô¶¨ÒåHqlÍ³¼ÆÖ¸¶¨ÀàµÄËùÓÐ³Ö¾Ã»¯¶ÔÏóÊýÄ¿
+	 * ï¿½Ô¶ï¿½ï¿½ï¿½HqlÍ³ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð³Ö¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
 	 * @param hql
 	 * @return
 	 */
 	@Override
 	public int countObjByHql(String hql){
 		final String hqlexe = hql;
+System.out.println(hql);
 		@SuppressWarnings("unchecked")
 		Long count = (Long)this.getHibernateTemplate().execute(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
@@ -241,7 +263,7 @@ System.out.println(hql);
 	}
 
 	/**
-	 *  ¸ù¾Ý¹ýÂËÌõ¼þÍ³¼ÆÖ¸¶¨¶ÔÏóÊýÄ¿ 
+	 *  ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ 
 	 * @param clazz
 	 * @param filter
 	 * @return
@@ -250,12 +272,8 @@ System.out.println(hql);
 	public int countObjByFilter(String clazz, QueryFilter filter) {
 		strBuilder.append("select count(*) from "+clazz+ " as a");
 		strBuilder.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
-		if(filter.getQueryString() != null && !filter.getOrderByString().equals("")){
-			strBuilder.append(" "+filter.getOrderByString());
-		}else{
-			strBuilder.append(" order by a.id desc");
-		}
 		final String hql = strBuilder.toString();
+System.out.println(hql);
 		@SuppressWarnings("unchecked")
 		Long count = (Long)this.getHibernateTemplate().execute(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
@@ -264,18 +282,21 @@ System.out.println(hql);
 				return query.uniqueResult();
 			}
 		});	
+		//æ¸…ç©º
+		strBuilder.setLength(0);
 		return count.intValue();
 	}
 
 	/**
-	 *  Ìõ¼þ¸üÐÂÊý¾Ý 
+	 *  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 * @param hql
-	 * @return ±»¸üÐÂµÄÊýÁ¿
+	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public int update(String hql) {
-		final String hql1 = hql; 
+		final String hql1 = hql;
+System.out.println(hql);
 		return ((Integer)this.getHibernateTemplate().execute(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
 				Query query = session.createQuery(hql1);
@@ -285,7 +306,7 @@ System.out.println(hql);
 	}
 
 	/**
-	 *  ´ÓÁ¬½Ó³ØÖÐÈ¡µÃÒ»¸öJDBCÁ¬½Ó 
+	 *  ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ò»ï¿½ï¿½JDBCï¿½ï¿½ï¿½ï¿½ 
 	 * @return
 	 */
 	@Override
@@ -294,7 +315,7 @@ System.out.println(hql);
 	}
 	
 	/*
-	 * Æ´½ÓÊý¾Ý²Ù×÷Óï¾ä
+	 * Æ´ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	protected String getSQL(){
 		return "";
