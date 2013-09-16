@@ -9,7 +9,7 @@ import com.eshop.model.UserBuyerModel;
 import com.eshop.service.IUserBuyerService;
 
 /**
- * userbuyerÒµÎñ²Ù×÷ÊµÏÖ
+ * userbuyerÒµï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
  * @author chenas
  *
  */
@@ -17,7 +17,7 @@ import com.eshop.service.IUserBuyerService;
 public class UserBuyerService extends EntityService<UserBuyerModel> implements IUserBuyerService{
 	
 	/**
-	 * ÓÃ»§ÃûÃÜÂëÊÇ·ñÕıÈ·,Ò²¿ÉÓÃÓÚÓÃ»§ÃûÊÇ·ñÖØ¸´µÄÑéÖ¤
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È·,Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤
 	 * @param name
 	 * @param password
 	 * @return
@@ -35,5 +35,10 @@ public class UserBuyerService extends EntityService<UserBuyerModel> implements I
 			return false;
 		}
 	}
+	
+	/*public static void main(String[] args){
+		UserBuyerService us = new UserBuyerService();
+		System.out.println(us.getTClass());
+	}*/
 	
 }

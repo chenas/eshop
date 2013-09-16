@@ -42,6 +42,8 @@ public class TestUserBuyerService {
 	}
 	@Test
 	public void testHasUser(){
+		QueryFilter filter = new QueryFilter();
 		System.out.println(userBuyerService.hasUser("Tom", "1234"));
+		System.out.println(userBuyerService.countEntityByFilter(filter));
 	}
 }
