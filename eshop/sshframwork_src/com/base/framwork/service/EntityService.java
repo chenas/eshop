@@ -214,8 +214,9 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		return getCrudDao().countObjByHql(hql);
 	}
 	
-	//�õ�T.class fdsdfds
-	protected Class<T> getTClass(){
+	//�T.class
+	@SuppressWarnings("unchecked")
+	public Class<T> getTClass(){
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 }

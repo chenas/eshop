@@ -13,6 +13,7 @@
 </s:form>
 
 	<a><s:property value="entity.name"/></a><br>
+	<a><s:property value="entity.isValidate"/></a><br>
 edit
 <s:debug></s:debug>
 </body>

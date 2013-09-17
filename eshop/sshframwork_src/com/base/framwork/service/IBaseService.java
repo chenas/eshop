@@ -1,7 +1,8 @@
 package com.base.framwork.service;
 
+
 /**
- * 业务类统一接口
+ * 业锟斤拷锟斤拷统一锟接匡拷
  * @author chenas
  * 2013.08.11
  */

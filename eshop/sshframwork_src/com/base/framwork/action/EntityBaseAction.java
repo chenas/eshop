@@ -1,13 +1,12 @@
 package com.base.framwork.action;
 
-import javax.annotation.Resource;
-
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
-import com.base.framwork.Constants;
 import com.base.framwork.domain.BaseModel;
-import com.base.framwork.service.EntityService;
+import com.base.framwork.service.IEntityService;
+import com.base.framwork.util.ReflectUtil;
+import com.base.framwork.util.SpringBeanUtil;
 
 
 /**
@@ -18,64 +17,40 @@ import com.base.framwork.service.EntityService;
  */
 public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 	
-	//action���ô��ݵ�����
+	//action
 	private String id;
 	
-	@Resource
-	protected EntityService<T> entityService;
-
-
 	/**
-	 * domain�����
+	 * domain
 	 */
-	protected String domainName = null;
+	protected String modelName = null;
 
 	/**
-	 * ���action��Domain+Action/Domain+ListAction/Domain+JsonListAction����ķ�ʽ�������Զ�ע�룬
-	 * ����������д�÷���������entityService
+	 * 由BeanID获得Service
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public IEntityService<T> getEntityService() {
+		//5为model的长度
+		String serviceName = getModelName().substring(0, getModelName().length()-5)+"Service";
+		String beanId = serviceName.substring(0, 1).toLowerCase()+serviceName.substring(1);
+		return (IEntityService<T>) SpringBeanUtil.getSpringService(beanId);
+	}
+
+	/**
 	 * 
-	 * @param entityService
-	 */
-/*	@SuppressWarnings("unchecked")
-	public void setEntityService(EntityService<T> entityService) {
-		String suffix = "Action";
-		if (this instanceof EntityListAction<?>) {
-			suffix = "ListAction";
-		} else if (this instanceof EntityJsonListAction<?>) {
-			suffix = "JsonListAction";
-		}
-		String className = this.getClass().getSimpleName();
-		if (className.endsWith(suffix)) {
-			domainName = className.substring(0, className.length()
-					- suffix.length());
-		} else {
-			System.out.println("Action class name's format must be \"DomainName\" + \""
-							+ suffix
-							+ "\", "
-							+ "or you can overwrite the method setEntityService in your Action!");
-			domainName = "";
-		}
-		// ��һ���ַ�ĳ�Сд
-		domainName = domainName.substring(0, 1).toLowerCase()
-				+ domainName.substring(1);
-		this.entityService = (EntityService<T>) getService(domainName
-				+ "Service");
-	}*/
-
-	/**
-	 * ��ͨ������ͨ������У��
 	 * 
 	 * @throws Exception
-	 *             �׳����쳣
+	 *             
 	 */
 	protected void commonOperations() throws Exception {
 	}
 
 	/**
-	 * ������ʾ��Ϣ
+	 * 
 	 * 
 	 * @param paramString
-	 *            ��ʾ��Ϣ
+	 *           
 	 */
 	protected void saveMessage(String paramString) {
 		String str = getText(paramString);
@@ -107,6 +82,19 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 		} else {
 			return new String[0];
 		}
+	}
+
+	public String getModelName() {
+		String actionName = this.getClass().getSimpleName();
+		String suffix = "Action";
+		if(this instanceof EntityListAction<?>){
+			suffix = "ListAction";
+		}
+		return actionName.substring(0, actionName.length()-suffix.length())+"Model";
+	}
+
+	public void setModelName(String domainName) {
+		this.modelName = domainName;
 	}
 
 }

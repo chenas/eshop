@@ -4,24 +4,23 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.domain.BaseModel;
 import com.base.framwork.domain.PageList;
 import com.base.framwork.queryfilter.QueryFilter;
+import com.base.framwork.util.ReflectUtil;
 /**
  * 列表action
  * @author chenas
  *
  * @param <T>
  */
-@Component
 public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 	
-	private List<T> entityList;
-	
-	//���entity�����÷�ҳ
+	//
 	@Resource
 	protected PageList pageList;
 	
@@ -39,7 +38,7 @@ public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 	
 	public String intoList(){
 		filter.setPageNo(pageNo);
-		pageList.setFullListSize(entityService.countEntityByFilter(filter));
+		pageList.setFullListSize(getEntityService().countEntityByFilter(filter));
 		pageList.setPageNumber(pageNo);
 		pageList.setObjectsPerPage(pageSize);
 		pageList.setList(query(filter));
@@ -48,22 +47,14 @@ public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 	}
 	
 	/**
-	 * Ĭ�ϲ�ѯ
+	 * 
 	 * @param filter
 	 * @return
 	 */
 	public List<T> query(QueryFilter filter){
-		return this.entityService.findEntityListByFilter(filter);
+		return getEntityService().findEntityListByFilter(filter);
 	}
-
-	public List<T> getEntityList() {
-		return entityList;
-	}
-
-	public void setEntityList(List<T> entityList) {
-		this.entityList = entityList;
-	}
-
+	
 	public PageList getPageList() {
 		return pageList;
 	}

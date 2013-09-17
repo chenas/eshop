@@ -2,8 +2,6 @@ package com.base.framwork.service;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Component;
-
 import com.base.framwork.dao.ICrudDao;
 
 /**

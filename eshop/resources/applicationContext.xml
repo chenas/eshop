@@ -70,16 +70,15 @@
 	</bean>
 	<!-- 基于AOP技术的事务管理 -->
 	<aop:config>
-		<!-- 定义一个事务切入点，拦截 com.assistant.service.impl包中所有类的所有方法 -->
+		<!-- 定义一个事务切入点，拦截 com..service包中所有类的所有方法 -->
 		<aop:pointcut id="bussinessService"
-			expression="execution(public * com.*.service.*.*(..))" />
+			expression="execution(public * com.*.*.service..*.*(..))" />
 		<!-- 引用txAdvice事务通知 -->
 		<aop:advisor pointcut-ref="bussinessService" advice-ref="txAdvice" />
 	</aop:config>
 	<!-- 定义一个事务通知txAdvice，配置事务的传播性 -->
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
-			<tx:method name="exists" read-only="true" />
 			<tx:method name="find*" read-only="true" />
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="load*" read-only="true" />

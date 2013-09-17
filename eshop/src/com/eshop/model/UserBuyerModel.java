@@ -6,17 +6,17 @@ import javax.persistence.Entity;
 import com.base.framwork.domain.BaseModel;
 
 /**
- * Êý¾Ý¿â±í
+ * ï¿½ï¿½Ý¿ï¿½ï¿½
  * @author chenas
  *
  */
 @Entity(name="USER_BUYER")
 public class UserBuyerModel extends BaseModel{
 
-	//µÇÂ¼Ãû
+	//ï¿½ï¿½Â¼ï¿½ï¿½
 	private String name;
 	
-	//Ñ§ºÅ/¹¤ºÅ¡£¡£¡£
+	//Ñ§ï¿½ï¿½/ï¿½ï¿½ï¿½Å¡ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String userId;
 	
 	private String password;
@@ -27,16 +27,16 @@ public class UserBuyerModel extends BaseModel{
 	
 	private String email;
 	
-	//»ý·Ö
+	//ï¿½ï¿½ï¿½
 	private int score;
 	
-	//ÊÇ·ñÑéÖ¤,Ä¬ÈÏÎª0£¬1±íÊ¾ÑéÖ¤
+	//ï¿½Ç·ï¿½ï¿½ï¿½Ö¤,Ä¬ï¿½ï¿½Îª0ï¿½ï¿½1ï¿½ï¿½Ê¾ï¿½ï¿½Ö¤
 	private String isValidate;
 	
-	//×¢²áÊ±¼ä
+	//×¢ï¿½ï¿½Ê±ï¿½ï¿½
 	private String regDate;
 	
-	//»áÔ±µÈ¼¶id£¬¹ØÁªÖ÷¼üid
+	//ï¿½ï¿½Ô±ï¿½È¼ï¿½idï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
 	private String level_id;
 	
 	@Column(name="name", length=15, nullable=false)
@@ -74,7 +74,7 @@ public class UserBuyerModel extends BaseModel{
 		return score;
 	}
 
-	@Column(name="is_valudate", length=1, nullable=false)
+	@Column(name="is_valudate", length=1)
 	public String getIsValidate() {
 		return isValidate;
 	}

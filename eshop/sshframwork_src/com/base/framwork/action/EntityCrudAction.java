@@ -21,8 +21,6 @@ import com.base.framwork.util.ReflectUtil;
 @Component
 public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	
-	protected T entity;
-	
 	//model类名
 	protected String modelName;
 	
@@ -49,7 +47,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	@SkipValidation
 	public String intoEdit() throws Exception {
 		commonOperations();
-		setEntity(entityService.getEntityById(getId()));
+		setEntity(getEntityService().findEntityById(getId()));
 		return EDIT;
 	}
 	
@@ -61,7 +59,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	@SkipValidation
 	public String intoView() throws Exception {
 		commonOperations();
-		setEntity(entityService.findEntityById(getId()));
+		setEntity(getEntityService().findEntityById(getId()));
 		return VIEW;
 	}
 
@@ -71,7 +69,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	 * @throws Exception
 	 */
 	public String submitAdd() throws Exception {
-		entityService.insertEntity(getEntity(), getLoginUser());
+		getEntityService().insertEntity(getEntity(), getLoginUser());
 		if (isEnableMessage()) {
 			savedMessage();
 		}
@@ -84,7 +82,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	 * @throws Exception
 	 */
 	public String submitEdit() throws Exception {
-		entityService.updateEntity(getEntity(), getLoginUser());
+		getEntityService().updateEntity(getEntity(), getLoginUser());
 		if (isEnableMessage()) {
 			updatedMessage();
 		}
@@ -98,7 +96,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	 */
 	@SkipValidation
 	public String submitDelete() throws Exception {
-		entityService.deleteEntityById(getId(), getLoginUser());
+		getEntityService().deleteEntityById(getId(), getLoginUser());
 		if (isEnableMessage()) {
 			deletedOneMessage();
 		}
@@ -112,7 +110,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	 */
 	@SkipValidation
 	public String submitDeleteMany() throws Exception {
-		entityService.deleteManyEntityById(getIds(), getLoginUser());
+		getEntityService().deleteManyEntityById(getIds(), getLoginUser());
 		if (isEnableMessage()) {
 			deletedOneMessage();
 		}
@@ -184,20 +182,6 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 
 	public void setEnableMessage(boolean enableMessage) {
 		this.enableMessage = enableMessage;
-	}
-
-
-	public String getModelName() {
-		String suffix = "Action";
-		String className = this.getClass().getSimpleName();
-		modelName = className.substring(0, className.length() - suffix.length())+"Model";
-System.out.println(modelName);
-		return modelName;
-	}
-
-
-	public void setModelName(String modelName) {
-		this.modelName = modelName;
 	}
 
 }

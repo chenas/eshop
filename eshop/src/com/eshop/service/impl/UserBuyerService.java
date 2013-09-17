@@ -1,5 +1,6 @@
 package com.eshop.service.impl;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -34,11 +35,6 @@ public class UserBuyerService extends EntityService<UserBuyerModel> implements I
 		}else{
 			return false;
 		}
-	}
-	
-	public static void main(String[] args){
-		UserBuyerService us = new UserBuyerService();
-		System.out.println(us.getTClass());
 	}
 	
 }
