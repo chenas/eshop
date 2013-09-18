@@ -24,14 +24,16 @@ public class TestUserBuyerService {
 
 	@Test
 	public void testInsert(){
-		UserBuyerModel user = new UserBuyerModel();
-		UserBuyer opt = new UserBuyer();
-		opt.setName("jack");
-		opt.setRealname("jack");
-		user.setName("Tom");
-		user.setPassword("1234");
-		user.setIsValidate("0");
-		userBuyerService.insertEntity(user, opt);
+		for(int i=0; i<10; i++){
+			UserBuyerModel user = new UserBuyerModel();
+			UserBuyer opt = new UserBuyer();
+			opt.setName("jack");
+			opt.setRealname("jack");
+			user.setName("Tom"+i);
+			user.setPassword("1234");
+			user.setIsValidate("0");
+			userBuyerService.insertEntity(user, opt);
+		}
 	}
 	@Test
 	public void testFindEntityListByFilter(){

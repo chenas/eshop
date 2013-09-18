@@ -39,17 +39,17 @@ public class UserBuyerModel extends BaseModel{
 	//��Ա�ȼ�id����������id
 	private String level_id;
 	
-	@Column(name="name", length=15, nullable=false)
+	@Column(name="name", length=15)
 	public String getName() {
 		return name;
 	}
 
-	@Column(name="userid", length=15, nullable=true)
+	@Column(name="userid", length=15)
 	public String getUserId() {
 		return userId;
 	}
 
-	@Column(name="password", length=200, nullable=false)
+	@Column(name="password", length=200)
 	public String getPassword() {
 		return password;
 	}

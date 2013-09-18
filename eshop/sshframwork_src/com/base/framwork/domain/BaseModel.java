@@ -12,14 +12,14 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * ËùÓÐmodelµÄ»ùÀà
+ * ï¿½ï¿½ï¿½ï¿½modelï¿½Ä»ï¿½ï¿½ï¿½
  * @author chenas
- *2013Äê08ÔÂ11ÈÕ
+ *2013ï¿½ï¿½08ï¿½ï¿½11ï¿½ï¿½
  */
 @MappedSuperclass
 public class BaseModel extends BaseObject implements IBizDomain{
 	
-	//Ö÷¼ü
+	//ï¿½ï¿½ï¿½ï¿½
 	public String id;
 
 	@Id
@@ -32,7 +32,7 @@ public class BaseModel extends BaseObject implements IBizDomain{
 	}
 
 	/**
-	 * ´´½¨ÈË
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public String createUser;
 	
@@ -46,7 +46,7 @@ public class BaseModel extends BaseObject implements IBizDomain{
 	}
 
 	/**
-	 * ´´½¨Ê±¼ä
+	 * ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	 */
 	public String createTime;
 	
@@ -56,11 +56,11 @@ public class BaseModel extends BaseObject implements IBizDomain{
 	}
 
 	/**
-	 * ÐÞ¸ÄÊ±¼ä
+	 * ï¿½Þ¸ï¿½Ê±ï¿½ï¿½
 	 */
 	public String updateTime;
 
-	@Column(name="update_time", length=15)
+	@Column(name="update_time", length=20)
 	public String getUpdateTime() {
 		return updateTime;
 	}

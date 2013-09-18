@@ -10,7 +10,6 @@ import org.apache.struts2.interceptor.ParameterAware;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.stereotype.Component;
 
 import com.base.framwork.Constants;
 import com.base.framwork.domain.IUser;

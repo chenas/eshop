@@ -1,16 +1,12 @@
 package com.base.framwork.action;
 
-import net.sf.cglib.core.ReflectUtils;
-
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.apache.struts2.interceptor.validation.SkipValidation;
-
-
-
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.domain.BaseModel;
 import com.base.framwork.util.ReflectUtil;
+import com.opensymphony.xwork2.ModelDriven;
 
 /**
  * 增删改查action
@@ -155,7 +151,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 		Object result;
 		try {
 			result = MethodUtils.invokeMethod(this, ReflectUtil
-					.getGetterOfField(getModelName()), null);
+					.getGetterOfField(getModelName()),null);
 		} catch (Exception e) {
 			System.out.println("Reflect error, when get entity of "
 					+ getClass().getName() + ".");
