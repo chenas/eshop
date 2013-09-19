@@ -84,6 +84,10 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 		}
 	}
 
+	/**
+	 * ModelName
+	 * @return
+	 */
 	public String getModelName() {
 		String actionName = this.getClass().getSimpleName();
 		String suffix = "Action";

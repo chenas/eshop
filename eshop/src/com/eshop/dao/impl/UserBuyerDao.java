@@ -6,9 +6,9 @@ import com.base.framwork.dao.CrudDao;
 import com.eshop.dao.IUserBuyerDao;
 
 /**
- * BuyerUserDao²Ù×÷
+ * IBuyerUserDaoå®ç°ç±»
  * @author chenas
- * @Component×¢½â¿ÉÒÔÈÃspringÍê³É³õÊ¼»¯
+ * @Component
  *
  */
 @Component

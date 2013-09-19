@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
  * @author chenas
  * 2013��08��11��
  */
-@Component
 public class QueryFilter{
 	
 	/**

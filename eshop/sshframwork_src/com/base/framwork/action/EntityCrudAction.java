@@ -37,7 +37,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 
 	/**
 	 * 进入编辑页面
-	 * @return ִ�гɹ�
+	 * @return ִ
 	 * @throws Exception
 	 */
 	@SkipValidation
