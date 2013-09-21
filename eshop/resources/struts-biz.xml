@@ -5,7 +5,7 @@
 
 <struts>
 	
-<include file="struts-login.xml" />
+<include file="struts-commonsys.xml" />
 <include file="struts-adminsys.xml" />
 
 </struts>

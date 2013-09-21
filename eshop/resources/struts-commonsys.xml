@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="userLogin" namespace="/pages/commonsys" extends="default">
+		<action name="login" class="com.eshop.action.BuyerLoginAction">
+			<result name="success" >/pages/index.jsp</result>
+			<result name="error">/pages/commonsys/login.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 验证码的生成 -->
+	<package name="Security" namespace="/pages/commonsys" extends="default">
+		<action name="SecurityCodeImageAction" class="com.eshop.commonsys.action.SecurityCodeImageAction"
+			method="execute">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+				<param name="bufferSize">2048</param>
+			</result>
+		</action>
+	</package>
+	
+</struts>
