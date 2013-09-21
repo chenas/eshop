@@ -1,13 +1,10 @@
 package com.eshop.action;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.action.EntityCrudAction;
-import com.eshop.domain.UserBuyer;
 import com.eshop.filter.UserBuyerFilter;
 import com.eshop.model.UserBuyerModel;
 import com.eshop.service.IUserBuyerService;
@@ -19,9 +16,14 @@ import com.eshop.service.IUserBuyerService;
  */
 @Component
 public class UserBuyerAction extends EntityCrudAction<UserBuyerModel>{
+
+	@Resource
+	private IUserBuyerService userBuyerService;
 	
+	//将数据传到页面
 	private UserBuyerModel userBuyerModel;
 	
+	//设置筛选条件
 	private UserBuyerFilter userBuyerFilter;
 
 	public UserBuyerFilter getUserBuyerFilter() {
@@ -39,9 +41,6 @@ public class UserBuyerAction extends EntityCrudAction<UserBuyerModel>{
 	public void setUserBuyerService(IUserBuyerService userBuyerService) {
 		this.userBuyerService = userBuyerService;
 	}
-
-	@Resource
-	private IUserBuyerService userBuyerService;
 
 	public UserBuyerModel getUserBuyerModel() {
 		return userBuyerModel;

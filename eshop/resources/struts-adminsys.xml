@@ -5,15 +5,15 @@
 
 <struts>
 	<package name="userbuyer" namespace="/pages/adminsys/buyer" extends="default">
-		<action name="list" class="com.eshop.adminsys.action.UserBuyerListAction">
+		<action name="list" class="com.eshop.action.UserBuyerListAction">
 			<result name="list" >/pages/adminsys/buyer/buyerList.jsp</result>
 			<result name="error">/pages/commonsys/login.jsp</result>
 		</action>
-		<action name="into*" class="com.eshop.adminsys.action.UserBuyerAction" method="into{1}">
+		<action name="into*" class="com.eshop.action.UserBuyerAction" method="into{1}">
 			<result name="{1}" >/pages/adminsys/buyer/buyerEdit.jsp</result>
 			<result name="error">/pages/commonsys/login.jsp</result>
 		</action>
-		<action name="submit*" class="com.eshop.adminsys.action.UserBuyerAction" method="submit{1}">
+		<action name="submit*" class="com.eshop.action.UserBuyerAction" method="submit{1}">
 			<result name="list" type="redirect">/pages/adminsys/buyer/list.action</result>
 			<result name="input">/pages/adminsys/buyer/buyerEdit.jsp</result>
 			<result name="error">/pages/commonsys/login.jsp</result>

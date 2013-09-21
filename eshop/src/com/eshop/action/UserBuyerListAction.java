@@ -1,4 +1,4 @@
-package com.eshop.adminsys.action;
+package com.eshop.action;
 
 import javax.annotation.Resource;
 
@@ -15,6 +15,7 @@ public class UserBuyerListAction extends EntityListAction<UserBuyerModel>{
 	@Resource
 	private IUserBuyerService userBuyerService;
 
+	//设置筛选条件
 	private UserBuyerFilter userBuyerFilter;
 
 	public UserBuyerFilter getUserBuyerFilter() {

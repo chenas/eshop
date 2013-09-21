@@ -19,6 +19,8 @@ public class RegAction extends BaseAction{
 
 	@Resource
 	private IUserBuyerService userBuyerService;
+	
+	//用于接收页面的参数
 	private UserBuyer userBuyer;
 	
 	//保存注册信息
@@ -26,8 +28,11 @@ public class RegAction extends BaseAction{
 		UserBuyerModel user = new UserBuyerModel();
 		user.setName(userBuyer.getName());
 		user.setEmail(userBuyer.getEmail());
+		user.setPassword(mdcrypt.MD5(userBuyer.getPassword())); //密码md5加密
 		userBuyerService.insertEntity(user, userBuyer);
-		return SUCCESS;
+		user = userBuyerService.findEntityById(userBuyerService.hasUser(userBuyer.getName(), null));
+		doPutSessionObject("loginUser", user);
+		return SUCCESS;  //到首页
 	}
 	
 	//验证用户名是否存在 ajax

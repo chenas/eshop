@@ -29,7 +29,7 @@ public class BuyerLoginAction extends EntityBaseAction<UserBuyerModel> {
 		if(userBuyerService.hasUser(name, password) != null){
 			UserBuyerModel user = userBuyerService.findEntityById(userBuyerService.hasUser(name, password));
 			doPutSessionObject("loginUser", user); //将用户放进session里面
-			return SUCCESS;
+			return SUCCESS; //到首页
 		}else
 			return ERROR;
 	}

@@ -14,6 +14,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.base.framwork.Constants;
 import com.base.framwork.domain.IUser;
 import com.base.framwork.service.IUtilService;
+import com.base.framwork.util.Mdcrypt;
 import com.base.framwork.util.SpringBeanUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -87,9 +88,11 @@ ServletRequestAware, ParameterAware, ServletResponseAware {
 	}
 	
 	@Resource
-	private IUtilService utilService;
+	protected IUtilService utilService;
 	
-
+	@Resource
+	protected Mdcrypt mdcrypt;
+	
 	/**
 	 * ȡ�õ�ǰsession�еĵ�½�û�
 	 * 

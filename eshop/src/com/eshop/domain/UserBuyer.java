@@ -4,7 +4,7 @@ import com.base.framwork.domain.IUser;
 import com.eshop.model.UserBuyerModel;
 
 /**
- * userbuyer domain
+ * userbuyer domain 域模型对象
  * @author chenas
  *
  */

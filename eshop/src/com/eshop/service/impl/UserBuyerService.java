@@ -1,6 +1,5 @@
 package com.eshop.service.impl;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -10,7 +9,7 @@ import com.eshop.model.UserBuyerModel;
 import com.eshop.service.IUserBuyerService;
 
 /**
- * userbuyerҵ�����ʵ��
+ * userbuyer业务处理
  * @author chenas
  *
  */

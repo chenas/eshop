@@ -3,13 +3,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import com.base.framwork.domain.BaseModel;
 /**
  * 广告
  * @author Administrator
  *
  */
-@Entity(name="Adverttisement")
-public class AdvertisementModel {
+@Entity(name="ADVERTISEMENT")
+public class AdvertisementModel extends BaseModel{
 	//广告内容
 	private String content;
 	//广告图片
