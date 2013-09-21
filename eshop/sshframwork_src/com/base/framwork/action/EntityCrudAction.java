@@ -78,7 +78,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 	 * @throws Exception
 	 */
 	public String submitEdit() throws Exception {
-		getEntityService().updateEntity(getEntity(), getLoginUser());
+		getEntityService().updateEntityByFilter(getEntity(), getEntityFilter(), getLoginUser());
 		if (isEnableMessage()) {
 			updatedMessage();
 		}

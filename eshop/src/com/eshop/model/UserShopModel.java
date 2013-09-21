@@ -6,13 +6,16 @@ import javax.persistence.Entity;
 import com.base.framwork.domain.BaseModel;
 
 /**
- * ���ݿ��
+ * 商店用户表
  * @author chenas
  *
  */
 @Entity(name="USER_SHOP")
 public class UserShopModel extends BaseModel{
 
+	/**
+	 * 登录名
+	 */
 	private String name;
 	
 	private String password;
@@ -27,6 +30,10 @@ public class UserShopModel extends BaseModel{
 	
 	private String email;
 	
+	/**
+	 * 是否属于自有商店
+	 * 1 是，0 否
+	 */
 	private String isEshop;
 
 	@Column(name="name", length=15, nullable=false)

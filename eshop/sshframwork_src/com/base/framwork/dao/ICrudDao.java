@@ -27,6 +27,19 @@ public interface ICrudDao extends IBaseDao{
 	 * @return true if success
 	 */
 	public Boolean update(Object obj);
+
+	/**
+	 * 根据filter更新实体
+	 * @param clazz
+	 * 		class name
+	 * @param id
+	 * 		主键
+	 * @param filter
+	 * @return
+	 * 		更新记录数目
+	 * @throws Exception
+	 */
+	public int updateByFilter(String clazz, String id, QueryFilter filter) throws Exception;
 	
 	/**
 	 * ֱ�Ӵ���ݿ�ȡһ����¼

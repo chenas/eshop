@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 
 import com.base.framwork.domain.BaseModel;
+import com.base.framwork.queryfilter.QueryFilter;
 import com.base.framwork.service.IEntityService;
 import com.base.framwork.util.ReflectUtil;
 import com.base.framwork.util.SpringBeanUtil;
@@ -18,7 +19,7 @@ import com.base.framwork.util.SpringBeanUtil;
 public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 	
 	//action
-	private String id;
+	protected String id;
 	
 	/**
 	 * domain
@@ -101,4 +102,43 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 		this.modelName = domainName;
 	}
 
+
+	/**
+	 * Domain+filter
+	 * 获得实体的查询条件（列表页面简单查询）
+	 * @return 查询条件
+	 */
+	public QueryFilter getEntityFilter(){
+		QueryFilter filter = null;
+		try{
+			filter = (QueryFilter)MethodUtils.invokeMethod(this, ReflectUtil.getGetterOfField(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"), null);
+			if(filter == null){
+				Class<?> type = Class.forName(getFilterPackage() + "." + ReflectUtil.firstUpperCase(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"));
+				filter = (QueryFilter)type.newInstance();
+			}
+		}catch (Exception e) {
+			System.out.println("Reflect error, when get entity filter of "+ getClass().getName()+ ".");
+		}
+		return filter;
+	}
+	
+	/**
+	 * 设置实体的查询条件
+	 * @param filter 查询条件
+	 */
+	public void setEntityFilter(QueryFilter filter){
+		try{
+			MethodUtils.invokeMethod(this, ReflectUtil.getSetterOfField("filter"), filter);
+		}catch (Exception e) {
+			System.out.println("Reflect error, when set entity filter of "+ getClass().getName()+ ".");
+		}
+	}
+
+	/**
+	 * 获得翻页条件类所在的包的名称
+	 * @return 翻页条件类所在的包的名称
+	 */
+	public String getFilterPackage(){
+		return "com.eshop.filter";
+	}
 }

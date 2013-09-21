@@ -52,8 +52,13 @@ public class TestUserBuyerService {
 	@Test
 	public void testUpdate(){
 		IUser optuser = new UserBuyer();
-		UserBuyerModel user = userBuyerService.getEntityById("0001900b-1921-4658-b76e-29d634dcb95e");
+		UserBuyerModel user = userBuyerService.getEntityById("58a19f15-2cbc-4b07-b243-8208f158e9c0");
 		user.setName("Jack");
 		userBuyerService.updateEntity(user, optuser);
+	}
+	@Test
+	public void testFindAllObjList(){
+		List<UserBuyerModel> users = userBuyerService.findEntityList();
+		System.out.println(users.size());
 	}
 }

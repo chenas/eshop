@@ -6,17 +6,17 @@ import javax.persistence.Entity;
 import com.base.framwork.domain.BaseModel;
 
 /**
- * ��ݿ��
+ * 买家信息表
  * @author chenas
  *
  */
 @Entity(name="USER_BUYER")
 public class UserBuyerModel extends BaseModel{
 
-	//��¼��
+	//登录名
 	private String name;
 	
-	//ѧ��/���š�����
+	//用户编号
 	private String userId;
 	
 	private String password;
@@ -27,19 +27,22 @@ public class UserBuyerModel extends BaseModel{
 	
 	private String email;
 	
-	//���
+	//积分
 	private int score;
 	
-	//�Ƿ���֤,Ĭ��Ϊ0��1��ʾ��֤
+	/**
+	 * 是否被验证
+	 * 1 是，0 否
+	 */
 	private String isValidate;
 	
-	//ע��ʱ��
+	//注册时间
 	private String regDate;
 	
-	//��Ա�ȼ�id����������id
-	private String level_id;
+	//会员等级表
+	private String levelId;
 	
-	@Column(name="name", length=15)
+	@Column(name="name", length=15, nullable=false)
 	public String getName() {
 		return name;
 	}
@@ -49,7 +52,7 @@ public class UserBuyerModel extends BaseModel{
 		return userId;
 	}
 
-	@Column(name="password", length=200)
+	@Column(name="password", length=200, nullable=false)
 	public String getPassword() {
 		return password;
 	}
@@ -79,15 +82,16 @@ public class UserBuyerModel extends BaseModel{
 		return isValidate;
 	}
 
-	@Column(name="reg_date", length=15)
+	@Column(name="reg_date", length=15, updatable=false)
 	public String getRegDate() {
 		return regDate;
 	}
 
 	@Column(name="level_id", length=64)
-	public String getLevel_id() {
-		return level_id;
+	public String getLevelId() {
+		return levelId;
 	}
+
 
 	public void setName(String name) {
 		this.name = name;
@@ -124,9 +128,9 @@ public class UserBuyerModel extends BaseModel{
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-
-	public void setLevel_id(String level_id) {
-		this.level_id = level_id;
+	
+	public void setLevelId(String levelId) {
+		this.levelId = levelId;
 	}
 	
 }

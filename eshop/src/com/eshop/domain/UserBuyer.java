@@ -4,12 +4,16 @@ import com.base.framwork.domain.IUser;
 import com.eshop.model.UserBuyerModel;
 
 /**
- * userbuyer����domain
+ * userbuyer domain
  * @author chenas
  *
  */
 public class UserBuyer extends UserBuyerModel implements IUser{
 	
+	/**
+	 * 如果是admin的话设置其角色名称
+	 * 其他的则为空
+	 */
 	private String admin;
 
 	public String getAdmin() {

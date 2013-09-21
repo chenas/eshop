@@ -3,14 +3,28 @@ package com.eshop.service;
 import com.base.framwork.service.IEntityService;
 import com.eshop.model.UserBuyerModel;
 
+/**
+ * UserBuyerä¸šåŠ¡æ¥å£
+ * @author chenas
+ *
+ */
 public interface IUserBuyerService extends IEntityService<UserBuyerModel>{
 	
 	/**
-	 * ÓÃ»§ÃûÃÜÂëÊÇ·ñÕıÈ·
+	 * æ˜¯å¦æœ‰æ­¤ç”¨æˆ·
 	 * @param name
 	 * @param password
 	 * @return
+	 * 		true if has
 	 */
-	public boolean hasUser(String name, String password);
+	public String hasUser(String name, String password);
+	
+	/**
+	 * æ­¤é‚®ç®±æ˜¯å¦å·²è¢«æ³¨å†Œ
+	 * @param Email
+	 * @return
+	 * 		true if has
+	 */
+	public boolean hasEmail(String Email);
 	
 }

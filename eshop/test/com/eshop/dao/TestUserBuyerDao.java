@@ -17,7 +17,7 @@ public class TestUserBuyerDao {
 	@Before
 	public void init(){
 
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
 		buyerDao = (IUserBuyerDao) ctx.getBean("userBuyerDao");
 	}
@@ -45,5 +45,9 @@ public class TestUserBuyerDao {
 	public void testLoadObjById(){
 		UserBuyerModel user = (UserBuyerModel) buyerDao.getById(UserBuyerModel.class, "152dfcbc-01b6-443d-9648-3356218c6201");
 		System.out.println(user.getName());
+	}
+	@Test
+	public void testUpdateByHql(){
+		buyerDao.update("update com.eshop.model.UserBuyerModel as a set a.name='java' where a.id='f93fcebf-dc24-4265-b69f-0d71a0c2817f'");
 	}
 }

@@ -18,12 +18,12 @@ import com.eshop.service.IUserBuyerService;
 public class UserBuyerService extends EntityService<UserBuyerModel> implements IUserBuyerService{
 	
 	/**
-	 * �û��������Ƿ���ȷ,Ҳ�������û����Ƿ��ظ�����֤
+	 * 
 	 * @param name
 	 * @param password
 	 * @return
 	 */
-	public boolean hasUser(String name, String password){
+	public String hasUser(String name, String password){
 		List<UserBuyerModel> user = null;
 		if(password == null || password.equals("")){
 			user = getCrudDao().findObjListByHql("from USER_BUYER as a where a.name='"+name+"'");
@@ -31,10 +31,30 @@ public class UserBuyerService extends EntityService<UserBuyerModel> implements I
 			user = getCrudDao().findObjListByHql("from USER_BUYER as a where a.name='"+name+"' and a.password='"+utilService.getMD5String(password)+"'");
 		}
 		if(user != null && user.size()>0){
+			return user.get(0).getId();
+		}else{
+			return null;
+		}
+	}
+	
+	/**
+	 * 此邮箱是否已被注册
+	 * @param Email
+	 * @return
+	 * 		true if has
+	 */
+	@SuppressWarnings("unchecked")
+	public boolean hasEmail(String Email){
+		List<UserBuyerModel> user = null;
+		if(Email != null && !Email.equals("")){
+			user = getCrudDao().findObjListByHql("from USER_BUYER as a where a.email='"+Email+"'");
+		}
+		if(user != null && user.size()>0){
 			return true;
 		}else{
 			return false;
 		}
+		
 	}
 	
 }

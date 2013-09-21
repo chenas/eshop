@@ -1,9 +1,9 @@
 package com.base.framwork.dao;
 
 /**
- * dao的统一接口
+ * dao鎺ュ彛
  * @author chenas
- *2013年08月11日
+ *2013锟斤拷08锟斤拷11锟斤拷
  */
 
 public interface IBaseDao {

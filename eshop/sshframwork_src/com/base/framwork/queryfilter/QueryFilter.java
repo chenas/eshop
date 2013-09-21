@@ -1,55 +1,41 @@
 package com.base.framwork.queryfilter;
 
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
-
 /**
- * ��ѯ����������
+ * 过滤器
+ * 设置过滤条件
+ * 属性名称与
  * @author chenas
- * 2013��08��11��
  */
 public class QueryFilter{
 	
 	/**
-	 * �Ƿ��ҳ
-	 * Ĭ��Ϊtrue����ʾ��ҳ
+	 * 是否分页
+	 * true 分页
 	 */
 	private boolean isLimited = true;
 	
 	/**
-	 * ��ʾ�ڼ�ҳ
+	 * 页码
 	 */
 	private int pageNo = 1;
 	
 	/**
-	 * ÿҳ�ļ�¼��
-	 * Ĭ��һҳ��ʾ10��
+	 * 默认每页实体的大小
 	 */
 	private int pageSize = 10;
 	
 	/**
-	 * ��ݴ��ַ�����
+	 * 排序语句
+	 * 实例格式：" price asc" 按价格从低到高
 	 */
 	private String orderByString;
 	
 	/**
-	 * ��ѯ���(��β���Ͽո�)
+	 * 查询语句  可以count结合使用
 	 * 	where +
 	 * 	between
 	 */
 	private String queryString;
-	
-	/**
-	 * ��������
-	 * String:
-	 * 		��Ӧ��ݿ��е�����
-	 * Object��
-	 * 		����������͵�ֵ
-	 * 
-	 */
-	
-	private Map<String, Object> mapCondition;
 
 	public boolean isLimited() {
 		return isLimited;
@@ -81,14 +67,6 @@ public class QueryFilter{
 
 	public void setOrderByString(String orderByString) {
 		this.orderByString = orderByString;
-	}
-
-	public Map<String, Object> getMapCondition() {
-		return mapCondition;
-	}
-
-	public void setMapCondition(Map<String, Object> mapCondition) {
-		this.mapCondition = mapCondition;
 	}
 
 	public String getQueryString() {

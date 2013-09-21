@@ -21,9 +21,10 @@ import com.base.framwork.queryfilter.QueryFilter;
 public class EntityService<T extends BaseModel> extends BaseService implements IEntityService<T>{
 
 	/**
-	 * ����Id���� load
+	 * 根据id取得记录	
+	 * 		先从缓存去，找不到才到数据库找
 	 * @param id
-	 * 			����
+	 * 		主键
 	 * @return
 	 */
 	@Override
@@ -32,7 +33,8 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ����Id���� get
+	 * 由id取得记录
+	 * 	直接从数据库取
 	 * @param id
 	 * 			����
 	 * @return
@@ -43,7 +45,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * �������ݿ������еļ�¼
+	 * 查找所有实体
 	 * @return
 	 */
 	@Override
@@ -52,9 +54,8 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ���ݹ�������ѯ���м�¼
+	 * 根据过滤器查找实体
 	 * @param filter
-	 * 			������
 	 * @return
 	 */
 	@Override
@@ -63,11 +64,10 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ����һ����¼
+	 * 插入记录
 	 * @param entity
-	 *            domain����
+	 *           实体类
 	 * @param user
-	 * 			�����û�
 	 * @return id
 	 */
 	@Override
@@ -91,7 +91,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 
 
 	/**
-	 * ɾ���־û�ʵ��
+	 * 删除记录
 	 * @param entity
 	 * @param optUser
 	 */
@@ -104,12 +104,12 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 	
 	/**
-	 * ��������idɾ�����ݿ���¼
+	 * 实体类主键
 	 * 
 	 * @param id
-	 *            ����id
+	 *         主键
 	 * @param optUser
-	 *            �����û�
+	 *         操作用户
 	 *            
 	 */  
 	@Override
@@ -138,12 +138,12 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ����idsɾ���������ݿ���¼
+	 * 实体类id
 	 * 
 	 * @param ids
-	 *            ����id����
+	 *          主键数组
 	 * @param optUser
-	 *            �����û�
+	 *          操作用户
 	 */
 	@Override
 	public void deleteManyEntityById(String[] ids, IUser optUser) {
@@ -155,7 +155,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 	
 	/**
-	 * ����ɾ��
+	 * 批量删除
 	 * @param entitys
 	 * @param optUser
 	 */
@@ -169,18 +169,33 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * �������ݿ���¼
+	 * 更新对象
+	 * 	适合于更新整个对象
 	 * 
 	 * @param entity
-	 *            domain����
+	 *            实体类
 	 * @param optUser
-	 *            �����û�
+	 *            操作用户
 	 */
 	@Override
 	public void updateEntity(T entity, IUser optUser) {
 		entity.setUpdateTime(utilService.getSystemDateTimeString());
 		beforUpdate(entity, optUser);
 		getCrudDao().update(entity);
+		afterUpdate(entity, optUser);
+	}
+
+	/**
+	 * 根据过滤器更新记录
+	 * @param entity
+	 * @param filter
+	 * @param optUser
+	 * @throws Exception
+	 */
+	public void updateEntityByFilter(T entity, QueryFilter filter, IUser optUser) throws Exception {
+		entity.setUpdateTime(utilService.getSystemDateTimeString());
+		beforUpdate(entity, optUser);
+		getCrudDao().updateByFilter(getTClass().getName(), entity.getId(), filter);
 		afterUpdate(entity, optUser);
 	}
 
@@ -194,7 +209,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 
 	/**
-	 * ���ݼ�����������ͳ�Ƽ�¼��
+	 * 根据过滤条件统计记录数
 	 * @param entity
 	 * @param filter
 	 * @return
@@ -205,7 +220,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	}
 	
 	/**
-	 * �Զ���ͳ�Ƽ�¼��
+	 * 自定义统计数量
 	 * @param entity
 	 * @return
 	 */
@@ -214,7 +229,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		return getCrudDao().countObjByHql(hql);
 	}
 	
-	//�T.class
+	//得到获得T.class
 	@SuppressWarnings("unchecked")
 	public Class<T> getTClass(){
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];

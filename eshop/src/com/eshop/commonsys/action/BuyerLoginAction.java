@@ -1,13 +1,20 @@
-package com.eshop.action;
+package com.eshop.commonsys.action;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.action.EntityBaseAction;
+import com.base.framwork.domain.IUser;
+import com.eshop.domain.UserBuyer;
 import com.eshop.model.UserBuyerModel;
 import com.eshop.service.IUserBuyerService;
 
+/**
+ * 登录action
+ * @author chenas
+ *
+ */
 @Component
 public class BuyerLoginAction extends EntityBaseAction<UserBuyerModel> {
 
@@ -19,7 +26,9 @@ public class BuyerLoginAction extends EntityBaseAction<UserBuyerModel> {
 	
 	@Override
 	public String execute() throws Exception {
-		if(userBuyerService.hasUser(name, password)){
+		if(userBuyerService.hasUser(name, password) != null){
+			UserBuyerModel user = userBuyerService.findEntityById(userBuyerService.hasUser(name, password));
+			doPutSessionObject("loginUser", user); //将用户放进session里面
 			return SUCCESS;
 		}else
 			return ERROR;

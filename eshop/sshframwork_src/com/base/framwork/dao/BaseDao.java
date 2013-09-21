@@ -5,9 +5,9 @@ import javax.annotation.Resource;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 /**
- * ÊµÏÖIBaseDaoÀà
+ * æ‰€æœ‰daoçš„åŸºç±»
  * @author chenas
- *2013Äê08ÔÂ11ÈÕ
+ *2013ï¿½ï¿½08ï¿½ï¿½11ï¿½ï¿½
  */
 public class BaseDao implements IBaseDao{
 

@@ -7,7 +7,7 @@ import com.base.framwork.domain.IUser;
 import com.base.framwork.queryfilter.QueryFilter;
 
 /**
- * ÔöÉ¾¸Ä²éÒµÎñÍ¨ÓÃ½Ó¿Ú
+ * ï¿½ï¿½É¾ï¿½Ä²ï¿½Òµï¿½ï¿½Í¨ï¿½Ã½Ó¿ï¿½
  * @author chenas
  *
  * @param <T>
@@ -17,92 +17,101 @@ import com.base.framwork.queryfilter.QueryFilter;
 public interface IEntityService<T extends BaseModel> extends IBaseService {
 	
 	/**
-	 * ¸ù¾İId²éÕÒ
+	 * ï¿½ï¿½ï¿½Idï¿½ï¿½ï¿½ï¿½
 	 * @param id
-	 * 			Ö÷¼ü
+	 * 			ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public T findEntityById(String id);
 
 	/**
-	 * ¸ù¾İId²éÕÒ get
+	 * ï¿½ï¿½ï¿½Idï¿½ï¿½ï¿½ï¿½ get
 	 * @param id
-	 * 			Ö÷¼ü
+	 * 			ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public T getEntityById(String id);
 	
 	/**
-	 * ²éÕÒÊı¾İ¿âÖĞËùÓĞµÄ¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ĞµÄ¼ï¿½Â¼
 	 * @return
 	 */
 	public List<T> findEntityList();
 	
 	/**
-	 * ¸ù¾İ¹ıÂËÆ÷²éÑ¯ËùÓĞ¼ÇÂ¼
+	 * ï¿½ï¿½İ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ğ¼ï¿½Â¼
 	 * @param filter
-	 * 			¹ıÂËÆ÷
+	 * 			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public List<T> findEntityListByFilter(QueryFilter filter);
 	
 	/**
-	 * ²åÈëÒ»Ìõ¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Â¼
 	 * @param entity
-	 *            domain¶ÔÏó
+	 *            domainï¿½ï¿½ï¿½ï¿½
 	 * @param user
-	 * 			²Ù×÷ÓÃ»§
+	 * 			ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 * @return id
 	 */
 	public String insertEntity(T entity, IUser optUser);
 
 	/**
-	 * É¾³ı³Ö¾Ã»¯ÊµÌå
+	 * É¾ï¿½ï¿½Ö¾Ã»ï¿½Êµï¿½ï¿½
 	 * @param entity
 	 * @param optUser
 	 */
 	public void deleteEntity(T entity, IUser optUser);
 	
 	/**
-	 * ¸ù¾İÖ÷¼üidÉ¾³ıÊı¾İ¿â¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idÉ¾ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½Â¼
 	 * 
 	 * @param id
-	 *            Ö÷¼üid
+	 *            ï¿½ï¿½ï¿½ï¿½id
 	 * @param optUser
-	 *            ²Ù×÷ÓÃ»§
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 *            
 	 */         
 	public void deleteEntityById(String id, IUser optUser);
 	
 	/**
-	 * ¸ù¾İidsÉ¾³ı¶à¸öÊı¾İ¿â¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½idsÉ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½Â¼
 	 * 
 	 * @param ids
-	 *            Ö÷¼üidÊı×é
+	 *            ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½ï¿½ï¿½
 	 * @param optUser
-	 *            ²Ù×÷ÓÃ»§
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 */
 	public void deleteManyEntityById(String[] ids, IUser optUser);
 	
 	/**
-	 * ÅúÁ¿É¾³ı
+	 * ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½
 	 * @param entitys
 	 * @param optUser
 	 */
 	public void deleteManyEntity(List<T> entitys, IUser optUser);
 
 	/**
-	 * ¸üĞÂÊı¾İ¿â¼ÇÂ¼
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ¿ï¿½ï¿½Â¼
 	 * 
 	 * @param entity
-	 *            domain¶ÔÏó
+	 *            domainï¿½ï¿½ï¿½ï¿½
 	 * @param optUser
-	 *            ²Ù×÷ÓÃ»§
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	 */
 	public void updateEntity(T entity, IUser optUser);
+
+	/**
+	 * æ ¹æ®è¿‡æ»¤å™¨æ›´æ–°è®°å½•
+	 * @param entity
+	 * @param filter
+	 * @param optUser
+	 * @throws Exception
+	 */
+	public void updateEntityByFilter(T entity, QueryFilter filter, IUser optUser) throws Exception;
 	
 	/**
-	 * ¸ù¾İ¼ÆÊı¹ıÂËÌõ¼şÍ³¼Æ¼ÇÂ¼Êı
+	 * ï¿½ï¿½İ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í³ï¿½Æ¼ï¿½Â¼ï¿½ï¿½
 	 * @param entity
 	 * @param filter
 	 * @return
@@ -110,7 +119,7 @@ public interface IEntityService<T extends BaseModel> extends IBaseService {
 	public int countEntityByFilter(QueryFilter filter);
 	
 	/**
-	 * ×Ô¶¨ÒåÍ³¼Æ¼ÇÂ¼Êı
+	 * ï¿½Ô¶ï¿½ï¿½ï¿½Í³ï¿½Æ¼ï¿½Â¼ï¿½ï¿½
 	 * @param entity
 	 * @return
 	 */
