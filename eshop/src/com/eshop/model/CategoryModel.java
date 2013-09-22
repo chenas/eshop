@@ -16,24 +16,24 @@ public class CategoryModel extends BaseModel {
 
 	private String name;
 
-	private String describe;
+	private String description;
+
+	@Column(name = "description", length = 100)
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	@Column(name = "name", length = 20, nullable = false)
 	public String getName() {
 		return name;
 	}
 
-	@Column(name = "describe", length = 100)
-	public String getDescribe() {
-		return describe;
-	}
-
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setDescribe(String describe) {
-		this.describe = describe;
 	}
 
 }

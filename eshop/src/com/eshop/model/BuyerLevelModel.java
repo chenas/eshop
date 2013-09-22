@@ -17,7 +17,7 @@ public class BuyerLevelModel extends BaseModel{
 	//等级名称
 	private String name;
 	//等级描述
-	private String describe;
+	private String description;
 	//折扣
 	private double discount;
 
@@ -29,14 +29,13 @@ public class BuyerLevelModel extends BaseModel{
 		this.name = name;
 	}
 
-	@Column(name="descbibe", length=100,nullable=true)
-	public String getDescribe() {
-		return describe;
+	@Column(name="description", length=100,nullable=true)
+	public String getDescription() {
+		return description;
 	}
-	public void setDescribe(String describe) {
-		this.describe = describe;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-
 	@Column(name="discount", length=10,nullable=true)
 	public double getDiscount() {
 		return discount;

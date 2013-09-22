@@ -11,13 +11,14 @@ import com.base.framwork.domain.BaseModel;
    function:
         this class mainly contains the information of orderItem;
  */
-@Entity(name="ORDERITRM")
+@Entity(name="ORDERITEM")
 public class OrderItemModel  extends BaseModel {
 	
 	private double price;
 	private int count;
 	private String orderId;
 	private String productId;
+	//每项总价格
 	private double itempris;
 	private String productName;
 	//产品是否有剩余

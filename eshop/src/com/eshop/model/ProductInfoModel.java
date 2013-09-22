@@ -29,7 +29,7 @@ public class ProductInfoModel extends BaseModel {
 	// 促销，默认为否
 	private char isOnsale;
 	// 状态，默认上架
-	private char isSale;
+	private String isSale;
 	// 描述
 	private String description;
 	// 促销数量
@@ -48,6 +48,15 @@ public class ProductInfoModel extends BaseModel {
 	private char isEshop;
 	// id
 	private String sellerId;
+	
+	/**
+	 * 关键词，可用于虚拟分类
+	 * 搜索
+	 */
+	private String keyword;
+	
+	//优先级，越大优先级越高，商品越有可能显示在前面
+	private int priority;
 
 	@Column(name = "productid", length = 50, nullable = false)
 	public String getProductid() {
@@ -122,11 +131,11 @@ public class ProductInfoModel extends BaseModel {
 	}
 
 	@Column(name = "is_sale", length = 1, nullable = true)
-	public char getIsSale() {
+	public String getIsSale() {
 		return isSale;
 	}
 
-	public void setIsSale(char isSale) {
+	public void setIsSale(String isSale) {
 		this.isSale = isSale;
 	}
 
@@ -180,8 +189,14 @@ public class ProductInfoModel extends BaseModel {
 		return downdate;
 	}
 
-	public void setDowndate(Date downdate) {
-		this.downdate = downdate;
+	@Column(name = "keyword", length = 30, nullable = true)
+	public String getKeyword() {
+		return keyword;
+	}
+
+	@Column(name = "priority", length = 10, nullable = true)
+	public int getPriority() {
+		return priority;
 	}
 
 	@Column(name = "onsale_num", length = 10, nullable = false)
@@ -209,6 +224,18 @@ public class ProductInfoModel extends BaseModel {
 
 	public void setSellerId(String sellerId) {
 		this.sellerId = sellerId;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
+	public void setDowndate(Date downdate) {
+		this.downdate = downdate;
 	}
 
 }

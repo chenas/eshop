@@ -21,18 +21,13 @@ public class CategoryDetailModel extends BaseModel {
 	/**
  * 
  */
-	private String describe;
+	private String description;
 
 	private String categoryId;
 
 	@Column(name = "name", length = 20, nullable = false)
 	public String getName() {
 		return name;
-	}
-
-	@Column(name = "descibe", length = 100)
-	public String getDescribe() {
-		return describe;
 	}
 
 	@Column(name = "category_id", length = 64, nullable = false)
@@ -44,12 +39,17 @@ public class CategoryDetailModel extends BaseModel {
 		this.name = name;
 	}
 
-	public void setDescribe(String describe) {
-		this.describe = describe;
-	}
-
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	@Column(name = "description", length = 100)
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
