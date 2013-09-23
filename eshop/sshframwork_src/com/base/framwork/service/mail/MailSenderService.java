@@ -1,19 +1,26 @@
 package com.base.framwork.service.mail;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.commons.net.smtp.SMTPClient;
+import org.apache.commons.net.smtp.SMTPReply;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
-import org.springframework.stereotype.Component;
 import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.xbill.DNS.Lookup;
+import org.xbill.DNS.Record;
+import org.xbill.DNS.Type;
+
+import com.base.framwork.util.ConfigUtil;
 
 public class MailSenderService implements IMailSenderService{
 	private JavaMailSender mailSender;//spring配置中定义
@@ -93,7 +100,7 @@ public class MailSenderService implements IMailSenderService{
 	 * 发送HTML模板邮件
 	 *
 	 */
-    public void sendHtmlWithTemplate(final String[] mailTo, final Map model){
+    public void sendHtmlWithTemplate(final String mailTo, final Map model){
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
             //注意MimeMessagePreparator接口只有这一个回调函数
           public void prepare(MimeMessage mimeMessage) throws Exception
@@ -195,6 +202,73 @@ public class MailSenderService implements IMailSenderService{
 		}
 	    mailSender.send(mimeMessage);
 	}
+	
+	/**
+	 * 检查邮箱是否真实存在
+	 * @param email
+	 * @return
+	 * 		true if exists
+	 */
+	public boolean checkEmail(String email) {
+		if (!email.matches("[\\w\\.\\-]+@([\\w\\-]+\\.)+[\\w\\-]+")) {
+			return false;
+		}
+		String log = "";
+		String host = "";
+		String hostName = email.split("@")[1];// 去掉@后面的
+		System.out.println("hostName:" + hostName);
+		Record[] result = null;
+		SMTPClient client = new SMTPClient();
+		try {
+			// 查找MX记录
+			Lookup lookup = new Lookup(hostName, Type.MX);
+			lookup.run();
+			if (lookup.getResult() != Lookup.SUCCESSFUL) {
+				System.out.println("找不到MX记录");
+				return false;
+			} else {
+				result = lookup.getAnswers();
+				for (int i = 0; i < result.length; i++) {
+					System.out
+							.println(result[i].getAdditionalName().toString());
+					System.out.println(result[i]);
+				}
+			}
+			// 连接到邮箱服务器
+			for (int i = 0; i < result.length; i++) {
+				host = result[i].getAdditionalName().toString();
+				client.connect(host);
+				if (!SMTPReply.isPositiveCompletion(client.getReplyCode())) {
+					client.disconnect();
+					continue;
+				} else {
+					log += "邮箱mx记录" + hostName + "存在";
+					log += "成功连接到" + host;
+					break;
+				}
+			}
+			System.out.println(client.getReplyString());
+			client.login(ConfigUtil.getConfig("mail.properties", "mail.check.host"));
+			System.out.println(client.getReplyString());
+			client.setSender(ConfigUtil.getConfig("mail.properties", "mail.check.sender"));// 发件人
+			log += "=" + client.getReplyString();
+			client.addRecipient(email);
+			log += ">RCPT TO: <" + email + ">\n";
+			log += "=" + client.getReplyString();
+			if (250 == client.getReplyCode()) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				client.disconnect();
+			} catch (IOException e) {
+			} // 打印日志
+		}
+		return false;
+	}
+	
 	public String getFrom() {
 		return from;
 	}

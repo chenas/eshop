@@ -17,10 +17,11 @@ import com.eshop.service.IUserBuyerService;
 public class UserBuyerService extends EntityService<UserBuyerModel> implements IUserBuyerService{
 	
 	/**
-	 * 
+	 * 用户是否存在
 	 * @param name
 	 * @param password
 	 * @return
+	 * 		user id
 	 */
 	public String hasUser(String name, String password){
 		List<UserBuyerModel> user = null;

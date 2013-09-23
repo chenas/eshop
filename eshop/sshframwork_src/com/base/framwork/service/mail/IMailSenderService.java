@@ -39,7 +39,7 @@ public interface IMailSenderService{
 	 * 发送HTML模板邮件
 	 *
 	 */
-    public void sendHtmlWithTemplate(final String[] mailTo,final Map model);
+    public void sendHtmlWithTemplate(final String mailTo,final Map model);
 	/**
 	 * 发送HTML模板邮件
 	 * 带附件
@@ -47,6 +47,14 @@ public interface IMailSenderService{
 	 */
     public void sendHtmlWithTemplate(final String[] mailTo,final Map model,final String [] files);
 
+	/**
+	 * 检查邮箱是否真实存在
+	 * @param email
+	 * @return
+	 * 		true if exists
+	 */
+	public boolean checkEmail(String email);
+    
     /**
      * 不按照默认主题可调用此方法设置主题
      * @param mailSubject

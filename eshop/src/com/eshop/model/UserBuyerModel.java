@@ -77,7 +77,7 @@ public class UserBuyerModel extends BaseModel{
 		return score;
 	}
 
-	@Column(name="is_valudate", length=1)
+	@Column(name="is_valudate", length=1,columnDefinition="varchar(1) default '0'")
 	public String getIsValidate() {
 		return isValidate;
 	}

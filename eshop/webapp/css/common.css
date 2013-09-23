@@ -1,0 +1,38 @@
+﻿a{text-decoration: none;color:#000;}ul{margin:0;padding:0#list-style-type: none;}
+/*我是中文*/
+#header,#nav{width:100%;}
+
+#header{background: #ededed;height:30px;}
+#header div{margin:0 auto;width:1000px;height: 30px;line-height: 30px;}
+#header div h1{display:inline-block;font-family: "Microsoft YaHei";}
+#header div h5{float:right;font-size: 17px;font-family: "Microsoft YaHei";cursor: pointer;}
+#header div h5:hover a{color:#ffa335;}
+
+#nav{height:110px;background: #ffa335;border-top:2px solid #bc7a2b;}
+#nav div{margin:0 auto;width:1000px;height: 110px;position: relative;}
+#nav h1{position:absolute;bottom:0;padding:0;font-size:64px;color:#fff;}
+#nav ul{position: absolute;bottom:0;right:0;}
+#nav li{float:left;font-weight: bold;position: relative;}
+#nav li:hover{background: #fff6eb;}
+#nav li a{display:inline-block;padding:0 10px;}
+#nav li:hover a{color:#ffa335;}
+
+#nav li a{display:inline-block;font-size: 17px;padding-top:84px;padding-bottom:10px;
+	color:#fff;font-family: "Microsoft YaHei";}
+#nav input,#nav span{position: relative;top:80px;}
+#nav input{color:#aaa;}
+#nav span{display:inline-block;color:#fff;font-size: 17px;color:#fff;font-family: "Microsoft YaHei";}
+#nav span:hover{color:#000;cursor: pointer;}
+
+#nav li #list{display:none;z-index: 99;position: absolute;top:110px;left:0px;width:300px;
+	cursor:pointer;text-align: left;border: 1px dotted #c33;}
+#nav li #list li{float:none;}
+#nav li:hover #list{display: block;}
+#nav li:hover #list li{background: #fff6eb;}
+#nav li #list li a{display:inline-block;padding:5px 10px;height:20px;line-height:20px;background:#fff6eb;}
+#nav li #list li:hover{background:#ffa335;}
+#nav li #list li:hover a{background: #ffa335;color:#fff;}
+#nav li #list li a:hover{color:#eee;}
+#nav li #list li div{display: none;width:100%;height:100%;}
+#nav li #list li:hover div{display: block;}
+#nav li #list li div a{font-size: 16px;}

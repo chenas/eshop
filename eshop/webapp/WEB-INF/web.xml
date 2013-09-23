@@ -18,6 +18,16 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
+  <!-- buffalo -->
+ 	<servlet>
+		<servlet-name>bfapp</servlet-name>
+		<servlet-class>net.buffalo.web.servlet.ApplicationServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>bfapp</servlet-name>
+		<url-pattern>/bfapp/*</url-pattern>
+	</servlet-mapping>
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -48,6 +58,8 @@
   </filter>
   <filter-mapping>
     <filter-name>struts2</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>*.action</url-pattern>
+     <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
+  
 </web-app>

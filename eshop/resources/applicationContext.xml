@@ -94,6 +94,7 @@
 	</tx:advice>
 	<!-- 引用外部文件 -->
 	<import resource="applicationContext-mail.xml"/>
+	<import resource="applicationContext-buffalo.xml"/>
 	
 	<!-- 发送邮件 -->
 	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">

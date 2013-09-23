@@ -44,16 +44,16 @@ public class TestMailSenderService {
 	
 	@Test
 	public void testSendHtmlWithTemplate(){
-		String[] mails = {"917146226@qq.com"};
+		String mails = "917146226@qq.com";
 		//注册完马上发送邮件
 		mailSenderService.setSubject("注册成功");
-		mailSenderService.setTemplateName("mail-html.vm");//设置的邮件模板
+		mailSenderService.setTemplateName("mail-register.vm");//设置的邮件模板
 		Map model=new HashMap();
 		model.put("username", "reciever");
 		//String url=request.getRequestURL().toString();
 		String url= "www.test.com"; //url.substring(0, url.lastIndexOf("/"));
 		model.put("url", url);
-		model.put("email", "shopusst@163.com");
+		model.put("toMailAddr", "917146226@qq.com");
 		mailSenderService.sendHtmlWithTemplate(mails, model);
 		System.out.println("邮件发送成功！");
 	}
@@ -64,6 +64,13 @@ public class TestMailSenderService {
 		mailSenderService.sendHtmlWithImage(mails, "D:\\test\\1659.png");
 		System.out.println("邮件发送成功！");
 		
+	}
+	
+	@Test
+	public void testCheckMail(){
+		//163,qq,gmail测试通过
+		boolean flag = mailSenderService.checkEmail("12@gmail.com");
+		System.out.println(flag);
 	}
 	
 }
