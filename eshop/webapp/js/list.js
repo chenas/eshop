@@ -35,49 +35,8 @@ function initPage()
 	if(aLiSide[0]){
 		addItem(aLiSide);
 	};
-	//login & register
-	var oLogin = jQuery('#login')[0];
-	if(oLogin){
-		jQuery(oLogin).bind('click', function ()
-		{
-			if(jQuery('#form')[0]){
-				jQuery('#form').show();
-			}else{
-				importLogin();
-			};
-		});
-	};
 };
 
-function importLogin()
-{
-	var sWidth = jQuery(document).width();
-	var sHeight = jQuery(document).height();
-	var form = document.createElement('div');
-	form.id = 'form';
-	form.innerHTML = '<form action="">'+
-		'<h1>Name</h1>'+
-		'<img src="../images/login.png" alt="" />'+
-		'<div>'+
-			'<label for="name">登录名：'+
-				'<input type="text" id="name"/>'+
-			'</label>'+
-			'<label for="password">登录密码：<a href="javascript:void(0);">密码丢了？</a>'+
-				'<input type="text" id="password"/>'+
-			'</label>'+
-			'<input type="submit" value="登录"/>'+
-			'<a href="pages/register.html">免费注册</a>'+
-			'<a href="javascript:void(0);" id="return">返回首页</a>'+
-		'</div>'+
-	'</form>';
-	jQuery('body').append(form);
-	jQuery('#form').css({
-		'width': sWidth,
-		'height': sHeight
-	});
-	jQuery('#return').bind('click', function (){
-		jQuery('#form').hide();
-	});
-};
+
 
 addEvent(window, 'load', initPage);

@@ -16,6 +16,8 @@ public class UserBuyer extends UserBuyerModel implements IUser{
 	 */
 	private String admin;
 
+	private String password2;
+	
 	public String getAdmin() {
 		return admin;
 	}
@@ -40,6 +42,14 @@ public class UserBuyer extends UserBuyerModel implements IUser{
 			return true;
 		}
 		return false;
+	}
+
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
 	}
 
 }

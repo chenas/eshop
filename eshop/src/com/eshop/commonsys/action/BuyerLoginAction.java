@@ -5,8 +5,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.action.EntityBaseAction;
-import com.base.framwork.domain.IUser;
-import com.eshop.domain.UserBuyer;
 import com.eshop.model.UserBuyerModel;
 import com.eshop.service.IUserBuyerService;
 
@@ -31,6 +29,7 @@ public class BuyerLoginAction extends EntityBaseAction<UserBuyerModel> {
 			doPutSessionObject("loginUser", user); //将用户放进session里面
 			return SUCCESS; //到首页
 		}else
+			getRequest().setAttribute("name", getName());
 			return ERROR;
 	}
 

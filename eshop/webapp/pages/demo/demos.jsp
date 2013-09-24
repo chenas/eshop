@@ -4,8 +4,8 @@
 <head>
 <base href="<%=basePath%>">
 <title>demos</title>
-	<script type="text/javascript" src="js/jQuery.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/jQuery.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/common.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/buffalo/prototype.js"></script> 
 <script type="text/javascript" src="<%=basePath %>js/buffalo/buffalo.js"></script>
 </head>
@@ -23,9 +23,9 @@ jQuery(function () {
 <!-- end of 验证码demo -->
 
 <!-- begin of ajax验证 -->
-
+<form action="">
 <input id="username" name="name" onblur="hasName()" type="text">
-
+</form>
 <script type="text/javascript">
 /* 	$("#username").blur(function(){
 		$.ajax({

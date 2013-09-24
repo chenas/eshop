@@ -1,16 +1,15 @@
-jQuery(function (){
+﻿jQuery(function (){
 	var aInput = jQuery('#register input');
-	for(var i=0;i<aInput.length;i++){
-		aInput[i].onfocus = function (){
+	for(var i=0;i<aInput.length-1;i++){
+		jQuery(aInput[i]).bind('focus', function (){
 			jQuery(this).css({
 				'border':'2px solid #fea336'
 			});
-		};
-		aInput[i].onblur = function (){
-			console.log(jQuery(this));
+		})
+		jQuery(aInput[i]).bind('blur', function (){
 			jQuery(this).css({
 				'border':'2px solid #333'
 			});
-		};
+		});
 	};
 });

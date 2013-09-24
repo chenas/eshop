@@ -1,0 +1,42 @@
+/*index.html*/
+#content{width:1000px;height:560px;margin:0 auto;position:relative;overflow: hidden;}
+#content ul{position: absolute;left:0;width: 9999px;}
+#content li{float:left;}
+#content img{width:1000px;}
+#content span{display: inline-block;position: absolute;top:300px;width:40px;height:72px;cursor:pointer;
+	background: url(../images/btn.png);opacity: 0.5;}
+#content span:hover{opacity: 1;}
+#content .left{left:0;background-position:-40px 0;}
+#content .right{right:0;}
+#content div ul{position: absolute;bottom:10px;left:800px;width:100px;}
+#content div li{float:left;width:15px;height: 15px;margin:0 5px;background: #eee;}
+#content div li.active{background: #333}
+
+/*allProducts.html*/
+#sideBar{position: absolute;left:170px;top:142px;width:150px;height:500px;background: #414141;}
+#sideBar div{position: absolute;top:100px;width:100%;
+	font-size: 18px;font-family: "Microsoft YaHei";font-weight: bold;}
+#sideBar ul{width:100%;}
+#sideBar ul>li{width:138px;padding-left:10px;line-height: 30px;border:1px solid #818181;cursor: pointer;
+	background: #414141}
+#sideBar ul li:hover>a{color: #FFA335;}
+#sideBar li a{display:inline-block;height:30px;color:#fff;}
+#sideBar li a.active{color:#FFA335;}
+#sideBar div div{display:none;position: relative;top:0px;left:-10px;overflow:hidden;width:148px;
+	background: #272727;}
+#sideBar div div a{display: block;padding-left: 15px;}
+#sideBar div div a:hover{text-decoration: underline;background: #FFA335}
+
+#products{position:absolute;left:340px;top:160px;width:1000px;}
+.details{float:left;margin-right:15px;margin-bottom:15px;width:186px;height:260px;
+	cursor:pointer;font-family: "黑体";}
+.details h1{width:100%;height:30px;background: #42baff;line-height: 30px;font-size:18px;
+	color:#fff;text-align: center;}
+.details img{width:186px;height:186px;}
+.details .info{margin-bottom:5px;}
+.details .info strong{color:#f00;height:24px;line-height: 24px;font-weight: bold;}
+.details .info h5,.details .info input{float:right;display:inline-block;color:#f00;font-size: 29px;}
+.details .info input{color:#666;font-size: 16px;width:30px;text-align: center;margin:0 5px;}
+.details span{float:left;position:relative;left:6px;top:2px;display: inline-block;color:#c6c6c6;font-size: 16px;}
+.details .add{float:right;display:inline-block;width:62px;height:20px;background: #42baff;text-align: center;}
+.details .add a{color:#fff;font-size: 16px;height:20px;line-height: 20px;}

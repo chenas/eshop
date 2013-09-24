@@ -194,7 +194,7 @@ System.out.println(hql);
 		String hql = "from "+clazz+" as a";
 		strBuilder.append(hql);
 		strBuilder.append(filter.getQueryString()==null?"" : " "+filter.getQueryString());
-		if(filter.getQueryString() !=null && !filter.getOrderByString().equals("")){
+		if(filter.getOrderByString() !=null && !filter.getOrderByString().equals("")){
 			strBuilder.append(" order by a."+filter.getOrderByString());
 		}else{
 			strBuilder.append(" order by a.id desc");
@@ -221,7 +221,7 @@ System.out.println(strBuilder.toString());
 		final int pSize = filter.getPageSize();
 		strBuilder = strBuilder.append("from "+clazz+ " as a");
 		strBuilder.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
-		if(filter.getQueryString() != null && !filter.getOrderByString().equals("")){
+		if(filter.getOrderByString() != null && !filter.getOrderByString().equals("")){
 			strBuilder.append(" order by a."+filter.getOrderByString());
 		}else{
 			strBuilder.append(" order by a.id desc");

@@ -1,5 +1,5 @@
-﻿a{text-decoration: none;color:#000;}ul{margin:0;padding:0#list-style-type: none;}
-/*我是中文*/
+a{text-decoration: none;color:#000;}ul{margin:0;padding:0#list-style-type: none;}
+
 #header,#nav{width:100%;}
 
 #header{background: #ededed;height:30px;}
@@ -14,6 +14,7 @@
 #nav ul{position: absolute;bottom:0;right:0;}
 #nav li{float:left;font-weight: bold;position: relative;}
 #nav li:hover{background: #fff6eb;}
+#nav li+li+li+li+li:hover{background: none;}
 #nav li a{display:inline-block;padding:0 10px;}
 #nav li:hover a{color:#ffa335;}
 
@@ -23,6 +24,9 @@
 #nav input{color:#aaa;}
 #nav span{display:inline-block;color:#fff;font-size: 17px;color:#fff;font-family: "Microsoft YaHei";}
 #nav span:hover{color:#000;cursor: pointer;}
+#nav span input{position: relative;top:0;color:#fff;font-family: "Microsoft YaHei";border:none;
+	background: #ffa335;cursor: pointer;}
+#nav span input:hover{color:#333;}
 
 #nav li #list{display:none;z-index: 99;position: absolute;top:110px;left:0px;width:300px;
 	cursor:pointer;text-align: left;border: 1px dotted #c33;}
@@ -36,3 +40,34 @@
 #nav li #list li div{display: none;width:100%;height:100%;}
 #nav li #list li:hover div{display: block;}
 #nav li #list li div a{font-size: 16px;}
+
+#form{display:block;width:1000px;height:600px;background:#fff;margin:0 auto;}
+#form form{margin:0 auto;padding:0 10px;width:980px;height:600px;background: #fff}
+#form img{margin-top:50px;}
+#form form div{float:right;margin-right:100px;padding:40px 30px;width:278px;height:230px;border:1px solid #d9d9d9;}
+#form form div label{display: block;margin-bottom:22px;font-family: "黑体";font-size:22px;color:#858585;}
+#form form div label input{display: block;margin-top:4px;width:260px;height:32px;font-size:20px;line-height: 32px;
+	background: none;border:1px solid #333;}
+#form form div label input:hover{border:1px solid #c33;}
+#form form div label a,
+#form form div a{float:right;margin-top:8px;margin-right:10px;color:#1f73ff;font-size:16px;}
+#form form div input{width:260px;height:40px;background: url(../images/btn.png) no-repeat -83px 0px;border:none;}
+#form form div input:hover{opacity: 0.8;cursor:pointer;}
+#form form div a{font-family: "黑体";margin-right:20px;}
+
+#register{margin:0 auto;width:1000px;height:400px;}
+#register form{float:left;margin:120px 0 0 100px;text-align: center;}
+#register label{display: block;position:relative;width:300px;height:40px;font-family: "黑体";color:#7a7a7a;
+	text-align: right}
+#register label input{float:right;width:194px;border:2px solid #333;}
+#register label img{width:200px;height:20px;}
+#register div{float:left;margin-top:120px;}
+#register div p{display:block;margin-left:5px;height:22px;width:300px;margin-bottom:18px;
+	font-family: "黑体";font-size:14px;line-height: 20px;}
+#register div p span{float:left;display:inline-block;margin-right:5px;width:20px;height:20px;
+	background:url(../images/btn.png) no-repeat}
+#register div p.normal span{background-position:-123px -40px;}
+#register div p.success span{background-position:-103px -40px;}
+#register div p.wrong span{background-position:-83px -40px;}
+#register #btn{float:right;height: 40px;width:196px;margin-top:5px;
+	border:none;background: url("../images/btn.png") no-repeat scroll -103px 0;}

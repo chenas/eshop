@@ -111,8 +111,10 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 	public QueryFilter getEntityFilter(){
 		QueryFilter filter = null;
 		try{
+System.out.println(ReflectUtil.getGetterOfField(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"));
 			filter = (QueryFilter)MethodUtils.invokeMethod(this, ReflectUtil.getGetterOfField(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"), null);
 			if(filter == null){
+System.out.println(getFilterPackage() + "." + ReflectUtil.firstUpperCase(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"));
 				Class<?> type = Class.forName(getFilterPackage() + "." + ReflectUtil.firstUpperCase(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"));
 				filter = (QueryFilter)type.newInstance();
 			}

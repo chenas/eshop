@@ -4,18 +4,20 @@
 <head>
 <base href="<%=basePath%>">
 <title>login</title>
+	<script type="text/javascript" src="<%=basePath %>js/jQuery.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/common.js"></script>
 </head>
 <body>
 <script type="text/javascript">
-$(function () {  
+jQuery(function () {  
     //点击图片更换验证码
-    $("#Verify").click(function(){
-        $(this).attr("src","Security/SecurityCodeImageAction?timestamp="+new Date().getTime());
+    jQuery("#Verify").click(function(){
+    	jQuery(this).attr("src","pages/commonsys/SecurityCodeImageAction.action?timestamp="+new Date().getTime());
     });
 });
 </script>
 用户名或密码错误<br>
-<s:form action="/pages/common/login.action" method="post">
+<s:form action="/pages/commonsys/login.action" method="post">
 	<s:textfield name="name" label="用户名：" />
 	<s:password name="password" label="密   码" />
 	<s:submit value="登录" />

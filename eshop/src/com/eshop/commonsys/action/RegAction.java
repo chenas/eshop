@@ -32,8 +32,16 @@ public class RegAction extends BaseAction{
 	//用于接收页面的参数
 	private UserBuyer userBuyer;
 	
+	//验证码
+	private String securityCode;
+	
 	@Override
 	public String execute() {
+		String serverCode = (String) doGetSessionObject("SESSION_SECURITY_CODE");
+		if(securityCode == null || securityCode.equals("") || !serverCode.equals(securityCode)){
+			addFieldError(securityCode, "验证码不正确");
+			return INPUT;
+		}
 		UserBuyerModel user = new UserBuyerModel();
 		user.setName(userBuyer.getName());
 		user.setEmail(userBuyer.getEmail());
@@ -47,22 +55,6 @@ public class RegAction extends BaseAction{
 		return SUCCESS;  //到首页
 	}
 
-	//验证用户名是否存在 ajax
-	public String hasUser(String name){
-		if(userBuyerService.hasUser(name, null) != null){
-			return "true";
-		}else
-			return "false";
-	}
-	
-	//验证用户名是否存在 ajax
-	public String hasEmail(){
-		if(userBuyerService.hasEmail(userBuyer.getEmail())){
-			return "true";
-		}else
-			return "false";
-	}
-
 	/**
 	 * 设置用户名、目的邮箱地址
 	 * 邮箱模板
@@ -72,7 +64,7 @@ public class RegAction extends BaseAction{
 		Map model = new HashMap();
 		model.put("username", userBuyer.getName());
 		model.put("toMailAddr", userBuyer.getEmail());
-		model.put("url", "http://localhost:8080/eshop/pages/commonsys/mailverify?id="+user.getId());
+		model.put("url", "http://localhost:8080/eshop/pages/commonsys/mailverify.action?id="+user.getId());
 		mailSenderService.setTemplateName("mail-register.vm");
 		mailSenderService.sendHtmlWithTemplate(user.getEmail(), model);
 	}
@@ -83,6 +75,14 @@ public class RegAction extends BaseAction{
 
 	public void setUserBuyer(UserBuyer userBuyer) {
 		this.userBuyer = userBuyer;
+	}
+
+	public String getSecurityCode() {
+		return securityCode;
+	}
+
+	public void setSecurityCode(String securityCode) {
+		this.securityCode = securityCode;
 	}
 	
 }

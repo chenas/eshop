@@ -1,8 +1,9 @@
 <!DOCTYPE validators PUBLIC
   "-//Apache Struts//XWork Validator 1.0.3//EN"
   "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+  <!-- 验证是否为空  为空是action执行结果返回input-->
 <validators>
-  <field name="userName">
+  <field name="name">
       <field-validator type="requiredstring">
           <message>User Name is required.</message>
       </field-validator>

@@ -47,7 +47,7 @@ public class ProductInfoModel extends BaseModel {
 	// 是否为自销商品
 	private char isEshop;
 	// id
-	private String sellerId;
+	private String shopId;
 	
 	/**
 	 * 关键词，可用于虚拟分类
@@ -180,6 +180,15 @@ public class ProductInfoModel extends BaseModel {
 		this.updateDate = updateDate;
 	}
 
+	@Column(name = "shop_id", length = 64, nullable = true)
+	public String getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(String shopId) {
+		this.shopId = shopId;
+	}
+
 	public void setUploadate(Date uploadate) {
 		this.uploadate = uploadate;
 	}
@@ -215,15 +224,6 @@ public class ProductInfoModel extends BaseModel {
 
 	public void setIsEshop(char isEshop) {
 		this.isEshop = isEshop;
-	}
-
-	@Column(name = "seller_id", length = 64, nullable = true)
-	public String getSellerId() {
-		return sellerId;
-	}
-
-	public void setSellerId(String sellerId) {
-		this.sellerId = sellerId;
 	}
 
 	public void setKeyword(String keyword) {

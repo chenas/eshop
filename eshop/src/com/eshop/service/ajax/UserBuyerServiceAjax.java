@@ -2,6 +2,8 @@ package com.eshop.service.ajax;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Component;
+
 import com.base.framwork.service.mail.IMailSenderService;
 import com.eshop.service.IUserBuyerService;
 
@@ -11,6 +13,7 @@ import com.eshop.service.IUserBuyerService;
  * @author chenas
  * 
  */
+@Component
 public class UserBuyerServiceAjax {
 
 	@Resource

@@ -24,12 +24,12 @@ public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 	@Resource
 	protected PageList pageList;
 	
-	protected int pageNo;
+	protected int pageNo=1;
 	
-	protected int pageSize;
+	protected int pageSize=16;
 	
 	public String execute() throws Exception {
-		commonOperations();		
+		commonOperations();	
 		return intoList();
 	}
 	

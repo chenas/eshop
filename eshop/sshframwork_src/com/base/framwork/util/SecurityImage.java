@@ -30,12 +30,12 @@ public class SecurityImage {
         //验证码长度
         int codeLength=securityCode.length();
         //字体大小
-        int fSize = 15;
+        int fSize = 12;
         int fWidth = fSize + 1;
         //图片宽度
-        int width = codeLength * fWidth + 6 ;
+        int width = codeLength * fWidth +52 ;
         //图片高度
-        int height = fSize * 2 + 1;
+        int height = fSize * 2 +1 ;
         
         //图片
         BufferedImage image=new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

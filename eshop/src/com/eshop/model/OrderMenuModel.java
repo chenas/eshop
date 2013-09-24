@@ -14,7 +14,7 @@ public class OrderMenuModel extends BaseModel {
 
 	private String orderId;
 	private String buyerId;
-	private String sellerId;
+	private String shopId;
 	private String orderdate;
 	private String finaladdr;
 	private String arrivtime;
@@ -36,15 +36,6 @@ public class OrderMenuModel extends BaseModel {
 
 	public void setBuyerId(String buyerId) {
 		this.buyerId = buyerId;
-	}
-
-	@Column(name = "seller_id", length = 64, nullable = false)
-	public String getSellerId() {
-		return sellerId;
-	}
-
-	public void setSellerId(String sellerId) {
-		this.sellerId = sellerId;
 	}
 
 	@Column(name = "orderdate", length = 16, nullable = false)
@@ -108,6 +99,15 @@ public class OrderMenuModel extends BaseModel {
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
+	}
+
+	@Column(name = "shop_id", length = 64, nullable = false)
+	public String getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(String shopId) {
+		this.shopId = shopId;
 	}
 
 }

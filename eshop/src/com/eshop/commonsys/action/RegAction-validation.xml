@@ -2,19 +2,41 @@
   "-//Apache Struts//XWork Validator 1.0.3//EN"
   "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
 <validators>
+
   <field name="userBuyer.name">
-      <field-validator type="requiredstring">
-          <message>用户名不能为空</message>
-      </field-validator>
+      <field-validator type="stringlength">
+  		<param name="minLength">4</param>
+ 		<param name="maxLength">10</param>
+                    <param name="trim">true</param>
+ 		<message>您的用户名长度必须在4到10之间</message>
+	 </field-validator>
   </field>
+  
   <field name="userBuyer.email">
-      <field-validator type="requiredstring">
-          <message>邮箱不能为空</message>
+      <field-validator type="email">
+          <message>邮箱格式不正确</message>
       </field-validator>
   </field>
+  
   <field name="userBuyer.password">
-      <field-validator type="requiredstring">
-          <message>密码不能为空</message>
+      <field-validator type="stringlength">
+  		<param name="minLength">6</param>
+ 		<message>您的密码长度必须大于5</message>
+	 </field-validator>
+  </field>
+  
+  <field name="userBuyer.password2">
+      <field-validator type="fieldexpression">
+        <!--指定逻辑表达式 -->
+        <param name="expression"> (userBuyer.password eq userBuyer.password2)</param>
+         <message>密码必须和确认密码一样</message>
       </field-validator>
   </field>
+  <field name="securityCode">
+      <field-validator type="requiredstring">
+      	<param name="trim">true</param>
+ 		<message>请输入验证码</message>
+	 </field-validator>
+  </field>
+  
 </validators>

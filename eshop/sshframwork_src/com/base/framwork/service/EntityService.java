@@ -36,7 +36,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	 * 由id取得记录
 	 * 	直接从数据库取
 	 * @param id
-	 * 			����
+	 * 			主键
 	 * @return
 	 */
 	@Override

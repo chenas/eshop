@@ -29,7 +29,7 @@ public class MailVerifyAction extends BaseAction{
 		if(user == null){
 			addActionMessage("亲，出错了");
 		}
-		else if(user.getIsValidate().equals("1")){
+		else if(user.getIsValidate() != null && user.getIsValidate().equals("1")){
 			addActionMessage("亲，已经验证，无需多此一步");
 		}
 		else{
