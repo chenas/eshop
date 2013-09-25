@@ -3,7 +3,7 @@
 <html>
 <head>
 	<base href="<%=basePath%>">
-	<title>登录</title>
+	<title>EShop</title>
 	<!-- begin cssStyle -->
 	<link rel="stylesheet" href="<%=basePath %>css/reset.css" />
 	<link rel="stylesheet" href="<%=basePath %>css/common.css" />
@@ -13,19 +13,16 @@
 	<script type="text/javascript" src="<%=basePath %>js/jQuery.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/common.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/list.js"></script>
-	<script type="text/javascript" src="<%=basePath %>js/register.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
 </head>
 <body>
+<!-- finished -->
 	<div id="header">
 		<div>
 			<h1>NEKO Design</h1>
-			<h5>
-				<a href="javascript:void(0);">&nbsp;我的购物车</a>
-			</h5>
+			<h5><a href="javascript:void(0);">&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
-			<h5>
-				<a href="pages/login.jsp" id="login">登&nbsp;&nbsp;录&nbsp;</a>
-			</h5>
+			<h5><a href="pages/login.jsp" id="login">登&nbsp;&nbsp;录&nbsp;</a></h5>
 		</div>
 	</div>
 	<div id="nav">
@@ -68,31 +65,24 @@
 			</ul>
 		</div>
 	</div>
-	<div id="form">
-		<form action="<%=basePath %>pages/commonsys/login.action" method="post">
-			<img src="images/login.png" alt="" />
-			<div>
-				<label for="name">登录名：
-					<font size="1" color="red">&nbsp;&nbsp;<s:fielderror fieldName="name"/></font>
-					<input type="text" name="name" id="name" value="${name}"/>
-				</label>
-				<label for="password">登录密码：<a href="javascript:void(0);">密码丢了？</a>
-					<font size="1" color="red"><s:fielderror fieldName="password"/></font>
-					<input type="password" name="password" id="password"/>
-				</label>
-				<input type="submit" value="登录"/>
-				<a href="pages/register.jsp">免费注册</a>
-				<a href="javascript:void(0);" id="return">返回首页</a>
-			</div>
-		</form>
+	<div id="content">
+		<ul>
+			<s:iterator value="#request.pageList.list" status="i">
+			<li>
+				<img src="<s:property value='imageurl' />" alt="" />			
+			</li>
+			</s:iterator>
+		</ul>
+		<span class="left"></span>
+		<span class="right"></span>
+		<div>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
 	</div>
-	<%  
-String path1=application.getRealPath(request.getRequestURI());  
-String realPath1 = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);   
-out.println("web URL 路径:"+realPath1); 
-String url = request.getScheme()+"://"+ request.getServerName()+request.getRequestURI();
-out.println("web URL 路径:"+url); 
-%> 
-	
 </body>
 </html>

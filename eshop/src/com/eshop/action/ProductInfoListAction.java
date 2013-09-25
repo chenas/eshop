@@ -27,6 +27,26 @@ public class ProductInfoListAction extends EntityListAction<ProductInfoModel> {
 		productInfoFilter.setQueryString(" where a.name like '"+keyword+"' or a.keyword like '"+keyword+"'");
 	}
 	
+	//搜索商品
+	public String searchProduct(){
+		productInfoFilter.setKeyword(keyword);
+		productInfoFilter.setName(keyword);
+		productInfoFilter.setQueryString(" where a.name like '%"+keyword+"%' or a.keyword like '%"+keyword+"%'");
+		productInfoFilter.setOrderByString(" counter desc");
+		return intoList();
+	}
+	
+	//展示所有商品
+	public String allProduct(){
+		return intoList();
+	}
+	
+	//展示商品，根据分类列表的值展示商品
+	public String showProduct(){
+		productInfoFilter.setOrderByString(" counter desc");
+		return intoList();
+	}
+	
 	public IProductInfoService getProductInfoService() {
 		return productInfoService;
 	}

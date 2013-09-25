@@ -13,6 +13,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.stereotype.Component;
 
 import com.base.framwork.queryfilter.QueryFilter;
 
@@ -21,6 +22,7 @@ import com.base.framwork.queryfilter.QueryFilter;
  * @author chenas
  * 2013.08.11
  */
+@Component
 public class CrudDao extends BaseDao implements ICrudDao{
 
 	private static StringBuilder strBuilder = new StringBuilder();
@@ -211,8 +213,7 @@ log.info(hql);
 	 */
 	@Override
 	public List findAllObjListByFilter(String clazz, QueryFilter filter){
-		String hql = "from "+clazz+" as a";
-		strBuilder.append(hql);
+		 strBuilder.append("from "+clazz+" as a");
 		strBuilder.append(filter.getQueryString()==null?"" : " "+filter.getQueryString());
 		if(filter.getOrderByString() !=null && !filter.getOrderByString().equals("")){
 			strBuilder.append(" order by a."+filter.getOrderByString());
@@ -220,9 +221,10 @@ log.info(hql);
 			strBuilder.append(" order by a.id desc");
 		}
 log.info(strBuilder.toString());
+		final String hql = strBuilder.toString();
 		//清空
 		strBuilder.setLength(0);
-		return hibernateTemplate.find(strBuilder.toString());
+		return hibernateTemplate.find(hql);
 	}
 	
 	/**

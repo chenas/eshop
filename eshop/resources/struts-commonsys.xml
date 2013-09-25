@@ -7,19 +7,22 @@
 	<!-- 买家用户登录 -->
 	<package name="userLogin" namespace="/pages/commonsys" extends="default">
 		<action name="login" class="com.eshop.commonsys.action.BuyerLoginAction">
-			<result name="success" >/pages/index.jsp</result>
+			<result name="success" type="redirect" >/welcome.action</result>
 			<result name="error">/pages/login.jsp</result>
 			<result name="input">/pages/login.jsp</result>
 		</action>
 	</package>
 	
-	<package name="commonsys" namespace="/pages/commonsys" extends="default">
-	<!-- 商品搜索 -->
-		<action name="searchProduct" class="com.eshop.action.ProductInfoListAction">
+	<!-- 首页 -->
+	<package name="index" namespace="/" extends="default">
+		<action name="welcome" class="com.eshop.action.AdvertisementListAction" method="intoWelcome">
 			<result name="list">
-				/productList.jsp
+					/index.jsp
 			</result>
 		</action>
+	</package>
+	
+	<package name="commonsys" namespace="/pages/commonsys" extends="default">
 	<!-- 验证码的生成 -->
 		<action name="SecurityCodeImageAction" class="com.eshop.commonsys.action.SecurityCodeImageAction"
 			method="execute">

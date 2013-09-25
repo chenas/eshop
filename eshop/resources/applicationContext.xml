@@ -82,6 +82,7 @@
 			<tx:method name="find*" read-only="true" />
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="load*" read-only="true" />
+			<tx:method name="count*" read-only="true" />
 			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception" />
 			<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception" />
 			<tx:method name="execute*" propagation="REQUIRED" rollback-for="Exception" />

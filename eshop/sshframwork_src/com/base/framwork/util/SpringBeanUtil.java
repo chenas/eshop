@@ -5,12 +5,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
- * Spring bean¹¤¾ßÀà
+ * Spring beanï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  */
 public class SpringBeanUtil {
 	/**
-	 * ¸ù¾İbean id»ñµÃSpring Bean
+	 * æ ¹æ®beanIdè·å¾—å®ä¾‹åŒ–å¯¹è±¡
 	 * @param beanId
 	 * @return bean
 	 */

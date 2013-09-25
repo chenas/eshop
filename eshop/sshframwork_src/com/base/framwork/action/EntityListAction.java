@@ -33,23 +33,38 @@ public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 		return intoList();
 	}
 	
+	/**
+	 * 进入列表
+	 * @return
+	 */
 	public String intoList(){
-		getEntityFilter().setPageNo(pageNo);
-		pageList.setFullListSize(getEntityService().countEntityByFilter(getEntityFilter()));
-		pageList.setPageNumber(pageNo);
-		pageList.setObjectsPerPage(pageSize);
+//		getEntityFilter().setPageNo(pageNo);
+		pageList.setFullListSize(querySize(getEntityFilter()));
+		pageList.setPageNumber(getEntityFilter().getPageNo());
+		pageList.setObjectsPerPage(getEntityFilter().getPageSize());
 		pageList.setList(query(getEntityFilter()));
 		ServletActionContext.getContext().put("pageList", pageList);
 		return "list";
 	}
 	
 	/**
-	 * 
+	 * 查询记录,子类可重写此方法
 	 * @param filter
 	 * @return
+	 * 				List<T>
 	 */
 	public List<T> query(QueryFilter filter){
 		return getEntityService().findEntityListByFilter(filter);
+	}
+	
+	/**
+	 * 统计记录数目，与query配合使用
+	 * @param filter
+	 * @return
+	 * 				int
+	 */
+	public int querySize(QueryFilter filter){
+		return getEntityService().countEntityByFilter(filter);
 	}
 	
 	public PageList getPageList() {

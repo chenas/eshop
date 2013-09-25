@@ -98,7 +98,7 @@
 			</h5>
 			<h5>|</h5>
 			<h5>
-				<a href="login.html" id="login">登&nbsp;&nbsp;录&nbsp;</a>
+				<a href="pages/login.jsp" id="login">登&nbsp;&nbsp;录&nbsp;</a>
 			</h5>
 		</div>
 	</div>
@@ -107,28 +107,25 @@
 			<h1>Name</h1>
 			<ul>
 				<li>
-					<a href="../index.html">首&nbsp;&nbsp;页</a>
+					<a href="main.jsp">首&nbsp;&nbsp;页</a>
 				</li>
 				<li>
 					<a href="javascript:void(0);">活&nbsp;&nbsp;动</a>
 				</li>
 				<li>
-					<a href="productList.html">全部商品</a>
+					<a href="shopping/allProduct.action">全部商品</a>
 					<ul id="list">
 						<li>
-							<a href="javascript:void(0);">一级目录</a>
+							<a href="javascript:void(0);">美味的食品</a>
 						</li>
 						<li>
-							<a href="javascript:void(0);">一级目录</a>
+							<a href="javascript:void(0);">好喝的饮品</a>
 						</li>
 						<li>
-							<a href="javascript:void(0);">一级目录</a>
+							<a href="javascript:void(0);">必备日用品</a>
 						</li>
 						<li>
-							<a href="javascript:void(0);">一级目录</a>
-						</li>
-						<li>
-							<a href="javascript:void(0);">一级目录</a>
+							<a href="javascript:void(0);">土豪送的礼品</a>
 						</li>
 					</ul>
 				</li>
@@ -136,13 +133,11 @@
 					<a href="javascript:void(0);">关于我们</a>
 				</li>
 				<li>
-					<form action="">
-						&nbsp;
-						<input type="text" size="20" value="味全春季优惠" onfocus="this.value=''"/>
-						<span>
-							<input type="button" value="搜索"/>
-						</span>
-					</form>
+				<form action="<%=basePath %>shopping/searchProduct.action" method="post" name="search">
+				&nbsp;
+				<input type="text" name="keyword" size="20" value="" onfocus="this.value=''"/>
+				<span><input type="button"  onclick="document.search.submit();" value="搜索" class="search" id="btn"/></span>
+				</form>
 				</li>
 			</ul>
 		</div>
@@ -169,22 +164,21 @@
 		</form>
 		<div>
 			<p id="errorUserName" class="normal">
-				<span></span><s:fielderror fieldName="userBuyer.name"/>
+				<span></span><font color="red"><s:fielderror fieldName="userBuyer.name"/></font>
 			</p>
 			<p id="errorMail" class="normal">
-				<span></span><s:fielderror fieldName="userBuyer.email"/>
+				<span></span><font color="red"><s:fielderror fieldName="userBuyer.email"/></font>
 			</p>
 			<p class="normal">
-				<span></span><s:fielderror fieldName="userBuyer.password"/>
+				<span></span><font color="red"><s:fielderror fieldName="userBuyer.password"/></font>
 			</p>
 			<p class="normal">
-				<span></span><s:fielderror fieldName="userBuyer.password2"/>
+				<span></span><font color="red"><s:fielderror fieldName="userBuyer.password2"/></font>
 			</p>
 			<p class="normal">
-				<span></span><s:fielderror fieldName="securityCode"/>
+				<span></span><font color="red"><s:fielderror fieldName="securityCode"/></font>
 			</p>
 		</div>
 	</div>
-	<s:debug></s:debug>
 </body>
 </html>

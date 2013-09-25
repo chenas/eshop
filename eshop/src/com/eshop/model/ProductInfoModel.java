@@ -76,7 +76,7 @@ public class ProductInfoModel extends BaseModel {
 		this.name = name;
 	}
 
-	@Column(name = "price", length = 10, nullable = false)
+	@Column(name = "price", length = 10, nullable = true)
 	public double getPrice() {
 		return price;
 	}
@@ -103,7 +103,7 @@ public class ProductInfoModel extends BaseModel {
 		this.onsalePrice = onsalePrice;
 	}
 
-	@Column(name = "remain_Number", length = 10, nullable = false)
+	@Column(name = "remain_Number", length = 10, nullable = true)
 	public int getRemainNumber() {
 		return remainNumber;
 	}
@@ -112,7 +112,7 @@ public class ProductInfoModel extends BaseModel {
 		this.remainNumber = remainNumber;
 	}
 
-	@Column(name = "image_big", length = 100, nullable = false)
+	@Column(name = "image_big", length = 100, nullable = true)
 	public String getImageBig() {
 		return imageBig;
 	}
@@ -139,7 +139,7 @@ public class ProductInfoModel extends BaseModel {
 		this.isSale = isSale;
 	}
 
-	@Column(name = "description", length = 200, nullable = false)
+	@Column(name = "description", length = 200, nullable = true)
 	public String getDescription() {
 		return description;
 	}
@@ -166,12 +166,12 @@ public class ProductInfoModel extends BaseModel {
 		this.counter = counter;
 	}
 
-	@Column(name = "uploadate", length = 10, nullable = false)
+	@Column(name = "uploadate", length = 10, nullable = true)
 	public Date getUploadate() {
 		return uploadate;
 	}
 
-	@Column(name = "update_date", length = 10, nullable = false)
+	@Column(name = "update_date", length = 10, nullable = true)
 	public Date getUpdateDate() {
 		return updateDate;
 	}
@@ -193,7 +193,7 @@ public class ProductInfoModel extends BaseModel {
 		this.uploadate = uploadate;
 	}
 
-	@Column(name = "Downdate", length = 10, nullable = false)
+	@Column(name = "Downdate", length = 10, nullable = true)
 	public Date getDowndate() {
 		return downdate;
 	}
@@ -208,7 +208,7 @@ public class ProductInfoModel extends BaseModel {
 		return priority;
 	}
 
-	@Column(name = "onsale_num", length = 10, nullable = false)
+	@Column(name = "onsale_num", length = 10, nullable = true)
 	public int getOnsaleNum() {
 		return onsaleNum;
 	}
