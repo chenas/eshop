@@ -195,7 +195,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	public void updateEntityByFilter(T entity, QueryFilter filter, IUser optUser) throws Exception {
 		entity.setUpdateTime(utilService.getSystemDateTimeString());
 		beforUpdate(entity, optUser);
-		crudDao.updateByFilter(getTClass().getName(), entity.getId(), filter);
+		crudDao.updateById(getTClass().getName(), entity.getId(), filter);
 		afterUpdate(entity, optUser);
 	}
 

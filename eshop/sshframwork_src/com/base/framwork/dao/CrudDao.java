@@ -56,31 +56,51 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	}
 
 	/**
+	 * 根据id更新实体
+	 * @param clazz
+	 * 		      eg：com.eshop.model.UserBuyerModel
+	 * @param id
+	 * 				主键
+	 * @param filter
+	 * 					保存需更新的值
+	 * @return
+	 * 			更新记录数目
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public int updateById(String clazz, String id, QueryFilter filter) throws Exception{
+		if(filter != null){
+			final String hql = getUpdateSQL(clazz, " where id='"+id+"'", filter);
+log.info(hql);
+			return update(hql);
+		}
+		return 0;
+	}	
+	
+
+	/**
 	 * 根据filter更新实体
 	 * @param clazz
 	 * 		com.eshop.model.UserBuyerModel
 	 * @param id
-	 * 		主键
+	 * 				主键
 	 * @param filter
+	 * 				注：filter.getQueryString()不能为空
 	 * @return
-	 * 		更新记录数目
+	 * 			更新记录数目
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public int updateByFilter(String clazz, String id, QueryFilter filter) throws Exception{
+	public int updateByFilter(String clazz, QueryFilter filter) throws Exception{
 		if(filter != null){
-			final String hql = getUpdateSQL(clazz, id, filter);
+			final String hql = getUpdateSQL(clazz, filter.getQueryString(), filter);
 log.info(hql);
-			return ((Integer)hibernateTemplate.execute(new HibernateCallback(){
-				public Object doInHibernate(Session session) throws HibernateException{
-					Query query = session.createQuery(hql);
-					return query.executeUpdate();
-				}
-			})).intValue();
+			return update(hql);
 		}
 		return 0;
 	}	
+	
 	/**
 	 *  自定义更新
 	 * @param hql
@@ -117,7 +137,7 @@ log.info(hql);
 	}
 	
 	/** 
-	 * ����ָ��ID�ĳ־û����� 
+	 * 加载实体
 	 * @param clazz
 	 * @param id
 	 * @return
@@ -135,7 +155,7 @@ log.info(hql);
 
 
 	/**
-	 *  ɾ��ָ��ID�ĳ־û����� 
+	 *  根据id删除记录
 	 * @param clazz
 	 * @param id
 	 * @return true if success
@@ -147,7 +167,7 @@ log.info(hql);
 
 
 	/**
-	 * ɾ��־û�����
+	 * 删除记录
 	 * @param object
 	 * @return true if success
 	 */
@@ -172,7 +192,7 @@ log.info(hql);
 	}
 
 	/**
-	 * 自定义查找 
+	 * 自定义查找 不分页
 	 * @param hql
 	 * @param filter
 	 * @return
@@ -186,7 +206,7 @@ log.info(hql);
 	 * 根据过滤条件查找实体
 	 * 	将条件写出hql语句，赋值给orderByString
 	 * @param clazz
-	 * 		class name
+	 * 					class name
 	 * @return
 	 */
 	@Override
@@ -217,7 +237,8 @@ log.info(strBuilder.toString());
 		if(filter.isLimited() == false){
 			findAllObjListByFilter(clazz, filter);
 		}
-		final int pNo = filter.getPageNo();
+		//从第几行开始查询
+		final int pNo = filter.getPageNo()-1;
 		final int pSize = filter.getPageSize();
 		strBuilder = strBuilder.append("from "+clazz+ " as a");
 		strBuilder.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
@@ -228,19 +249,9 @@ log.info(strBuilder.toString());
 		}
 		final String hql = strBuilder.toString();
 log.info(hql);
-		List list = hibernateTemplate.executeFind(new HibernateCallback(){
-			public Object doInHibernate(Session session) throws HibernateException{
-				Query query = session.createQuery(hql);
-				query.setMaxResults(pSize);
-				query.setFirstResult((pNo-1)*pSize);
-				List result = query.list();
-				if (!Hibernate.isInitialized(result))Hibernate.initialize(result);
-				return result;
-			}
-		});	
 		//清空
 		strBuilder.setLength(0);
-		return list;
+		return findObjListLimit(pNo, pSize, hql);
 	}
 
 	/**
@@ -255,23 +266,40 @@ log.info(hql);
 		if(filter.isLimited() == false){
 			findObjListByHql(hql);
 		}
-		final int pNo = filter.getPageNo();
+		final int pNo = filter.getPageNo()-1;
 		final int pSize = filter.getPageSize();
 		final String hqlexe = hql;
 log.info(hql);
+		return findObjListLimit(pNo, pSize, hqlexe);
+	}
+
+	/**
+	 * 分页查找记录
+	 * @param startNum
+	 * 					起始行（mysql从0开始）
+	 * @param listSize
+	 * 					查询记录数目
+	 * @param hql
+	 * 					hql语句
+	 * @return
+	 * 					记录
+	 */
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List findObjListLimit(final int startNum, final int listSize, final String hql){
 		List list = hibernateTemplate.executeFind(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
-				Query query = session.createQuery(hqlexe);
-				query.setMaxResults(pSize);
-				query.setFirstResult((pNo-1)*pSize);
+				Query query = session.createQuery(hql);
+				query.setMaxResults(listSize);
+				query.setFirstResult(startNum);
 				List result = query.list();
 				if (!Hibernate.isInitialized(result))Hibernate.initialize(result);
 				return result;
 			}
 		});	
 		return list;
+		
 	}
-
 	/**
 	 *  统计所有的记录
 	 * @param clazz
@@ -281,15 +309,7 @@ log.info(hql);
 	public int countObj(String clazz) {
 		final String hql = "select count(*) from "+clazz+ " as a";
 log.info(hql);
-		@SuppressWarnings("unchecked")
-		Long count = (Long)hibernateTemplate.execute(new HibernateCallback(){
-			public Object doInHibernate(Session session) throws HibernateException{
-				Query query = session.createQuery(hql);
-				query.setMaxResults(1);
-				return query.uniqueResult();
-			}
-		});	
-		return count.intValue();
+		return countObjByHql(hql);
 	}
 
 	/**
@@ -316,6 +336,7 @@ log.info(hql);
 	 *  根据过滤器统计记录数
 	 * @param clazz
 	 * @param filter
+	 * 					需设置queryString的值
 	 * @return
 	 */
 	@Override
@@ -324,17 +345,9 @@ log.info(hql);
 		strBuilder.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
 		final String hql = strBuilder.toString();
 log.info(hql);
-		@SuppressWarnings("unchecked")
-		Long count = (Long)hibernateTemplate.execute(new HibernateCallback(){
-			public Object doInHibernate(Session session) throws HibernateException{
-				Query query = session.createQuery(hql);
-				query.setMaxResults(1);
-				return query.uniqueResult();
-			}
-		});	
 		//清空
 		strBuilder.setLength(0);
-		return count.intValue();
+		return  countObjByHql(hql);
 	}
 
 	/**
@@ -357,14 +370,18 @@ log.info(hql);
 	 * 由filter传的值获得sql
 	 * @param clazz
 	 * 		class name
-	 * @param id
-	 * 		主键
+	 * @param whereSuffix
+	 * 						需更新的记录条件 where +...
 	 * @param filter
 	 * @return
 	 * 		hql
 	 * @throws Exception
 	 */
-	protected String getUpdateSQL(String clazz, String id, QueryFilter filter){
+	protected String getUpdateSQL(String clazz, String whereSuffix, QueryFilter filter){
+		if(whereSuffix == null || whereSuffix.equals("")){
+			log.error("whereSuffix can't be null");
+			return null;
+		}
 		strBuilder.append("update "+clazz+" set");
 		Class filterClass = filter.getClass();
 		Field[] fields = filterClass.getDeclaredFields();
@@ -377,7 +394,7 @@ log.info(hql);
 				try {
 					value = invokeMethod(filter, field.getName(), null);
 				} catch (Exception e) {
-					log.info("invokeMethod exception");
+					log.error("invokeMethod exception");
 					log.error(e);
 					e.printStackTrace();
 				}
@@ -390,14 +407,14 @@ log.info(hql);
 					}else if(field.getType().equals(Date.class)){
 						strBuilder.append(" "+field.getName()+"="+value+",");
 					}
-					log.info(field.getName()+"/t"+value);
+					log.info(field.getName()+"\t"+value);
 				}
 			}
 		}
 		String hql = strBuilder.toString();
 		//清空
 		strBuilder.setLength(0);
-		return hql.substring(0, hql.length()-1)+" where id='"+id+"'";
+		return hql.substring(0, hql.length()-1)+whereSuffix;
 	}
 	
 
@@ -405,7 +422,7 @@ log.info(hql);
 	 * 获得对象属性的值
 	 */
 	@SuppressWarnings("unchecked")
-	protected static Object invokeMethod(Object owner, String methodName,
+	private static Object invokeMethod(Object owner, String methodName,
 			Object[] args) throws Exception {
 		Class ownerClass = owner.getClass();
 		methodName = methodName.substring(0, 1).toUpperCase()
