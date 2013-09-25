@@ -1,10 +1,6 @@
 <%@page import="org.springframework.context.annotation.Import"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ include file="/pages/common/taglibs.jsp"%>
-<%@page import="com.eshop.domain.UserBuyer" %>
-<%
-	UserBuyer user = (UserBuyer)session.getAttribute("user");
-%>
 <html>
 <head>
 	<base href="<%=basePath%>">

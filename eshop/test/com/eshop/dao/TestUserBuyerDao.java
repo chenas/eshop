@@ -50,4 +50,9 @@ public class TestUserBuyerDao {
 	public void testUpdateByHql(){
 		buyerDao.update("update com.eshop.model.UserBuyerModel as a set a.name='java' where a.id='f93fcebf-dc24-4265-b69f-0d71a0c2817f'");
 	}
+	
+	@Test
+	public void testCountObj(){
+		buyerDao.countObj("com.eshop.model.UserBuyerModel");
+	}
 }

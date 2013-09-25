@@ -153,7 +153,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 			result = MethodUtils.invokeMethod(this, ReflectUtil
 					.getGetterOfField(getModelName()),null);
 		} catch (Exception e) {
-			System.out.println("Reflect error, when get entity of "
+			log.error("Reflect error, when get entity of "
 					+ getClass().getName() + ".");
 			result = null;
 		}
@@ -166,7 +166,7 @@ public class EntityCrudAction<T extends BaseModel> extends EntityBaseAction<T>{
 			MethodUtils.invokeMethod(this, ReflectUtil
 					.getSetterOfField(getModelName()), entity);
 		} catch (Exception e) {
-			System.out.println("Reflect error, when set entity of "
+			log.error("Reflect error, when set entity of "
 					+ getClass().getName() + ".");
 		}
 	}

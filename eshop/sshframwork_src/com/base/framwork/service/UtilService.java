@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.base.framwork.util.DateUtil;
 
 /**
- * ¹¤¾ßService
+ * å·¥å…·ç±»Service
  * @author chenas
  *
  */
@@ -17,9 +17,9 @@ import com.base.framwork.util.DateUtil;
 public class UtilService implements IUtilService{
 
 	/**
-	 * È¡µÃÏµÍ³µ±Ç°Ê±¼ä
+	 * è·å–ç³»ç»Ÿæ—¶é—´
 	 * 
-	 * @return ÏµÍ³µ±Ç°Ê±¼ä
+	 * @return
 	 */
 	public Date getSystemDateTime() {
 		Calendar cal = Calendar.getInstance();
@@ -27,31 +27,32 @@ public class UtilService implements IUtilService{
 	}
 
 	/**
-	 * È¡µÃÏµÍ³µ±Ç°ÈÕÆÚ×é³ÉµÄ×Ö·û´® Ä¬ÈÏ¸ñÊ½Îª£ºyyyy-MM-dd
+	 * è·å–ç³»ç»Ÿæ—¶é—´
+	 * æ ¼å¼ï¼šyyyy-MM-dd
 	 * 
-	 * @return ÏµÍ³µ±Ç°ÈÕÆÚ×é³ÉµÄ×Ö·û´®
+	 * @return 
 	 */
 	public String getSystemDateString() {
 		return DateUtil.getDateTime("yyyy-MM-dd", getSystemDateTime());
 	}
 
 	/**
-	 * È¡µÃÏµÍ³µ±Ç°ÈÕÆÚ£«Ê±¼ä×é³ÉµÄ×Ö·û´® Ä¬ÈÏ¸ñÊ½Îª£ºyyyy-MM-dd HH:mm:ss
+	 * è·å–ç³»ç»Ÿæ—¶é—´
+	 * æ ¼å¼ï¼šyyyy-MM-dd HH:mm:ss
 	 * 
-	 * @return ÏµÍ³µ±Ç°ÈÕÆÚ£«Ê±¼ä×é³ÉµÄ×Ö·û´®
+	 * @return 
 	 */
 	public String getSystemDateTimeString() {
 		return DateUtil.getDateTime("yyyy-MM-dd HH:mm:ss", getSystemDateTime());
 	}
 	
 	/**
-	 * »ñµÃ×Ö·û´®µÄmd5±àÂë
+	 * md5åŠ å¯†å­—ç¬¦ä¸²
 	 * @param resString
 	 * @return
-	 *  	md5×Ö·û´®
+	 *  	md5
 	 */
 	public String getMD5String(String resString){
-		// MD5¼ÓÂë¡£32Î»,²»¿ÉÄæ,ÓÃÓÚ¼ÓÃÜÃÜÂë
 			MessageDigest md5 = null;
 			try {
 				md5 = MessageDigest.getInstance("MD5");
@@ -75,10 +76,11 @@ public class UtilService implements IUtilService{
 			return hexValue.toString();
 	}
 	
-/*	public static void main(String[] args){
+	/*public static void main(String[] args){
 		UtilService us = new UtilService();
-		String str = us.getMD5String("1234");
-		System.out.println(str);
+//		String str = us.getMD5String("1234");
+//		System.out.println(str);
+		System.out.println(us.getSystemDateTime());
 	}*/
 	
 }

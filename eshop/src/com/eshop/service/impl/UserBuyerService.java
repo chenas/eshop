@@ -26,9 +26,9 @@ public class UserBuyerService extends EntityService<UserBuyerModel> implements I
 	public String hasUser(String name, String password){
 		List<UserBuyerModel> user = null;
 		if(password == null || password.equals("")){
-			user = getCrudDao().findObjListByHql("from USER_BUYER as a where a.name='"+name+"'");
+			user = crudDao.findObjListByHql("from USER_BUYER as a where a.name='"+name+"'");
 		}else{
-			user = getCrudDao().findObjListByHql("from USER_BUYER as a where a.name='"+name+"' and a.password='"+utilService.getMD5String(password)+"'");
+			user = crudDao.findObjListByHql("from USER_BUYER as a where a.name='"+name+"' and a.password='"+utilService.getMD5String(password)+"'");
 		}
 		if(user != null && user.size()>0){
 			return user.get(0).getId();
@@ -47,7 +47,7 @@ public class UserBuyerService extends EntityService<UserBuyerModel> implements I
 	public boolean hasEmail(String Email){
 		List<UserBuyerModel> user = null;
 		if(Email != null && !Email.equals("")){
-			user = getCrudDao().findObjListByHql("from USER_BUYER as a where a.email='"+Email+"'");
+			user = crudDao.findObjListByHql("from USER_BUYER as a where a.email='"+Email+"'");
 		}
 		if(user != null && user.size()>0){
 			return true;

@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.interceptor.ParameterAware;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
@@ -26,18 +28,38 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BaseAction extends ActionSupport implements SessionAware,
 ServletRequestAware, ParameterAware, ServletResponseAware {
 
+	/**
+	 * 日志实例
+	 */
+	protected final Log log = LogFactory.getLog(getClass());
+	
+	/**
+	 * Edit
+	 */
 	protected static String EDIT = "Edit";
+
+	/**
+	 * Add
+	 */
 	protected static String ADD = "Add";
+
+	/**
+	 * View
+	 */
 	protected static String VIEW = "View";
+
+	/**
+	 * list
+	 */
 	protected static String LIST = "list";
 	
 	/**
-	 * HTTP request�������
+	 * HTTP request
 	 */
 	private HttpServletRequest request;
 
 	/**
-	 * HTTP ��Ӧͷ
+	 * HTTP response
 	 */
 	private HttpServletResponse response;
 
@@ -94,9 +116,9 @@ ServletRequestAware, ParameterAware, ServletResponseAware {
 	protected Mdcrypt mdcrypt;
 	
 	/**
-	 * ȡ�õ�ǰsession�еĵ�½�û�
+	 * 获取登录用户
 	 * 
-	 * @return ��½�û�
+	 * @return 
 	 */
 	public IUser getLoginUser() {
 		IUser user = (IUser) doGetSessionObject(Constants.CURRENT_USER_KEY);
@@ -104,30 +126,31 @@ ServletRequestAware, ParameterAware, ServletResponseAware {
 	}
 
 	/**
-	 * ������value�ŵ���keyΪ�����session��
+	 * 将对象保存到session里面
 	 * 
 	 * @param key
-	 *            ����
+	 *            键
 	 * @param value
-	 *            ����
+	 *           值
 	 */
 	public void doPutSessionObject(String key, Object value) {
 		this.getSession().put(key, value);
 	}
 
 	/**
-	 * ���sesion����
+	 * 由key获取session对象
 	 * 
 	 * @param key
-	 *            ��
-	 * @return session��ֵ
+	 *  
+	 *  return  
+	 *  		sessionObj
 	 */
 	public Object doGetSessionObject(String key) {
 		return getSession().get(key);
 	}
 	
 	/**
-	 * ���spring bean id��ȡspring bean
+	 * 由beanID获得实例化对象
 	 */
 	public Object getService(String serviceBeanId) {
 		return SpringBeanUtil.getSpringService(serviceBeanId);

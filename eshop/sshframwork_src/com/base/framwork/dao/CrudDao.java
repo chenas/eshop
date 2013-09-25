@@ -26,14 +26,14 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	private static StringBuilder strBuilder = new StringBuilder();
 	
 	/**
-	 *  
+	 *  保存记录
 	 * @param obj
 	 * @return true if success
 	 */
 	@Override
 	public Boolean save(Object obj) {
 		try{
-			this.getHibernateTemplate().save(obj);
+			hibernateTemplate.save(obj);
 		}catch(DataAccessException ex){
 			return false;
 		}
@@ -41,14 +41,14 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	}
 	
 	/**
-	 *  
+	 *  更新一条记录
 	 * @param obj
 	 * @return true if success
 	 */
 	@Override
 	public Boolean update(Object obj) {
 		try{
-			this.getHibernateTemplate().update(obj);
+			hibernateTemplate.update(obj);
 		}catch(DataAccessException ex){
 			return false;
 		}
@@ -71,8 +71,8 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	public int updateByFilter(String clazz, String id, QueryFilter filter) throws Exception{
 		if(filter != null){
 			final String hql = getUpdateSQL(clazz, id, filter);
-System.out.println(hql);
-			return ((Integer)this.getHibernateTemplate().execute(new HibernateCallback(){
+log.info(hql);
+			return ((Integer)hibernateTemplate.execute(new HibernateCallback(){
 				public Object doInHibernate(Session session) throws HibernateException{
 					Query query = session.createQuery(hql);
 					return query.executeUpdate();
@@ -91,8 +91,8 @@ System.out.println(hql);
 	@Override
 	public int update(String hql) {
 		final String hql1 = hql;
-System.out.println(hql);
-		return ((Integer)this.getHibernateTemplate().execute(new HibernateCallback(){
+log.info(hql);
+		return ((Integer)hibernateTemplate.execute(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
 				Query query = session.createQuery(hql1);
 				return query.executeUpdate();
@@ -101,7 +101,7 @@ System.out.println(hql);
 	}
 	
 	/**
-	 * ֱ�Ӵ���ݿ�ȡһ����¼
+	 * 根据id直接从数据库获取记录
 	 * @param clazz
 	 * @param id
 	 * @return
@@ -109,7 +109,7 @@ System.out.println(hql);
 	public Object getById(Class clazz, Serializable id){
 		Object entity = null;
 		try{
-			entity = this.getHibernateTemplate().get(clazz, id);
+			entity = hibernateTemplate.get(clazz, id);
 		}catch(Exception ex){
 			return null;
 		}
@@ -126,7 +126,7 @@ System.out.println(hql);
 	public Object loadById(Class clazz, Serializable id) {
 		Object entity = null;
 		try{
-			entity = this.getHibernateTemplate().load(clazz, id);
+			entity = hibernateTemplate.load(clazz, id);
 		}catch(Exception ex){
 			return null;
 		}
@@ -142,7 +142,7 @@ System.out.println(hql);
 	 */
 	@Override
 	public Boolean delById(Class clazz, Serializable id) {
-		return delObject(this.getHibernateTemplate().load(clazz, id));
+		return delObject(hibernateTemplate.load(clazz, id));
 	}
 
 
@@ -154,7 +154,7 @@ System.out.println(hql);
 	@Override
 	public Boolean delObject(Object object) {
 		try{
-			this.getHibernateTemplate().delete(object);
+			hibernateTemplate.delete(object);
 		}catch(DataAccessException ex){
 			return false;
 		}
@@ -168,7 +168,7 @@ System.out.println(hql);
 	 */
 	@Override
 	public List findAllObjList(String clazz) {
-		return this.getHibernateTemplate().find("from "+clazz+" as a order by a.id desc");
+		return hibernateTemplate.find("from "+clazz+" as a order by a.id desc");
 	}
 
 	/**
@@ -179,7 +179,7 @@ System.out.println(hql);
 	 */
 	@Override
 	public List findObjListByHql(String hql){
-		return this.getHibernateTemplate().find(hql);
+		return hibernateTemplate.find(hql);
 	}
 
 	/**
@@ -199,10 +199,10 @@ System.out.println(hql);
 		}else{
 			strBuilder.append(" order by a.id desc");
 		}
-System.out.println(strBuilder.toString());
+log.info(strBuilder.toString());
 		//清空
 		strBuilder.setLength(0);
-		return this.getHibernateTemplate().find(strBuilder.toString());
+		return hibernateTemplate.find(strBuilder.toString());
 	}
 	
 	/**
@@ -227,8 +227,8 @@ System.out.println(strBuilder.toString());
 			strBuilder.append(" order by a.id desc");
 		}
 		final String hql = strBuilder.toString();
-System.out.println(hql);
-		List list = this.getHibernateTemplate().executeFind(new HibernateCallback(){
+log.info(hql);
+		List list = hibernateTemplate.executeFind(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
 				Query query = session.createQuery(hql);
 				query.setMaxResults(pSize);
@@ -244,7 +244,7 @@ System.out.println(hql);
 	}
 
 	/**
-	 * �Զ���װ�س־û����� 
+	 * 自定义查询记录
 	 * @param hql
 	 * @param filter
 	 * @return
@@ -258,8 +258,8 @@ System.out.println(hql);
 		final int pNo = filter.getPageNo();
 		final int pSize = filter.getPageSize();
 		final String hqlexe = hql;
-System.out.println(hql);
-		List list = this.getHibernateTemplate().executeFind(new HibernateCallback(){
+log.info(hql);
+		List list = hibernateTemplate.executeFind(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
 				Query query = session.createQuery(hqlexe);
 				query.setMaxResults(pSize);
@@ -273,16 +273,16 @@ System.out.println(hql);
 	}
 
 	/**
-	 *  ͳ��ָ��������г־û����� ����
+	 *  统计所有的记录
 	 * @param clazz
 	 * @return
 	 */
 	@Override
 	public int countObj(String clazz) {
 		final String hql = "select count(*) from "+clazz+ " as a";
-System.out.println(hql);
+log.info(hql);
 		@SuppressWarnings("unchecked")
-		Long count = (Long)this.getHibernateTemplate().execute(new HibernateCallback(){
+		Long count = (Long)hibernateTemplate.execute(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
 				Query query = session.createQuery(hql);
 				query.setMaxResults(1);
@@ -293,16 +293,16 @@ System.out.println(hql);
 	}
 
 	/**
-	 * �Զ���Hqlͳ��ָ��������г־û�������Ŀ
+	 * 自定义统计记录
 	 * @param hql
 	 * @return
 	 */
 	@Override
 	public int countObjByHql(String hql){
 		final String hqlexe = hql;
-System.out.println(hql);
+log.info(hql);
 		@SuppressWarnings("unchecked")
-		Long count = (Long)this.getHibernateTemplate().execute(new HibernateCallback(){
+		Long count = (Long)hibernateTemplate.execute(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
 				Query query = session.createQuery(hqlexe);
 				query.setMaxResults(1);
@@ -323,9 +323,9 @@ System.out.println(hql);
 		strBuilder.append("select count(*) from "+clazz+ " as a");
 		strBuilder.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
 		final String hql = strBuilder.toString();
-System.out.println(hql);
+log.info(hql);
 		@SuppressWarnings("unchecked")
-		Long count = (Long)this.getHibernateTemplate().execute(new HibernateCallback(){
+		Long count = (Long)hibernateTemplate.execute(new HibernateCallback(){
 			public Object doInHibernate(Session session) throws HibernateException{
 				Query query = session.createQuery(hql);
 				query.setMaxResults(1);
@@ -343,7 +343,7 @@ System.out.println(hql);
 	 */
 	@Override
 	public Connection getConnection() {
-		return this.getHibernateTemplate().getSessionFactory().getCurrentSession().connection();
+		return hibernateTemplate.getSessionFactory().getCurrentSession().connection();
 	}
 	
 	/*
@@ -364,7 +364,7 @@ System.out.println(hql);
 	 * 		hql
 	 * @throws Exception
 	 */
-	protected String getUpdateSQL(String clazz, String id, QueryFilter filter) throws Exception{
+	protected String getUpdateSQL(String clazz, String id, QueryFilter filter){
 		strBuilder.append("update "+clazz+" set");
 		Class filterClass = filter.getClass();
 		Field[] fields = filterClass.getDeclaredFields();
@@ -374,7 +374,13 @@ System.out.println(hql);
 					!field.getName().equals("pageSize") && !field.getName().equals("orderByString") &&
 					!field.getName().equals("queryString"))
 			{
-				value = invokeMethod(filter, field.getName(), null);
+				try {
+					value = invokeMethod(filter, field.getName(), null);
+				} catch (Exception e) {
+					log.info("invokeMethod exception");
+					log.error(e);
+					e.printStackTrace();
+				}
 				if(value != null){
 					if(field.getType().equals(int.class) || field.getType().equals(Double.class)
 							|| field.getType().equals(float.class)){
@@ -384,7 +390,7 @@ System.out.println(hql);
 					}else if(field.getType().equals(Date.class)){
 						strBuilder.append(" "+field.getName()+"="+value+",");
 					}
-					System.out.println(field.getName()+"/t"+value);
+					log.info(field.getName()+"/t"+value);
 				}
 			}
 		}
@@ -399,7 +405,7 @@ System.out.println(hql);
 	 * 获得对象属性的值
 	 */
 	@SuppressWarnings("unchecked")
-	private static Object invokeMethod(Object owner, String methodName,
+	protected static Object invokeMethod(Object owner, String methodName,
 			Object[] args) throws Exception {
 		Class ownerClass = owner.getClass();
 		methodName = methodName.substring(0, 1).toUpperCase()

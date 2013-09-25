@@ -29,7 +29,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	 */
 	@Override
 	public T findEntityById(String id) {
-		return (T) getCrudDao().loadById(getTClass(), id);
+		return (T) crudDao.loadById(getTClass(), id);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	 */
 	@Override
 	public T getEntityById(String id) {
-		return (T) getCrudDao().getById(getTClass(), id);
+		return (T) crudDao.getById(getTClass(), id);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	 */
 	@Override
 	public List<T> findEntityList() {
-		return getCrudDao().findAllObjList(getTClass().getName());
+		return crudDao.findAllObjList(getTClass().getName());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	 */
 	@Override
 	public List<T> findEntityListByFilter(QueryFilter filter) {
-		return getCrudDao().findObjListByFilter(getTClass().getName(), filter);
+		return crudDao.findObjListByFilter(getTClass().getName(), filter);
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		entity.setCreateTime(utilService.getSystemDateTimeString());
 		entity.setCreateUser(optUser.getTrueName());
 		beforeInsertEntity(entity, optUser);
-		getCrudDao().save(entity);
+		crudDao.save(entity);
 		afterInsertEntity(entity, optUser);;
 		return null;
 	}
@@ -98,7 +98,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	@Override
 	public void deleteEntity(T entity, IUser optUser){
 		beforeDeleteEntity(entity, optUser);
-		getCrudDao().delObject(entity);
+		crudDao.delObject(entity);
 		AfterDeleteEntity(entity, optUser);
 		
 	}
@@ -115,7 +115,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	@Override
 	public void deleteEntityById(String id, IUser optUser) {
 		beforeDeleteEntity(id, optUser);
-		getCrudDao().delById(getTClass(), id);
+		crudDao.delById(getTClass(), id);
 		AfterDeleteEntity(id, optUser);
 	}
 	
@@ -181,7 +181,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	public void updateEntity(T entity, IUser optUser) {
 		entity.setUpdateTime(utilService.getSystemDateTimeString());
 		beforUpdate(entity, optUser);
-		getCrudDao().update(entity);
+		crudDao.update(entity);
 		afterUpdate(entity, optUser);
 	}
 
@@ -195,7 +195,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	public void updateEntityByFilter(T entity, QueryFilter filter, IUser optUser) throws Exception {
 		entity.setUpdateTime(utilService.getSystemDateTimeString());
 		beforUpdate(entity, optUser);
-		getCrudDao().updateByFilter(getTClass().getName(), entity.getId(), filter);
+		crudDao.updateByFilter(getTClass().getName(), entity.getId(), filter);
 		afterUpdate(entity, optUser);
 	}
 
@@ -216,7 +216,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	 */
 	@Override
 	public int countEntityByFilter(QueryFilter filter){
-		return getCrudDao().countObjByFilter(getTClass().getName(), filter);
+		return crudDao.countObjByFilter(getTClass().getName(), filter);
 	}
 	
 	/**
@@ -226,7 +226,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	 */
 	@Override
 	public int countEntityByHql(String hql){
-		return getCrudDao().countObjByHql(hql);
+		return crudDao.countObjByHql(hql);
 	}
 	
 	//得到获得T.class

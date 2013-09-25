@@ -111,15 +111,15 @@ public class EntityBaseAction<T extends BaseModel> extends BaseAction {
 	public QueryFilter getEntityFilter(){
 		QueryFilter filter = null;
 		try{
-System.out.println(ReflectUtil.getGetterOfField(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"));
+log.info(ReflectUtil.getGetterOfField(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"));
 			filter = (QueryFilter)MethodUtils.invokeMethod(this, ReflectUtil.getGetterOfField(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"), null);
 			if(filter == null){
-System.out.println(getFilterPackage() + "." + ReflectUtil.firstUpperCase(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"));
+log.info(getFilterPackage() + "." + ReflectUtil.firstUpperCase(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"));
 				Class<?> type = Class.forName(getFilterPackage() + "." + ReflectUtil.firstUpperCase(getModelName().substring(0, getModelName().indexOf("Model")) + "Filter"));
 				filter = (QueryFilter)type.newInstance();
 			}
 		}catch (Exception e) {
-			System.out.println("Reflect error, when get entity filter of "+ getClass().getName()+ ".");
+			log.error("Reflect error, when get entity filter of "+ getClass().getName()+ ".");
 		}
 		return filter;
 	}
@@ -132,13 +132,14 @@ System.out.println(getFilterPackage() + "." + ReflectUtil.firstUpperCase(getMode
 		try{
 			MethodUtils.invokeMethod(this, ReflectUtil.getSetterOfField("filter"), filter);
 		}catch (Exception e) {
-			System.out.println("Reflect error, when set entity filter of "+ getClass().getName()+ ".");
+			log.error("Reflect error, when set entity filter of "+ getClass().getName()+ ".");
 		}
 	}
 
 	/**
 	 * 获得翻页条件类所在的包的名称
-	 * @return 翻页条件类所在的包的名称
+	 * @return
+	 * 				 com.eshop.filter
 	 */
 	public String getFilterPackage(){
 		return "com.eshop.filter";

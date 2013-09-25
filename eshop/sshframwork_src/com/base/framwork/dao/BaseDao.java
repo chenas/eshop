@@ -2,6 +2,8 @@ package com.base.framwork.dao;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 /**
@@ -11,10 +13,15 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
  */
 public class BaseDao implements IBaseDao{
 
+	/**
+	 * 操作数据库模板
+	 */
 	@Resource
-	private HibernateTemplate hibernateTemplate;
+	protected HibernateTemplate hibernateTemplate;
 
-	public HibernateTemplate getHibernateTemplate() {
-		return hibernateTemplate;
-	}
+	/**
+	 * 日志实例
+	 */
+	protected final Log log = LogFactory.getLog(getClass());
+
 }
