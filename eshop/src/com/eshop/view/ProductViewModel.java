@@ -1,25 +1,55 @@
-package com.eshop.model;
+package com.eshop.view;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+import org.hibernate.annotations.Subselect;
 
 import com.base.framwork.domain.BaseModel;
 
 /**
- * @author supriseli email:supriseli007@gmail.com
+ * 商品视图
+ * @author chenas
+ *
  */
-@Entity(name = "PRODUCT_INFO")
-public class ProductInfoModel extends BaseModel {
-	
-	// 商品编号
-	private String productid;
+@Entity(name="PRODUCT_VIEW")
+@Subselect(	"select  "
+		+ "PRODUCT_INFO.id AS id, "
+		+ "PRODUCT_INFO.name AS name, "
+		+ "PRODUCT_INFO.price AS price, "
+		+ "PRODUCT_INFO.onsale_price AS onsale_price," 
+		+ "PRODUCT_INFO.remain_number AS remain_number," 
+		+ "PRODUCT_INFO.image_big AS image_big, "
+		+ " PRODUCT_INFO.is_onsale AS is_onsale, "
+		+ "PRODUCT_INFO.update_date AS update_date, "
+		+ "PRODUCT_INFO.salenumber AS salenumber, "
+		+ "PRODUCT_INFO.onsale_num AS onsale_num, "
+		+ "PRODUCT_INFO.description AS description, "
+		+ "PRODUCT_INFO.counter AS counter, "
+		+ "PRODUCT_INFO.is_eshop AS is_eshop, "
+		+ "PRODUCT_INFO.keyword AS keyword, "
+		+ "PRODUCT_INFO.priority AS priority, "
+		+ "PRODUCT_INFO.create_time AS create_time, "
+		+ "PRODUCT_INFO.create_user AS create_user, "
+		+ "PRODUCT_INFO.update_time AS update_time, "
+		+ "CATEGORY.name AS category_name, "
+		+ "CATEGORY_DETAIL.name AS category_detail_name, "
+		+ "USER_SHOP.id AS shop_id,"
+		+ " CATEGORY.id AS category_id , "
+		+ "CATEGORY_DETAIL.id AS category_detail_id "
+		+ " from "
+		+ "(PRODUCT_INFO, USER_SHOP, CATEGORY, CATEGORY_DETAIL)"
+		+ " where "
+		+ "PRODUCT_INFO.shop_id = USER_SHOP.id and PRODUCT_INFO.category_id = CATEGORY.id and" +
+		" PRODUCT_INFO.category_detail_id = category_detail.id and PRODUCT_INFO.is_sale = '1'")
+public class ProductViewModel extends BaseModel{
+
 	// 商品名称
 	private String name;
 	// 商品价格
 	private double price;
-	// 商品进价
-	private double inprice;
 	// 促销价
 	private double onsalePrice;
 	// 库存量
@@ -28,31 +58,19 @@ public class ProductInfoModel extends BaseModel {
 	private String imageBig;
 	// 促销，默认为否0
 	private String isOnsale;
-	// 状态，默认上架
-	private String isSale;
 	// 描述
 	private String description;
-	//  销售数量
+	// 销售数量
 	private int salenumber;
 	// 点击量
 	private int counter;
-	// 上架时间
-	private Date uploadate;
-	// 下架时间
-	private Date downdate;
 	// 用于促销的数量
 	private int onsaleNum;
 	// 最近的修改时间
 	private Date updateDate;
 	// 是否为自销商品
 	private char isEshop;
-	// id
-	private String shopId;
-	//一级分类主键
-	private String categoryId;
-	//二级分类主键
-	private String categoryDetailId;
-	
+
 	/**
 	 * 关键词，可用于虚拟分类
 	 * 搜索
@@ -61,16 +79,21 @@ public class ProductInfoModel extends BaseModel {
 	
 	//优先级，越大优先级越高，商品越有可能显示在前面
 	private int priority;
+	
+	//一级分类名称
+	private String categoryName;
+	
+	//一级分类名称
+	private String cateDetailName;
+	
+	// 商店主键
+	private String shopId;
 
-	@Column(name = "productid", length = 50, nullable = false)
-	public String getProductid() {
-		return productid;
-	}
-
-	public void setProductid(String productid) {
-		this.productid = productid;
-	}
-
+	//一级分类主键
+	private String categoryId;
+	//二级分类主键
+	private String categoryDetailId;
+	
 	@Column(name = "name", length = 100, nullable = false)
 	public String getName() {
 		return name;
@@ -87,15 +110,6 @@ public class ProductInfoModel extends BaseModel {
 
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-	@Column(name = "inprice", length = 10, nullable = true)
-	public double getInprice() {
-		return inprice;
-	}
-
-	public void setInprice(double inprice) {
-		this.inprice = inprice;
 	}
 
 	@Column(name = "onsale_price", length = 10, nullable = true)
@@ -125,15 +139,6 @@ public class ProductInfoModel extends BaseModel {
 		this.imageBig = imageBig;
 	}
 
-	@Column(name = "is_sale", length = 1, nullable = true)
-	public String getIsSale() {
-		return isSale;
-	}
-
-	public void setIsSale(String isSale) {
-		this.isSale = isSale;
-	}
-
 	@Column(name = "description", length = 200, nullable = true)
 	public String getDescription() {
 		return description;
@@ -161,11 +166,6 @@ public class ProductInfoModel extends BaseModel {
 		this.counter = counter;
 	}
 
-	@Column(name = "uploadate", length = 10, nullable = true)
-	public Date getUploadate() {
-		return uploadate;
-	}
-
 	@Column(name = "update_date", length = 10, nullable = true)
 	public Date getUpdateDate() {
 		return updateDate;
@@ -182,15 +182,6 @@ public class ProductInfoModel extends BaseModel {
 
 	public void setShopId(String shopId) {
 		this.shopId = shopId;
-	}
-
-	public void setUploadate(Date uploadate) {
-		this.uploadate = uploadate;
-	}
-
-	@Column(name = "downdate", length = 10, nullable = true)
-	public Date getDowndate() {
-		return downdate;
 	}
 
 	@Column(name = "keyword", length = 30, nullable = true)
@@ -217,6 +208,24 @@ public class ProductInfoModel extends BaseModel {
 		return isEshop;
 	}
 
+	@Column(name = "category_name")
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	@Column(name = "category_detail_name")
+	public String getCateDetailName() {
+		return cateDetailName;
+	}
+
+	public void setCateDetailName(String cateDetailName) {
+		this.cateDetailName = cateDetailName;
+	}
+
 	public void setIsEshop(char isEshop) {
 		this.isEshop = isEshop;
 	}
@@ -227,10 +236,6 @@ public class ProductInfoModel extends BaseModel {
 
 	public void setPriority(int priority) {
 		this.priority = priority;
-	}
-
-	public void setDowndate(Date downdate) {
-		this.downdate = downdate;
 	}
 
 	public void setIsOnsale(String isOnsale) {

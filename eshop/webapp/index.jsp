@@ -12,8 +12,27 @@
 	<link rel="shortcut icon" href="favicon.ico" />
 	<script type="text/javascript" src="<%=basePath %>js/jQuery.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/common.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/pagelist.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/list.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
+	<script type="text/javascript">
+	jQuery(document).ready(function(){
+		  jQuery("#btn").click(function(){
+				var input = jQuery("#search_input").val();
+				if(input == null || input == "")
+				{
+					jQuery("#search_input").bind("onclick", function(){return false;});
+				}else
+					{
+						document.search.submit();
+					}
+		    jQuery("p").slideToggle();
+		  });
+		  jQuery("#btn").dblclick(function(){
+		    jQuery("#btn").click();
+		  });
+		});
+	</script>
 </head>
 <body>
 <!-- finished -->
@@ -58,8 +77,8 @@
 				<li>
 				<form action="<%=basePath %>shopping/searchProduct.action" method="post" name="search">
 				&nbsp;
-				<input type="text" name="keyword" size="20" value="" onfocus="this.value=''"/>
-				<span><input type="button"  onclick="document.search.submit();" value="搜索" class="search" id="btn"/></span>
+				<input id="search_input" type="text" name="keyword" size="20" value="" onfocus="this.value=''"/>
+				<span><input type="button"   value="搜索" class="search" id="btn"/></span>
 				</form>
 				</li>
 			</ul>

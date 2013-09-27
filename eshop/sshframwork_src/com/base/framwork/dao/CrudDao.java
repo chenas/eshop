@@ -240,8 +240,8 @@ log.info(strBuilder.toString());
 			findAllObjListByFilter(clazz, filter);
 		}
 		//从第几行开始查询
-		final int pNo = filter.getPageNo()-1;
 		final int pSize = filter.getPageSize();
+		final int pNo = (filter.getPageNo()-1)*pSize;
 		strBuilder = strBuilder.append("from "+clazz+ " as a");
 		strBuilder.append(filter.getQueryString()==null?"":" "+filter.getQueryString());
 		if(filter.getOrderByString() != null && !filter.getOrderByString().equals("")){
@@ -268,8 +268,8 @@ log.info(hql);
 		if(filter.isLimited() == false){
 			findObjListByHql(hql);
 		}
-		final int pNo = filter.getPageNo()-1;
 		final int pSize = filter.getPageSize();
+		final int pNo = (filter.getPageNo()-1)*pSize;
 		final String hqlexe = hql;
 log.info(hql);
 		return findObjListLimit(pNo, pSize, hqlexe);

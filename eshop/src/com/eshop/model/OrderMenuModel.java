@@ -12,9 +12,23 @@ import com.base.framwork.domain.BaseModel;
 @Entity(name = "ORDERMENU")
 public class OrderMenuModel extends BaseModel {
 
-	private String orderId;
+	//订单编号，自定义
+	private String orderid;
+
+	@Column(name = "orderid", length = 50, nullable = false)
+	public String getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
+	}
+
+	//用户主键id
 	private String buyerId;
+	//商店主键id
 	private String shopId;
+	//下单时间
 	private String orderdate;
 	private String finaladdr;
 	private String arrivtime;
@@ -90,15 +104,6 @@ public class OrderMenuModel extends BaseModel {
 
 	public void setQrcode(String qrcode) {
 		this.qrcode = qrcode;
-	}
-
-	@Column(name = "order_id", length = 64, nullable = false)
-	public String getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
 	}
 
 	@Column(name = "shop_id", length = 64, nullable = false)

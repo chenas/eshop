@@ -3,28 +3,28 @@ package com.base.framwork.domain;
 import java.io.Serializable;
 
 /**
- * ËùÓĞmodelµÄ³éÏó»ùÀà
- * ×ÓÀà±ØĞëÊµÏÖtoString¡¢equals¡¢hashCode·½·¨
+ * æ‰€æœ‰modelçš„æŠ½è±¡åŸºç±»
+ * å­ç±»å¿…é¡»å®ç°toStringã€equalsã€hashCodeæ–¹æ³•
  * @author chenas
- *2013Äê08ÔÂ11ÈÕ
+ *2013å¹´08æœˆ11æ—¥
  */
 public abstract class BaseObject implements Serializable{
 	
 	/**
-	 * toString·½·¨
-	 * @return ¶ÔÏóµÄĞòÁĞ»¯½á¹û
+	 * toStringæ–¹æ³•
+	 * @return å¯¹è±¡çš„åºåˆ—åŒ–ç»“æœ
 	 */
 	public abstract String toString();
 
 	/**
-	 * ÖØĞ´µÄequals·½·¨
-	 * @param o ±È½Ï¶ÔÏó
-	 * @return ±È½Ï½á¹û
+	 * é‡å†™çš„equalsæ–¹æ³•
+	 * @param o æ¯”è¾ƒå¯¹è±¡
+	 * @return æ¯”è¾ƒç»“æœ
 	 */
 	public abstract boolean equals(Object o);
 
 	/**
-	 * ÖØĞ´µÄhashCode·½·¨
+	 * é‡å†™çš„hashCodeæ–¹æ³•
 	 * @return hashCode
 	 */
 	public abstract int hashCode();

@@ -1,20 +1,20 @@
 package com.base.framwork.domain;
 
 /**
- * ËùÓĞdomainµÄÍ¨ÓÃ½Ó¿Ú
+ * æ‰€æœ‰domainçš„é€šç”¨æ¥å£
  * @author chenas
- *2013Äê08ÔÂ11ÈÕ
+ *2013å¹´08æœˆ11æ—¥
  */
 
 public interface IBizDomain {
 	
 	/**
-	 * È¡µÃÖ÷¼ü
+	 * å–å¾—ä¸»é”®
 	 */
 	public String getId();
 	
 	/**
-	 * ÉèÖÃÖ÷¼ü
+	 * è®¾ç½®ä¸»é”®
 	 */
 	public void setId(String id);
 	
@@ -22,15 +22,15 @@ public interface IBizDomain {
 	 * equals
 	 * 
 	 * @param o
-	 *            ±È½Ï¶ÔÏó
-	 * @return ÊÇ·ñÏàµÈ
+	 *            æ¯”è¾ƒå¯¹è±¡
+	 * @return æ˜¯å¦ç›¸ç­‰
 	 */
 	public boolean equals(Object o);
 
 	/**
 	 * hashCode
 	 * 
-	 * @return hashCodeÖµ
+	 * @return hashCodeå€¼
 	 */
 	public int hashCode();
 

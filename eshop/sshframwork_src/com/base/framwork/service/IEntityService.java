@@ -3,6 +3,7 @@ package com.base.framwork.service;
 import java.util.List;
 
 import com.base.framwork.domain.BaseModel;
+import com.base.framwork.domain.BaseObject;
 import com.base.framwork.domain.IUser;
 import com.base.framwork.queryfilter.QueryFilter;
 
@@ -14,7 +15,7 @@ import com.base.framwork.queryfilter.QueryFilter;
  * 2013.08.11
  */
 
-public interface IEntityService<T extends BaseModel> extends IBaseService {
+public interface IEntityService<T extends BaseObject> extends IBaseService {
 	
 	/**
 	 * ���Id����

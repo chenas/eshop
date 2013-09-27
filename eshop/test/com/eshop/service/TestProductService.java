@@ -8,16 +8,31 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.eshop.domain.UserBuyer;
+import com.eshop.filter.CategoryDetailFilter;
+import com.eshop.filter.CategoryFilter;
+import com.eshop.filter.UserShopFilter;
+import com.eshop.model.CategoryDetailModel;
+import com.eshop.model.CategoryModel;
 import com.eshop.model.ProductInfoModel;
+import com.eshop.model.UserShopModel;
 
 public class TestProductService {
 
 	IProductInfoService productInfoService;
+
+	ICategoryDetailService categoryDetailService;
+	
+	ICategoryService categoryService;
+	
+	IUserShopService userShopService;
 	
 	@Before
 	public void init(){
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		productInfoService = (IProductInfoService) ctx.getBean("productInfoService");
+		categoryDetailService = (ICategoryDetailService) ctx.getBean("categoryDetailService");
+		categoryService = (ICategoryService) ctx.getBean("categoryService");
+		userShopService = (IUserShopService) ctx.getBean("userShopService");
 	}
 	
 	@Test
@@ -25,16 +40,33 @@ public class TestProductService {
 		UserBuyer user = new UserBuyer();
 		user.setName("jack");
 		user.setRealname("Tom");
-		for(int i=1; i<101 ; i++){
+
+		CategoryFilter cf = new CategoryFilter();
+		cf.setQueryString(" where a.name='"+"美味的食品"+"'");
+		CategoryModel c = categoryService.findEntityListByFilter(cf).get(0);
+		
+		CategoryDetailFilter cdf = new CategoryDetailFilter();
+		cdf.setQueryString(" where a.name='"+"方便速食"+"'");
+		CategoryDetailModel cdm = categoryDetailService.findEntityListByFilter(cdf).get(0);
+		
+		UserShopFilter usf = new UserShopFilter();
+		usf.setQueryString(" where a.name='"+"usst"+"'");
+		UserShopModel us =  userShopService.findEntityListByFilter(usf).get(0);
+		
+		for(int i=1; i<100; i++){
 			ProductInfoModel p = new ProductInfoModel();
-			p.setName("我是矿泉水"+i);
+			p.setName("土豆片土豆片"+i);
 			p.setImageBig("images/t"+i%5+".jpg");
 			p.setRemainNumber(i);
 			p.setPrice(i);
 			p.setCounter(i);
 			p.setProductid("1234"+i);
-			p.setKeyword("矿泉水"+i);
-			p.setDescription("矿泉水");
+			p.setKeyword("土豆片土豆片"+i);
+			p.setDescription("土豆片土豆片");
+			p.setIsSale("1");
+			p.setCategoryId(c.getId());
+			p.setCategoryDetailId(cdm.getId());
+			p.setShopId(us.getId());
 			productInfoService.insertEntity(p, user);
 		}
 	}

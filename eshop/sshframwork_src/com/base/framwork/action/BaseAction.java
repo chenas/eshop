@@ -12,6 +12,7 @@ import org.apache.struts2.interceptor.ParameterAware;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.stereotype.Component;
 
 import com.base.framwork.Constants;
 import com.base.framwork.domain.IUser;
@@ -25,6 +26,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author chenas
  *
  */
+@Component
 public class BaseAction extends ActionSupport implements SessionAware,
 ServletRequestAware, ParameterAware, ServletResponseAware {
 

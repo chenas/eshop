@@ -12,14 +12,14 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * ����model�Ļ���
+ * 所有model的基类
  * @author chenas
  *2013��08��11��
  */
 @MappedSuperclass
 public class BaseModel extends BaseObject implements IBizDomain{
 	
-	//����
+	//主键
 	public String id;
 
 	@Id
@@ -32,7 +32,7 @@ public class BaseModel extends BaseObject implements IBizDomain{
 	}
 
 	/**
-	 * ������
+	 * 创建者
 	 */
 	public String createUser;
 	
@@ -46,7 +46,7 @@ public class BaseModel extends BaseObject implements IBizDomain{
 	}
 
 	/**
-	 * ����ʱ��
+	 * 创建时间
 	 */
 	public String createTime;
 	
@@ -56,7 +56,7 @@ public class BaseModel extends BaseObject implements IBizDomain{
 	}
 
 	/**
-	 * �޸�ʱ��
+	 * 更新时间
 	 */
 	public String updateTime;
 
@@ -77,7 +77,8 @@ public class BaseModel extends BaseObject implements IBizDomain{
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
+
 	/**
 	 * true if the two Objects have tested equals
 	 */
@@ -96,5 +97,5 @@ public class BaseModel extends BaseObject implements IBizDomain{
 		return ToStringBuilder.reflectionToString(this,
 				ToStringStyle.MULTI_LINE_STYLE);
 	}
-
+	
 }

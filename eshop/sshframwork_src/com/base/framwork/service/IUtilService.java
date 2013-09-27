@@ -4,31 +4,41 @@ import java.util.Date;
 
 public interface IUtilService {
 	/**
-	 * È¡µÃÏµÍ³µ±Ç°Ê±¼ä
+	 * è·å–ç³»ç»Ÿæ—¶é—´
 	 * 
-	 * @return ÏµÍ³µ±Ç°Ê±¼ä
+	 * @return
 	 */
 	public Date getSystemDateTime();
 
 	/**
-	 * È¡µÃÏµÍ³µ±Ç°ÈÕÆÚ×é³ÉµÄ×Ö·û´®
+	 * è·å–ç³»ç»Ÿæ—¶é—´
+	 * æ ¼å¼ï¼šyyyy-MM-dd
 	 * 
-	 * @return ÏµÍ³µ±Ç°ÈÕÆÚ×é³ÉµÄ×Ö·û´®
+	 * @return 
 	 */
 	public String getSystemDateString();
 
 	/**
-	 * È¡µÃÏµÍ³µ±Ç°ÈÕÆÚ£«Ê±¼ä×é³ÉµÄ×Ö·û´®
+	 * è·å–ç³»ç»Ÿæ—¶é—´
+	 * æ ¼å¼ï¼šyyyy-MM-dd HH:mm:ss
 	 * 
-	 * @return ÏµÍ³µ±Ç°ÈÕÆÚ£«Ê±¼ä×é³ÉµÄ×Ö·û´®
+	 * @return 
 	 */
 	public String getSystemDateTimeString();
 	
 	/**
-	 * »ñµÃ×Ö·û´®µÄmd5±àÂë
+	 * è·å–ç³»ç»Ÿæ—¶é—´
+	 * æ ¼å¼ï¼šyyMMddHHmmss
+	 * 
+	 * @return 
+	 */
+	public String getSystemTimeString();
+	
+	/**
+	 * md5åŠ å¯†å­—ç¬¦ä¸²
 	 * @param resString
 	 * @return
-	 *  	md5×Ö·û´®
+	 *  	md5
 	 */
 	public String getMD5String(String resString);
 

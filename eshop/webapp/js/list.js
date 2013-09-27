@@ -28,13 +28,26 @@ function initPage()
 		// console.log('当前页面的一级列表数为：' + aLi.length);
 		addItem(aLi);
 	};
-	//allProducts.html
+	//productList.html
 	var aLiSide = jQuery('#sideBar li');
 	if(aLiSide[0]){
 		addItem(aLiSide);
 	};
+
+	//checkSearch
+	var oSearchText = jQuery('#nav input:first');
+	var oSearch = jQuery('#nav input:last');
+	var oSpan = jQuery('#nav span')
+	if(oSearch){
+		oSearchText.bind('blur', function (){
+			if(oSearchText.val() == ''){
+				oSearch.click(function (){
+					oSearchText.val('请注意,不能搜索空值^_^');
+					return false;
+				});
+			};
+		});
+	};
 };
-
-
 
 addEvent(window, 'load', initPage);

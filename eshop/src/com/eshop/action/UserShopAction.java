@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.action.EntityCrudAction;
-import com.eshop.filter.UesrShopFilter;
+import com.eshop.filter.UserShopFilter;
 import com.eshop.model.UserShopModel;
 import com.eshop.service.IUserShopService;
 
@@ -17,7 +17,7 @@ public class UserShopAction extends EntityCrudAction<UserShopModel> {
 	
 	private  UserShopModel userShopModel;
 	
-	private UesrShopFilter uesrShopFilter;
+	private UserShopFilter uesrShopFilter;
 
 	public IUserShopService getUserShopService() {
 		return userShopService;
@@ -27,7 +27,7 @@ public class UserShopAction extends EntityCrudAction<UserShopModel> {
 		return userShopModel;
 	}
 
-	public UesrShopFilter getUesrShopFilter() {
+	public UserShopFilter getUesrShopFilter() {
 		return uesrShopFilter;
 	}
 
@@ -39,7 +39,7 @@ public class UserShopAction extends EntityCrudAction<UserShopModel> {
 		this.userShopModel = userShopModel;
 	}
 
-	public void setUesrShopFilter(UesrShopFilter uesrShopFilter) {
+	public void setUesrShopFilter(UserShopFilter uesrShopFilter) {
 		this.uesrShopFilter = uesrShopFilter;
 	}
 	

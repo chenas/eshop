@@ -22,7 +22,7 @@ public class QueryFilter{
 	/**
 	 * 默认每页实体的大小
 	 */
-	private int pageSize = 16;
+	private int pageSize = 60;
 	
 	/**
 	 * 排序语句

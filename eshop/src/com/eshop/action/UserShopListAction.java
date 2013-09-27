@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.action.EntityListAction;
-import com.eshop.filter.UesrShopFilter;
+import com.eshop.filter.UserShopFilter;
 import com.eshop.model.UserShopModel;
 import com.eshop.service.IUserShopService;
 
@@ -15,13 +15,13 @@ public class UserShopListAction extends EntityListAction<UserShopModel> {
 	@Resource
 	private IUserShopService userShopService;
 
-	private UesrShopFilter  userShopFilter;
+	private UserShopFilter  userShopFilter;
 
-	public UesrShopFilter getUserShopFilter() {
+	public UserShopFilter getUserShopFilter() {
 		return userShopFilter;
 	}
 
-	public void setUserShopFilter(UesrShopFilter userShopFilter) {
+	public void setUserShopFilter(UserShopFilter userShopFilter) {
 		this.userShopFilter = userShopFilter;
 	}
 	

@@ -4,29 +4,24 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.lang3.reflect.MethodUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.domain.BaseModel;
 import com.base.framwork.domain.PageList;
 import com.base.framwork.queryfilter.QueryFilter;
-import com.base.framwork.util.ReflectUtil;
 /**
  * 列表action
  * @author chenas
  *
  * @param <T>
  */
+@Component
 public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 	
 	//
 	@Resource
 	protected PageList pageList;
-	
-	protected int pageNo=1;
-	
-	protected int pageSize=16;
 	
 	public String execute() throws Exception {
 		commonOperations();	
@@ -75,19 +70,4 @@ public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 		this.pageList = pageList;
 	}
 
-	public int getPageNo() {
-		return pageNo;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageNo(int pageNo) {
-		this.pageNo = pageNo;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
 }

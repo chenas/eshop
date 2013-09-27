@@ -45,5 +45,4 @@
 		<property name="templateName" value="${mail.templateName}" />
 	</bean>
 
-
 </beans>

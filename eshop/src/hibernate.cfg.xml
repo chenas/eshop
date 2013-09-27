@@ -57,6 +57,7 @@
 		<mapping class="com.eshop.model.SearchKeywordModel"/>
 		<mapping class="com.eshop.model.UserAdminModel"/>
 		<mapping class="com.eshop.model.UserExpressModel"/>
+		<mapping class="com.eshop.view.ProductViewModel"/>
 
     </session-factory>
 

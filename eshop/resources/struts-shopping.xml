@@ -6,7 +6,7 @@
 <struts>
 	<package name="shopping" namespace="/shopping" extends="default">
 		<!-- 商品搜索 -->
-		<action name="searchProduct" class="com.eshop.action.ProductInfoListAction" method="searchProduct">
+		<action name="searchProduct" class="com.eshop.action.ProductViewListAction" method="searchProduct">
 			<result name="list">
 				/pages/productList.jsp
 			</result>
@@ -15,13 +15,13 @@
 			</result>
 		</action>
 		<!-- 根据分类展示商品 -->
-		<action name="showProduct" class="com.eshop.action.ProductInfoListAction" method="showProduct">
+		<action name="showProduct" class="com.eshop.action.ProductViewListAction" method="showProduct">
 			<result name="list">
 				/pages/productList.jsp
 			</result>
 		</action>
 		<!-- 展示所有商品 -->
-		<action name="allProduct" class="com.eshop.action.ProductInfoListAction" method="allProduct">
+		<action name="allProduct" class="com.eshop.action.ProductViewListAction" method="allProduct">
 			<result name="list">
 				/pages/productList.jsp
 			</result>

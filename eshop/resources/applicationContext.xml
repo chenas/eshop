@@ -93,6 +93,7 @@
 			<tx:method name="*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
+	
 	<!-- 引用外部文件 -->
 	<import resource="applicationContext-mail.xml"/>
 	<import resource="applicationContext-buffalo.xml"/>
