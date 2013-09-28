@@ -95,17 +95,17 @@ function clickStyle()
 
 function validateStock()
 {
-	var aStock = jQuery('.details > span > strong');
+	var aStock = jQuery('.details  span  strong');
 	var oUp = jQuery('.details #up');
 	var oDown = jQuery('.details #down');
-	var aInput = jQuery('.details > div > input');
+	var aInput = jQuery('.details  div  input');
 	for(var i=0;i<aStock.length;i++){
 		aStock[i].index = i;
 		oUp[i].index = i;
 		oDown[i].index = i;
 		aInput[i].index = i;
 		//用于模拟最大库存，正式上线需删除随机数代码以免覆盖真实数据
-		aStock[i].innerHTML = parseInt(Math.random()*10);
+		// aStock[i].innerHTML = parseInt(Math.random()*10);
 		oUp[i].onmousedown = function (){
 			changeCount(this, '+');
 		};
@@ -113,12 +113,12 @@ function validateStock()
 			changeCount(this, '-');
 		};
 		aInput[i].onblur = function ()
-		{
+		{	
 			var value = this.value;
-			if(isNaN(value) || value > 20){
+			if(isNaN(value) || value > aStock[this.index].innerHTML){
 				this.value = 1;
-				alert('请注意您输入的格式！')
-			}
+				alert('请注意您输入的格式！');
+			};
 		};
 	};
 	function changeCount(obj, op){
@@ -167,5 +167,8 @@ function observerScroll(){
 		};
 	});
 };
+
+
+
 
 addEvent(window, 'load', initPage);

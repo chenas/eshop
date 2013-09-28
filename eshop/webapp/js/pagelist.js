@@ -40,27 +40,4 @@ jQuery(document).ready(function(){
 		}
 	});
 	
-	jQuery(document).ready(function() {
-		// 分类列表的单击事件，头部分类列表
-		jQuery('#list a').click(function() {
-			jQuery(this).parent().each(function() {
-				var catName = jQuery(this).text();
-				alert(catName);
-				alert(jQuery(this).html());
-				alert(jQuery(this).va());
-				alert(jQuery(this).text());
-				window.location.href='shopping/showProduct.action?keyword='+catName;
-			});
-		});
-	});
-
-	jQuery(document).ready(function() {
-		// 分类列表的单击事件，左边分类列表
-		jQuery('#sideBar a').click(function() {
-			jQuery(this).parent().each(function() {
-				var catName = jQuery(this).text();
-				window.location.href='shopping/showProduct?keyword='+encodeURI(encodeURI(catName));
-			});
-		});
-	});
 });

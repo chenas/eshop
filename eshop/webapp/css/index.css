@@ -40,7 +40,7 @@
 .details span{float:left;position:relative;left:6px;top:2px;display: inline-block;color:#c6c6c6;font-size: 16px;}
 .details .add{float:right;display:inline-block;width:62px;height:20px;background: #42baff;text-align: center;}
 .details .add a{color:#fff;font-size: 16px;height:20px;line-height: 20px;}
-#panelPage{position: absolute;bottom: -30px;margin-left:500px;}
+#panelPage{position: absolute;bottom: -50px;margin-left:450px;padding-bottom:20px;}
 #panelPage li{float: left;margin:0 5px;}
-#panelPage li a{display:block;color:#bbb;}
-#panelPage li:hover a{color:#333;text-decoration: underline;}
+#panelPage li a{display:block;color:#bbb;color:#333;font-size: 22px;}
+#panelPage li:hover a{text-decoration: underline;}

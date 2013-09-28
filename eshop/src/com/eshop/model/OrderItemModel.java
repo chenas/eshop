@@ -25,6 +25,17 @@ public class OrderItemModel extends BaseModel {
 	// 产品是否有剩余
 	private char isRemain;
 	private String buyerId;
+	//客户端mac地址
+	private String macAddr;
+
+	@Column(name = "macaddr", length = 60, nullable = true)
+	public String getMacAddr() {
+		return macAddr;
+	}
+
+	public void setMacAddr(String macAddr) {
+		this.macAddr = macAddr;
+	}
 
 	@Column(name = "price", length = 10, nullable = false)
 	public double getPrice() {
@@ -44,7 +55,7 @@ public class OrderItemModel extends BaseModel {
 		this.count = count;
 	}
 
-	@Column(name = "order_id", length = 64, nullable = false)
+	@Column(name = "order_id", length = 64, nullable = true)
 	public String getOrderId() {
 		return orderId;
 	}
@@ -80,7 +91,7 @@ public class OrderItemModel extends BaseModel {
 		this.productName = productName;
 	}
 
-	@Column(name = "is_remain", length = 1, nullable = false)
+	@Column(name = "is_remain", length = 1, nullable = true)
 	public char getIsRemain() {
 		return isRemain;
 	}

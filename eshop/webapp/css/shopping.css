@@ -1,0 +1,33 @@
+.crumbs,#cart{margin:0 auto;width:1000px;font-family: "Microsoft YaHei";}
+
+.crumbs{height:100px;}
+.crumbs ul{margin:0 auto;width:630px;}
+.crumbs li{float:left;width:210px;height:100px;background: #fff;line-height: 80px;text-align: center;color:#666;
+	font-size: 18px;}
+.crumbs li span{display:block;width:210px;height:30px;position: relative;top:20px;
+	background:url(../images/btn.png) no-repeat -144px -70px;}
+.crumbs li span.active{background-position:-144px -40px;}
+
+/*cart.html*/
+
+#cart{}
+#cart ol{padding-bottom:5px;width:1000px;height:20px;border-bottom:1px solid #000;}
+#cart ol li{float:left;margin-left:150px;}
+#cart ul{}
+#cart ul li div{position:relative;float:left;line-height: 80px;height:80px;}
+#cart ul li div.name{}
+#cart ul li div.name img{float:left;margin-right:5px;width:70px;height:70px;border:1px solid #d3d3d3;padding: 4px;}
+#cart ul li div.name strong{display:inline-block;padding:15px 0;width:220px;height:50px;line-height: 22px;
+	overflow: hidden;}
+#cart ul li div.price {margin-left:20px;}
+#cart ul li div.count {margin-left:130px;}
+#cart ul li div.count a{}
+#cart ul li div.count input{}
+#cart ul li div.discount{margin-left:130px;}
+#cart ul li div.sum{margin-left:150px;}
+#cart ul li div.sum span{color:#f00;}
+#cart #sum{clear:both;float:right;width:300px;height:32px;font-family: "Microsoft YaHei";
+	font-size: 22px;}
+#cart #sum span{font-size: 24px;color:#f00;}
+#cart #sum input{width:102px;height:32px;border:none;background: url(../images/btn.png) no-repeat 0 -73px;
+	color:#fff;font-size:28px;cursor:pointer;}

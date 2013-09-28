@@ -53,7 +53,7 @@ public class TestProductService {
 		usf.setQueryString(" where a.name='"+"usst"+"'");
 		UserShopModel us =  userShopService.findEntityListByFilter(usf).get(0);
 		
-		for(int i=1; i<100; i++){
+		for(int i=1; i<1001; i++){
 			ProductInfoModel p = new ProductInfoModel();
 			p.setName("土豆片土豆片"+i);
 			p.setImageBig("images/t"+i%5+".jpg");

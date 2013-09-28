@@ -15,8 +15,10 @@
 	<script type="text/javascript" src="<%=basePath %>js/buffalo/prototype.js"></script> 
 	<script type="text/javascript" src="<%=basePath %>js/buffalo/buffalo.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/list.js"></script>
+		
 	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/pagelist.js"></script>
+
 	<script type="text/javascript">
 	var endPoint = "<%=request.getContextPath()%>/bfapp";
 	var buffalo = new Buffalo(endPoint);
@@ -55,7 +57,7 @@
 <body>
 	<div id="header">
 		<div>
-			<h1>NEKO Design</h1>
+			<h1><s:text name="com.eshop.header" /></h1>
 			<h5><a href="javascript:void(0);">&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
 			<h5><a href="pages/login.jsp" id="login">登&nbsp;&nbsp;录&nbsp;</a></h5>
@@ -63,7 +65,7 @@
 	</div>
 	<div id="nav">
 		<div>
-			<h1>Name</h1>
+			<h1><s:text name="com.eshop.name" /></h1>
 			<ul>
 				<li>
 					<a href="main.jsp">首&nbsp;&nbsp;页</a>

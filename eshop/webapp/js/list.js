@@ -5,6 +5,43 @@ var List = {
 	4: ['明信片','书签','挂件/饰品','包包包包',''],
 };
 
+
+function initPage()
+{
+
+	//index.html
+	var aLi = jQuery('#list li');
+	if(aLi[0]){
+		// console.log('当前页面的一级列表数为：' + aLi.length);
+		addItem(aLi);
+		getNavValue(jQuery('#list'));
+	};
+	//productList.html
+	var aLiSide = jQuery('#sideBar li');
+	if(aLiSide[0]){
+		addItem(aLiSide);
+		getNavValue(jQuery('#sideBar'));
+	};
+
+
+	//checkSearch
+	var oSearchText = jQuery('#nav input:first');
+	var oSearch = jQuery('#nav input:last');
+	var oSpan = jQuery('#nav span')
+	if(oSearch){
+		oSearchText.bind('focus', function (){
+			oSearch.attr('disabled', false);
+		});
+		oSearchText.bind('blur', function (){
+			if(oSearchText.val() == ''){
+					oSearchText.val('请注意,不能搜索空值^_^');
+					oSearch.attr('disabled', true);
+			};
+		});
+	};
+};
+
+//生成目录
 function addItem(aLi)
 {
 	for(var i=0;i<aLi.length;i++){
@@ -20,33 +57,20 @@ function addItem(aLi)
 	};
 };
 
-function initPage()
-{
-	//index.html
-	var aLi = jQuery('#list li');
-	if(aLi[0]){
-		// console.log('当前页面的一级列表数为：' + aLi.length);
-		addItem(aLi);
-	};
-	//productList.html
-	var aLiSide = jQuery('#sideBar li');
-	if(aLiSide[0]){
-		addItem(aLiSide);
-	};
-
-	//checkSearch
-	var oSearchText = jQuery('#nav input:first');
-	var oSearch = jQuery('#nav input:last');
-	var oSpan = jQuery('#nav span')
-	if(oSearch){
-		oSearchText.bind('blur', function (){
-			if(oSearchText.val() == ''){
-				oSearch.click(function (){
-					oSearchText.val('请注意,不能搜索空值^_^');
-					return false;
-				});
-			};
-		});
+//导航栏取值
+function getNavValue(obj){
+	var aA = obj[0].getElementsByTagName('a');
+	for(var i=0;i<aA.length;i++){
+		aA[i].onclick = function (){
+			var value = this.innerHTML;
+			if(value != ''){
+				console.log(value);
+				return value;
+			}else{
+				console.log('空值');
+				return false;
+			}
+		};
 	};
 };
 

@@ -92,7 +92,7 @@
 <body>
 	<div id="header">
 		<div>
-			<h1>NEKO Design</h1>
+			<h1><s:text name="com.eshop.header" /></h1>
 			<h5>
 				<a href="javascript:void(0);">&nbsp;我的购物车</a>
 			</h5>
@@ -104,7 +104,7 @@
 	</div>
 	<div id="nav">
 		<div>
-			<h1>Name</h1>
+			<h1><s:text name="com.eshop.name" /></h1>
 			<ul>
 				<li>
 					<a href="main.jsp">首&nbsp;&nbsp;页</a>

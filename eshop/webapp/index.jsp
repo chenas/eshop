@@ -16,29 +16,14 @@
 	<script type="text/javascript" src="<%=basePath %>js/list.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
 	<script type="text/javascript">
-	jQuery(document).ready(function(){
-		  jQuery("#btn").click(function(){
-				var input = jQuery("#search_input").val();
-				if(input == null || input == "")
-				{
-					jQuery("#search_input").bind("onclick", function(){return false;});
-				}else
-					{
-						document.search.submit();
-					}
-		    jQuery("p").slideToggle();
-		  });
-		  jQuery("#btn").dblclick(function(){
-		    jQuery("#btn").click();
-		  });
-		});
+
 	</script>
 </head>
 <body>
 <!-- finished -->
 	<div id="header">
 		<div>
-			<h1>NEKO Design</h1>
+			<h1><s:text name="com.eshop.header" /></h1>
 			<h5><a href="javascript:void(0);">&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
 			<h5><a href="pages/login.jsp" id="login">登&nbsp;&nbsp;录&nbsp;</a></h5>
@@ -46,7 +31,7 @@
 	</div>
 	<div id="nav">
 		<div>
-			<h1>Name</h1>
+			<h1><s:text name="com.eshop.name" /></h1>
 			<ul>
 				<li>
 					<a href="main.jsp">首&nbsp;&nbsp;页</a>
@@ -77,7 +62,7 @@
 				<li>
 				<form action="<%=basePath %>shopping/searchProduct.action" method="post" name="search">
 				&nbsp;
-				<input id="search_input" type="text" name="keyword" size="20" value="" onfocus="this.value=''"/>
+				<input type="text" name="keyword" size="20" value="" onfocus="this.value=''"/>
 				<span><input type="button"   value="搜索" class="search" id="btn"/></span>
 				</form>
 				</li>

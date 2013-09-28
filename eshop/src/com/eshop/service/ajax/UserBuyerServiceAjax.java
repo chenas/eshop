@@ -29,6 +29,9 @@ public class UserBuyerServiceAjax {
 	 * @return true if has
 	 */
 	public boolean hasUser(String name) {
+		if(name == null || "".equals(name)){
+			return false;
+		}
 		if (userBuyerService.hasUser(name, null) != null) {
 			return true;
 		} else
@@ -42,6 +45,9 @@ public class UserBuyerServiceAjax {
 	 * @return true if has
 	 */
 	public boolean hasEmail(String Email) {
+		if(null == Email || "".equals(Email)){
+			return false;
+		}
 		if (userBuyerService.hasEmail(Email)) {
 			return true;
 		} else
@@ -55,6 +61,9 @@ public class UserBuyerServiceAjax {
 	 * 		true if exist
 	 */
 	public boolean existEmail(String Email){
+		if(null == Email || "".equals(Email)){
+			return false;
+		}
 		if(mailSenderService.checkEmail(Email)){
 			return true;
 		}else

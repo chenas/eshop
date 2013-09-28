@@ -73,7 +73,9 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 	@Override
 	public String insertEntity(T entity, IUser optUser) {
 		entity.setCreateTime(utilService.getSystemDateTimeString());
-		entity.setCreateUser(optUser.getTrueName());
+		if(optUser != null){
+			entity.setCreateUser(optUser.getTrueName());
+		}
 		beforeInsertEntity(entity, optUser);
 		crudDao.save(entity);
 		afterInsertEntity(entity, optUser);;
