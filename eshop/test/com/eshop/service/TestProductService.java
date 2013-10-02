@@ -46,22 +46,22 @@ public class TestProductService {
 		CategoryModel c = categoryService.findEntityListByFilter(cf).get(0);
 		
 		CategoryDetailFilter cdf = new CategoryDetailFilter();
-		cdf.setQueryString(" where a.name='"+"方便速食"+"'");
+		cdf.setQueryString(" where a.name='"+"肉/豆制品"+"'");
 		CategoryDetailModel cdm = categoryDetailService.findEntityListByFilter(cdf).get(0);
 		
 		UserShopFilter usf = new UserShopFilter();
 		usf.setQueryString(" where a.name='"+"usst"+"'");
 		UserShopModel us =  userShopService.findEntityListByFilter(usf).get(0);
 		
-		for(int i=1; i<1001; i++){
+		for(int i=1; i<50; i++){
 			ProductInfoModel p = new ProductInfoModel();
-			p.setName("土豆片土豆片"+i);
+			p.setName("H康康"+i);
 			p.setImageBig("images/t"+i%5+".jpg");
 			p.setRemainNumber(i);
 			p.setPrice(i);
 			p.setCounter(i);
 			p.setProductid("1234"+i);
-			p.setKeyword("土豆片土豆片"+i);
+			p.setKeyword("不是康康康康"+i);
 			p.setDescription("土豆片土豆片");
 			p.setIsSale("1");
 			p.setCategoryId(c.getId());

@@ -26,11 +26,11 @@ public class UserBuyerServiceAjax {
 	 * 用户名是否已经被注册
 	 * 
 	 * @param name
-	 * @return true if has
+	 * @return true if has or name if null
 	 */
 	public boolean hasUser(String name) {
 		if(name == null || "".equals(name)){
-			return false;
+			return true;
 		}
 		if (userBuyerService.hasUser(name, null) != null) {
 			return true;

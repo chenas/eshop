@@ -26,5 +26,18 @@
 				/pages/productList.jsp
 			</result>
 		</action>
+		
+		<!-- 加入购物车 -->
+		<action name="saveOrderItem" class="com.eshop.action.OrderItemListAction" method="saveOrderItem">
+			<result name="success" type="json">
+			</result>
+		</action>
+		<!-- 进入我的购物车 -->
+		<action name="cartList" class="com.eshop.action.OrderItemListAction" method="cartList">
+			<result name="list">
+				/pages/shopping/cartList.jsp
+			</result>
+		</action>
+		
 	</package>
 </struts>

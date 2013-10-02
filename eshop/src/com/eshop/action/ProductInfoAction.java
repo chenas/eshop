@@ -25,14 +25,6 @@ public class ProductInfoAction extends EntityCrudAction<ProductInfoModel> {
 	
 	private ProductInfoFilter productInfoFilter;
 
-	public IProductInfoService getProductInfoService() {
-		return productInfoService;
-	}
-
-	public void setProductInfoService(IProductInfoService productInfoService) {
-		this.productInfoService = productInfoService;
-	}
-
 	public ProductInfoModel getProductInfoModel() {
 		return productInfoModel;
 	}

@@ -21,7 +21,7 @@ public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 	
 	//
 	@Resource
-	protected PageList pageList;
+	private PageList pageList;
 	
 	public String execute() throws Exception {
 		commonOperations();	
@@ -38,7 +38,7 @@ public class EntityListAction<T extends BaseModel> extends EntityBaseAction<T> {
 		pageList.setPageNumber(getEntityFilter().getPageNo());
 		pageList.setObjectsPerPage(getEntityFilter().getPageSize());
 		pageList.setList(query(getEntityFilter()));
-		ServletActionContext.getContext().put("pageList", pageList);
+		ServletActionContext.getContext().put("productList", pageList);
 		return "list";
 	}
 	

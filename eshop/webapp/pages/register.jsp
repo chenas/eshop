@@ -18,6 +18,8 @@
 	<script type="text/javascript" src="<%=basePath %>js/buffalo/buffalo.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/list.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/register.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/pagelist.js"></script>
 	<script type="text/javascript">
 	var endPoint = "<%=request.getContextPath()%>/bfapp";
 	var buffalo = new Buffalo(endPoint);
@@ -34,13 +36,13 @@
 						//Todd Mark
 						jQuery('#errorUserName').removeClass();
 						jQuery('#errorUserName').addClass('wrong');
-						jQuery('#btn')[0].disabled = true;
+						//jQuery('#btn')[0].disabled = true;
 						return false;
 					} else {
 						//Todd Mark
 						jQuery('#errorUserName').removeClass();
 						jQuery('#errorUserName').addClass('success');
-						jQuery('#btn')[0].disabled = false;
+					//	jQuery('#btn')[0].disabled = false;
 						return true;
 					}
 
@@ -58,7 +60,7 @@
 						jQuery('#errorMail').html('<span></span>该邮箱已被注册');
 						jQuery('#errorUserName').removeClass();
 						jQuery('#errorMail').addClass('wrong');
-						jQuery('#btn')[0].disabled = true;
+					//	jQuery('#btn')[0].disabled = true;
 						return false;
 					} else {
 						 //邮箱是否真实存在
@@ -70,7 +72,7 @@
 										//Todd Mark
 										jQuery('#errorUserName').removeClass();		
 										jQuery('#errorMail').addClass('success');
-										jQuery('#btn')[0].disabled = false;
+									//	jQuery('#btn')[0].disabled = false;
 										return true;
 									} else {
 										// alert("该邮箱不可用");
@@ -78,7 +80,7 @@
 										jQuery('#errorMail').html('<span></span>该邮箱不可用');
 										jQuery('#errorUserName').removeClass();
 										jQuery('#errorMail').addClass('wrong');
-										jQuery('#btn')[0].disabled = true;
+									//	jQuery('#btn')[0].disabled = true;
 										return false;
 									}
 								});
@@ -94,7 +96,7 @@
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
 			<h5>
-				<a href="javascript:void(0);">&nbsp;我的购物车</a>
+				<a href="javascript:void(0);" id = "cartList">&nbsp;我的购物车</a>
 			</h5>
 			<h5>|</h5>
 			<h5>
@@ -160,7 +162,7 @@
 				验证码&rarr; <img src="pages/commonsys/SecurityCodeImageAction.action" id="Verify"  style="cursor:hand;" alt="看不清，换一张" />
 				<input id="valiate" name="securityCode" type="text" />
 			</label>
-			<input type="submit" value="提交" id="btn" disabled/>
+			<input type="submit" value="提交" id="btn"  />
 		</form>
 		<div>
 			<p id="errorUserName" class="normal">

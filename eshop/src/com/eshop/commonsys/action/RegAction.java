@@ -5,8 +5,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.struts2.ServletActionContext;
-import org.junit.runner.Request;
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.action.BaseAction;
@@ -49,7 +47,11 @@ public class RegAction extends BaseAction{
 		//保存注册信息
 		userBuyerService.insertEntity(user, userBuyer);
 		user = userBuyerService.findEntityById(userBuyerService.hasUser(userBuyer.getName(), null));
-		doPutSessionObject("loginUser", user);
+		UserBuyer loginUser = new UserBuyer();
+		loginUser.setEmail(user.getEmail());
+		loginUser.setName(user.getName());
+		loginUser.setPassword(user.getPassword());
+		doPutSessionObject("loginUser", loginUser);
 		sendMail(user);
 		addActionMessage("亲，离注册完成还有一步哦，请登录邮箱戳一下链接即可");
 		return SUCCESS;  //到首页

@@ -21,20 +21,45 @@ public class OrderItemModel extends BaseModel {
 	private String productId;
 	// 每项总价格
 	private double itempris;
+	
 	private String productName;
 	// 产品是否有剩余
-	private char isRemain;
+	private String isRemain;
+	
 	private String buyerId;
-	//客户端mac地址
-	private String macAddr;
+	//客户端ip地址
+	private String ipAddr;
+	
+	private String imageurl;
+	
+	//是否已经完成，即是否已结算
+	private String isFinished;
 
-	@Column(name = "macaddr", length = 60, nullable = true)
-	public String getMacAddr() {
-		return macAddr;
+	@Column(name = "ip_addr", length = 35, nullable = true)
+	public String getIpAddr() {
+		return ipAddr;
 	}
 
-	public void setMacAddr(String macAddr) {
-		this.macAddr = macAddr;
+	public void setIpAddr(String ipAddr) {
+		this.ipAddr = ipAddr;
+	}
+
+	@Column(name = "is_finished", length = 1, columnDefinition="default '0'")
+	public String getIsFinished() {
+		return isFinished;
+	}
+
+	public void setIsFinished(String isFinished) {
+		this.isFinished = isFinished;
+	}
+
+	@Column(name = "imageurl", length = 60, nullable = true)
+	public String getImageurl() {
+		return imageurl;
+	}
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
 	}
 
 	@Column(name = "price", length = 10, nullable = false)
@@ -91,15 +116,6 @@ public class OrderItemModel extends BaseModel {
 		this.productName = productName;
 	}
 
-	@Column(name = "is_remain", length = 1, nullable = true)
-	public char getIsRemain() {
-		return isRemain;
-	}
-
-	public void setIsRemain(char isRemain) {
-		this.isRemain = isRemain;
-	}
-
 	@Column(name = "buyer_id", length = 64, nullable = true)
 	public String getBuyerId() {
 		return buyerId;
@@ -107,5 +123,14 @@ public class OrderItemModel extends BaseModel {
 
 	public void setBuyerId(String buyerId) {
 		this.buyerId = buyerId;
+	}
+
+	@Column(name = "is_remain", length = 1, columnDefinition="default '1'")
+	public String getIsRemain() {
+		return isRemain;
+	}
+
+	public void setIsRemain(String isRemain) {
+		this.isRemain = isRemain;
 	}
 }

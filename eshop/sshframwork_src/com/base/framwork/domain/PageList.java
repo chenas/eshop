@@ -20,7 +20,7 @@ public class PageList {
 	
 	private int pageNumber = 1;// 当前页码
 	
-	private int objectsPerPage = 1;// 每页记录数
+	private int objectsPerPage = 60;// 每页记录数
 	
 	private int fullListSize = 0;// 总记录数
 	

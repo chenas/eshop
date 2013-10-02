@@ -12,9 +12,10 @@
 	<link rel="shortcut icon" href="favicon.ico" />
 	<script type="text/javascript" src="<%=basePath %>js/jQuery.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/common.js"></script>
-	<script type="text/javascript" src="<%=basePath %>js/pagelist.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/list.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
+	
+	<script type="text/javascript" src="<%=basePath %>js/pagelist.js"></script>
 	<script type="text/javascript">
 
 	</script>
@@ -24,9 +25,16 @@
 	<div id="header">
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
-			<h5><a href="javascript:void(0);">&nbsp;我的购物车</a></h5>
+			<h5><a href="javascript:void(0);"  id = "cartList">&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
+				<s:if test="#session.loginUser != null">
+					<a href="javascript:void(0);"  id = "">&nbsp;您好！<s:property value="#session.loginUser.name" /></a>
+				</s:if>
+				<s:else>
 			<h5><a href="pages/login.jsp" id="login">登&nbsp;&nbsp;录&nbsp;</a></h5>
+			<h5>|</h5>
+			<h5><a href="pages/register.jsp" id="login">注&nbsp;&nbsp;册&nbsp;</a></h5>
+			</s:else>
 		</div>
 	</div>
 	<div id="nav">

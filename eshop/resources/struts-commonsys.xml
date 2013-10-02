@@ -35,7 +35,7 @@
 	<!-- 注册 -->
 		<action name="register" class="com.eshop.commonsys.action.RegAction">
 			<result name="input" >/pages/register.jsp</result>
-			<result name="success" >/pages/register.jsp</result>
+			<result name="success" type="redirect" >/welcome.action</result>
 		</action>
 		
 	<!-- 邮箱验证 -->

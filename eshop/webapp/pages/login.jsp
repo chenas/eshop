@@ -14,13 +14,15 @@
 	<script type="text/javascript" src="<%=basePath %>js/common.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/list.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/register.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/pagelist.js"></script>
 </head>
 <body>
 	<div id="header">
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
 			<h5>
-				<a href="javascript:void(0);">&nbsp;我的购物车</a>
+				<a href="javascript:void(0);" id = "cartList">&nbsp;我的购物车</a>
 			</h5>
 			<h5>|</h5>
 			<h5>

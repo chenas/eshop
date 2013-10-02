@@ -10,9 +10,17 @@
          
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://202.120.223.108/eshopv2</property>
-        <property name="connection.username">username</property>
-        <property name="connection.password">decCMS201211,.SL</property>
+        <property name="connection.username">eshop</property>
+        <property name="connection.password">eshop123456</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+          
+<!--         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost/eshopv2</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">123456</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property> -->
+        
        <!--
         <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
         <property name="connection.url">jdbc:oracle:thin:@localhost:1521:SXT</property>

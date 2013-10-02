@@ -1,14 +1,26 @@
 package com.eshop.action;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.annotation.Resource;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.action.EntityListAction;
+import com.base.framwork.domain.PageList;
 import com.eshop.filter.ProductViewFilter;
 import com.eshop.service.IProductViewService;
 import com.eshop.view.ProductViewModel;
 
+/**
+ * @author chenas
+ *
+ */
+/**
+ * @author chenas
+ *
+ */
 @Component
 public class ProductViewListAction extends EntityListAction<ProductViewModel> {
 
@@ -18,30 +30,45 @@ public class ProductViewListAction extends EntityListAction<ProductViewModel> {
 	//搜索关键词，分类名
 	private String keyword;
 	
+	private int pageNum = 1;
+	
+	//是否为搜索商品
+	private String isShowProduct; 
+	
 	private ProductViewFilter productViewFilter;
 	
 	//搜索商品
-	public String searchProduct(){ 
+	public String searchProduct() { 
 		ProductViewFilter productFilter = new ProductViewFilter();
+		PageList productList = new PageList();
 		productFilter.setQueryString(" where a.name like '%"+keyword+"%' or a.keyword like '%"+keyword+"%'");
 		productFilter.setOrderByString(" counter desc");
-		pageList.setList(query(productFilter));
-		pageList.setFullListSize(querySize(productFilter));
+		productFilter.setPageNo(pageNum);
+		productList.setPageNumber(pageNum);
+		productList.setList(query(productFilter));
+		productList.setFullListSize(querySize(productFilter));
+		ServletActionContext.getContext().put("productList", productList);
 		return LIST;
 	}
 	
 	//展示所有商品
 	public String allProduct(){
+		productViewFilter = new ProductViewFilter();
+		productViewFilter.setPageNo(pageNum);
 		return intoList();
 	}
 	
 	//展示商品，根据分类列表的值展示商品
-	public String showProduct(){
+	public String showProduct() throws UnsupportedEncodingException{
 		ProductViewFilter productFilter = new ProductViewFilter();
-		productFilter.setQueryString(" where a.categoryName like '%"+keyword+"%' or a.cateDetailName like '%"+keyword+"%'");
+		productFilter.setQueryString(" where a.categoryName like '%"+java.net.URLDecoder.decode(keyword,"UTF-8")+"%' or a.cateDetailName like '%"+java.net.URLDecoder.decode(keyword,"UTF-8")+"%'");
 		productFilter.setOrderByString(" counter desc");
-		pageList.setList(query(productFilter));
-		pageList.setFullListSize(querySize(productFilter));
+		PageList productList = new PageList();
+		productFilter.setPageNo(pageNum);
+		productList.setPageNumber(pageNum);
+		productList.setList(query(productFilter));
+		productList.setFullListSize(querySize(productFilter));
+		ServletActionContext.getContext().put("productList", productList);
 		return LIST;
 	}
 
@@ -60,5 +87,21 @@ public class ProductViewListAction extends EntityListAction<ProductViewModel> {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	
+
+	public String getIsShowProduct() {
+		return isShowProduct;
+	}
+
+	public void setIsShowProduct(String isShowProduct) {
+		this.isShowProduct = isShowProduct;
+	}
+
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
 }

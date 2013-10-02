@@ -65,6 +65,7 @@ function getNavValue(obj){
 			var value = this.innerHTML;
 			if(value != ''){
 				console.log(value);
+				window.location.href = "shopping/showProduct.action?isShowProduct=1&keyword="+encodeURI(encodeURI(value));
 				return value;
 			}else{
 				console.log('空值');
