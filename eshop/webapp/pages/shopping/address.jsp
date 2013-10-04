@@ -3,7 +3,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-<title>我的购物车</title>
+<title>输入收货信息</title>
 	<!-- begin cssStyle -->
 	<link rel="stylesheet" href="<%=basePath %>css/reset.css" />
 	<link rel="stylesheet" href="<%=basePath %>css/common.css" />
@@ -20,34 +20,14 @@
 	<script type="text/javascript" src="<%=basePath %>js/shopping.js"></script>
 
 	<script type="text/javascript">
-	var i=0;
-	jQuery(document).ready(function(){
-		jQuery("#productList a").click(function(){
-			jQuery(this).parent().each(function() {
-				var form = jQuery("#productForm")[i++];
-				var id = form[0].value;
-				var num = parseInt(form[1].value);
-				jQuery.ajax({
-					url : '<%=basePath %>shopping/saveOrderItem.action',
-					type : 'post',
-					dataType : 'json',
-					data : {id: id, buyNum:num},
-					timeout:2000,
-					success : 
-						function (data) {
-						alert("成功加入购物车");
-					}
-				});
-			});
-		});
-	});
+	
 	</script>
 </head>
 <body>
 	<div id="header">
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
-			<h5><a href="javascript:void(0);" id = "cartList">&nbsp;我的购物车</a></h5>
+			<h5><a href="shopping/cartList.action" id = "">&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
 				<s:if test="#session.loginUser != null">
 					<h5><a href="javascript:void(0);"  id = "">&nbsp;您好！&nbsp;<s:property value="#session.loginUser.name" />&nbsp;&nbsp;</a></h5>
@@ -104,11 +84,11 @@
 	<div class="crumbs">
 		<ul>
 			<li>
-				<span  class="active" ></span>
+				<span  ></span>
 				查看购物车
 			</li>
 			<li>
-				<span></span>
+				<span class="active"></span>
 				确认订单地址
 			</li>
 			<li>
@@ -117,6 +97,47 @@
 			</li>
 		</ul>		
 	</div>
+	
+	
+	<form action="<%=basePath %>shopping/sumitOrder.action" name="orderFrm" method="post">
+	<div id="addInfo">
+			<ul>
+				<li>
+					<label>
+						<span>选择校区</span>
+						<label for="a1">南校区<input type="radio" name="schoolArea"  value="南校区" id="a1" /></label>
+						<label for="a2">北校区<input type="radio" name="schoolArea"  value="北校区"  id="a2"/></label>
+						<label for="a3">1100校区<input type="radio" name="schoolArea"  value="1100校区" id="a3"/></label>
+					</label>
+				</li>
+				<li>
+					<label for="address">
+						<span>选择地址</span>
+						<input type="text" name="building" id="address" value="<s:property value='building' />" />
+					</label>
+				</li>
+				<li>
+					<label for="name">
+						<span>收货人姓名</span>
+						<input type="text" name="consignee" id="name" value="<s:property value='consignee' />"/>
+					</label>
+				</li>
+				<li>
+					<label for="number">
+						<span>联系电话</span>
+						<input type="text" name="phone" id="number" value="<s:property value='phone' />"/>
+					</label>
+				</li>
+				<li>
+					<label for="remark">
+						<span>备注</span>
+						<textarea name="address" id="remark" cols="30" rows="3" >	<s:property value='address' />
+						</textarea>
+					</label>
+				</li>
+			</ul>
+	</div>
+	
 	<div id="cart">
 		<ol>
 			<li>商品</li>
@@ -134,7 +155,6 @@
 				</s:if>
 				<s:iterator value="#session.cartList.items" status="i" >
 				<li>
-					<form action="">
 						<div class="name">
 							<img src="<s:property value='imageurl' />" alt="" />
 							<strong><s:property value='productName' /></strong>
@@ -153,17 +173,16 @@
 						<div class="sum">
 							￥ <span><s:property value='itempris' /></span> 
 						</div>
-					</form>
 				</li>
 				</s:iterator>
 			</ul>
-			<div class="submit">
-				<form action="">
+			<div  class="submit">
 					商品总价:&nbsp;￥<span><s:property value="#session.cartList.totalPrice" /></span>
-					<input type="button"  onclick="window.location.href='<%=basePath %>pages/shopping/address.jsp'" value="结算"/>
-				</form>
+					<input type="button" onclick="document.orderFrm.submit();" value="下单"/>
 			</div>
 		</div>
 	</div>
+</form>
+<s:debug></s:debug>
 </body>
 </html>

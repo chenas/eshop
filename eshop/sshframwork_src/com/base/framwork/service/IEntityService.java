@@ -8,7 +8,7 @@ import com.base.framwork.domain.IUser;
 import com.base.framwork.queryfilter.QueryFilter;
 
 /**
- * ��ɾ�Ĳ�ҵ��ͨ�ýӿ�
+ * 实体类service接口
  * @author chenas
  *
  * @param <T>
@@ -18,87 +18,81 @@ import com.base.framwork.queryfilter.QueryFilter;
 public interface IEntityService<T extends BaseObject> extends IBaseService {
 	
 	/**
-	 * ���Id����
+	 * 根据id取得记录	
+	 * 		先从缓存去，找不到才到数据库找
 	 * @param id
-	 * 			����
+	 * 		主键
 	 * @return
 	 */
 	public T findEntityById(String id);
 
 	/**
-	 * ���Id���� get
+	 * 由id取得记录
+	 * 	直接从数据库取
 	 * @param id
-	 * 			����
+	 * 			主键
 	 * @return
 	 */
 	public T getEntityById(String id);
 	
 	/**
-	 * ������ݿ������еļ�¼
+	 * 查找所有实体
 	 * @return
 	 */
 	public List<T> findEntityList();
 	
 	/**
-	 * ��ݹ�������ѯ���м�¼
+	 * 根据过滤器查找实体
 	 * @param filter
-	 * 			������
 	 * @return
 	 */
 	public List<T> findEntityListByFilter(QueryFilter filter);
 	
 	/**
-	 * ����һ����¼
+	 * 插入记录
 	 * @param entity
-	 *            domain����
+	 *           实体类
 	 * @param user
-	 * 			�����û�
 	 * @return id
 	 */
 	public String insertEntity(T entity, IUser optUser);
 
 	/**
-	 * ɾ��־û�ʵ��
+	 * 删除记录
 	 * @param entity
 	 * @param optUser
-	 */
+	 */  
 	public void deleteEntity(T entity, IUser optUser);
 	
 	/**
-	 * �������idɾ����ݿ��¼
-	 * 
-	 * @param id
-	 *            ����id
+	 * 删除记录
+	 * @param entity
 	 * @param optUser
-	 *            �����û�
-	 *            
-	 */         
+	 */     
 	public void deleteEntityById(String id, IUser optUser);
 	
 	/**
-	 * ���idsɾ������ݿ��¼
-	 * 
-	 * @param ids
-	 *            ����id����
+	 * 批量删除
+	 * @param entitys
 	 * @param optUser
-	 *            �����û�
 	 */
 	public void deleteManyEntityById(String[] ids, IUser optUser);
 	
 	/**
-	 * ����ɾ��
+	 * 批量删除
 	 * @param entitys
 	 * @param optUser
 	 */
 	public void deleteManyEntity(List<T> entitys, IUser optUser);
 
 	/**
-	 * ������ݿ��¼
+	 * 更新对象
+	 * 	适合于更新整个对象
 	 * 
 	 * @param entity
-	 *            domain����
+	 *            实体类
 	 * @param optUser
-	 *            �����û�
+	 *            操作用户
 	 */
 	public void updateEntity(T entity, IUser optUser);
 
@@ -112,7 +106,7 @@ public interface IEntityService<T extends BaseObject> extends IBaseService {
 	public void updateEntityByFilter(T entity, QueryFilter filter, IUser optUser) throws Exception;
 	
 	/**
-	 * ��ݼ����������ͳ�Ƽ�¼��
+	 * 根据过滤条件统计记录数
 	 * @param entity
 	 * @param filter
 	 * @return
@@ -120,7 +114,7 @@ public interface IEntityService<T extends BaseObject> extends IBaseService {
 	public int countEntityByFilter(QueryFilter filter);
 	
 	/**
-	 * �Զ���ͳ�Ƽ�¼��
+	 * 自定义统计数量
 	 * @param entity
 	 * @return
 	 */

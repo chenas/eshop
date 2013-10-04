@@ -32,10 +32,21 @@
 			<result name="success" type="json">
 			</result>
 		</action>
+		
 		<!-- 进入我的购物车 -->
 		<action name="cartList" class="com.eshop.action.OrderItemListAction" method="cartList">
 			<result name="list">
 				/pages/shopping/cartList.jsp
+			</result>
+		</action>
+			
+		<!-- 下单 -->
+		<action name="sumitOrder" class="com.eshop.commonsys.action.ShoppingAction" method="sumitOrder">
+			<result name="input" >
+				/pages/shopping/address.jsp
+			</result>
+			<result name="success" >
+				/pages/shopping/completed.jsp
 			</result>
 		</action>
 		

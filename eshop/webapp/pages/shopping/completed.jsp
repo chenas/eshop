@@ -20,34 +20,14 @@
 	<script type="text/javascript" src="<%=basePath %>js/shopping.js"></script>
 
 	<script type="text/javascript">
-	var i=0;
-	jQuery(document).ready(function(){
-		jQuery("#productList a").click(function(){
-			jQuery(this).parent().each(function() {
-				var form = jQuery("#productForm")[i++];
-				var id = form[0].value;
-				var num = parseInt(form[1].value);
-				jQuery.ajax({
-					url : '<%=basePath %>shopping/saveOrderItem.action',
-					type : 'post',
-					dataType : 'json',
-					data : {id: id, buyNum:num},
-					timeout:2000,
-					success : 
-						function (data) {
-						alert("成功加入购物车");
-					}
-				});
-			});
-		});
-	});
+	
 	</script>
 </head>
 <body>
 	<div id="header">
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
-			<h5><a href="javascript:void(0);" id = "cartList">&nbsp;我的购物车</a></h5>
+			<h5><!-- <a href="javascript:void(0);" id = "cartList">&nbsp;我的购物车</a> --></h5>
 			<h5>|</h5>
 				<s:if test="#session.loginUser != null">
 					<h5><a href="javascript:void(0);"  id = "">&nbsp;您好！&nbsp;<s:property value="#session.loginUser.name" />&nbsp;&nbsp;</a></h5>
@@ -100,11 +80,10 @@
 		</div>
 	</div>
 
-
 	<div class="crumbs">
 		<ul>
 			<li>
-				<span  class="active" ></span>
+				<span></span>
 				查看购物车
 			</li>
 			<li>
@@ -112,57 +91,24 @@
 				确认订单地址
 			</li>
 			<li>
-				<span></span>
+				<span class="active"></span>
 				完成
 			</li>
 		</ul>		
 	</div>
-	<div id="cart">
-		<ol>
-			<li>商品</li>
-			<li>单价</li>
-			<li>数量</li>
-			<li>优惠</li>
-			<li>合计</li>
-		</ol>
-		<div class="cart">
-			<ul>
-				<s:if test="#session.cartList == null || #session.cartList.items == null || #session.cartList.items.size()<1">
-					<li>
-						<div align="center">亲，购物车还是空的喔...</div>
-					</li>
+	<div id="completed">
+		<img src="images/completed.jpg" alt="" />
+		<div>
+			亲爱的<span>
+				<s:if test="#session.loginUser != null">
+					<s:property value="#session.loginUser.name" />
 				</s:if>
-				<s:iterator value="#session.cartList.items" status="i" >
-				<li>
-					<form action="">
-						<div class="name">
-							<img src="<s:property value='imageurl' />" alt="" />
-							<strong><s:property value='productName' /></strong>
-						</div>
-						<div class="price">
-							￥<s:property value='price' />
-						</div>
-						<div class="count">
-							<a href="javascript:void(0);">-</a>
-							<input type="text" size="1" value="<s:property value='count' />" />
-							<a href="javascript:void(0);">+</a>
-						</div>
-						<div class="discount">
-							￥0
-						</div>
-						<div class="sum">
-							￥ <span><s:property value='itempris' /></span> 
-						</div>
-					</form>
-				</li>
-				</s:iterator>
-			</ul>
-			<div class="submit">
-				<form action="">
-					商品总价:&nbsp;￥<span><s:property value="#session.cartList.totalPrice" /></span>
-					<input type="button"  onclick="window.location.href='<%=basePath %>pages/shopping/address.jsp'" value="结算"/>
-				</form>
-			</div>
+				<s:else>顾客</s:else>
+				&nbsp;&nbsp;您的订单号：<s:property value="#request.orderId" />
+			</span><br />
+			我们将尽快把您选购的商品送至<br />
+			<span><s:property value="#request.address" /></span><br />
+			请保持手机状态正常呦:)
 		</div>
 	</div>
 </body>

@@ -1,8 +1,7 @@
 package com.eshop.util;
 
-import javax.annotation.Resource;
-
 import com.base.framwork.service.IUtilService;
+import com.base.framwork.service.UtilService;
 
 /**
  * 产生唯一的订单编号
@@ -11,8 +10,7 @@ import com.base.framwork.service.IUtilService;
  */
 public class GetOrderIdUtil {
 	
-	@Resource
-	private static IUtilService utilService;
+	private static IUtilService utilService = new UtilService();
 	
 	private static String PREFIX = "DD";
 	private static long code;
