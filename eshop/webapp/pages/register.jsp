@@ -58,7 +58,7 @@
 						// alert("该邮箱已被注册");
 						//Todd Mark
 						jQuery('#errorMail').html('<span></span>该邮箱已被注册');
-						jQuery('#errorUserName').removeClass();
+						jQuery('#errorMail').removeClass();
 						jQuery('#errorMail').addClass('wrong');
 					//	jQuery('#btn')[0].disabled = true;
 						return false;
@@ -70,15 +70,16 @@
 									if (reply.getResult()) 
 									{
 										//Todd Mark
-										jQuery('#errorUserName').removeClass();		
+										jQuery('#errorMail').removeClass();		
 										jQuery('#errorMail').addClass('success');
+										jQuery('#errorMail').html('<span></span>');
 									//	jQuery('#btn')[0].disabled = false;
 										return true;
 									} else {
 										// alert("该邮箱不可用");
 										//Todd Mark
 										jQuery('#errorMail').html('<span></span>该邮箱不可用');
-										jQuery('#errorUserName').removeClass();
+										jQuery('#errorMail').removeClass();
 										jQuery('#errorMail').addClass('wrong');
 									//	jQuery('#btn')[0].disabled = true;
 										return false;
@@ -96,7 +97,7 @@
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
 			<h5>
-				<a href="javascript:void(0);" id = "cartList">&nbsp;我的购物车</a>
+				<a href="shopping/cartList.action" >&nbsp;我的购物车</a>
 			</h5>
 			<h5>|</h5>
 			<h5>
@@ -147,16 +148,16 @@
 	<div id="register">
 		<form action="<%=basePath %>pages/commonsys/register.action" method="post" >
 			<label for="username">
-				登录名&rarr;<input id="username" name="userBuyer.name" onblur="hasName()" value="<s:property value="userBuyer.name" />" type="text" />
+				登录名&rarr;<input id="username" name="name" onblur="hasName()" value="<s:property value="name" />" type="text" />
 			</label>
 			<label for="mail">
-				邮箱&rarr;<input id="mail" name="userBuyer.email" onblur="hasEmail()" value="<s:property value="userBuyer.email" />"  type="text" />
+				邮箱&rarr;<input id="mail" name="email" onblur="hasEmail()" value="<s:property value="email" />"  type="text" />
 			</label>
 			<label for="passWord">
-				密码&rarr;<input id="password" name="userBuyer.password" value="<s:property value="userBuyer.password" />" type="password" />
+				密码&rarr;<input id="password" name="password" value="<s:property value="password" />" type="password" />
 			</label>
 			<label for="confimPassWord">
-				密码确认&rarr; <input id="password2" name="userBuyer.password2" type="password" />
+				密码确认&rarr; <input id="password2" name="password2" type="password" />
 			</label>
 			<label for="valiate">
 				验证码&rarr; <img src="pages/commonsys/SecurityCodeImageAction.action" id="Verify"  style="cursor:hand;" alt="看不清，换一张" />
@@ -166,16 +167,16 @@
 		</form>
 		<div>
 			<p id="errorUserName" class="normal">
-				<span></span><font color="red"><s:fielderror fieldName="userBuyer.name"/></font>
+				<span></span><font color="red"><s:fielderror fieldName="name"/></font>
 			</p>
 			<p id="errorMail" class="normal">
-				<span></span><font color="red"><s:fielderror fieldName="userBuyer.email"/></font>
+				<span></span><font color="red"><s:fielderror fieldName="email"/></font>
 			</p>
 			<p class="normal">
-				<span></span><font color="red"><s:fielderror fieldName="userBuyer.password"/></font>
+				<span></span><font color="red"><s:fielderror fieldName="password"/></font>
 			</p>
 			<p class="normal">
-				<span></span><font color="red"><s:fielderror fieldName="userBuyer.password2"/></font>
+				<span></span><font color="red"><s:fielderror fieldName="password2"/></font>
 			</p>
 			<p class="normal">
 				<span></span><font color="red"><s:fielderror fieldName="securityCode"/></font>

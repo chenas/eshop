@@ -52,6 +52,7 @@ public class BuyerLoginAction extends EntityBaseAction<UserBuyerModel> {
 			doPutSessionObject("loginUser", loginUser); //将用户放进session里面
 			return SUCCESS; //到首页
 		}else
+			addFieldError("name", "用户名或密码不正确");
 			getRequest().setAttribute("name", getName());
 			return ERROR;
 	}

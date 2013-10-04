@@ -5,7 +5,7 @@
 			jQuery(this).css({
 				'border':'2px solid #fea336'
 			});
-		})
+		});
 		jQuery(aInput[i]).bind('blur', function (){
 			jQuery(this).css({
 				'border':'2px solid #333'

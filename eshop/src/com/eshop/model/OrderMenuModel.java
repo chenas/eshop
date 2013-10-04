@@ -15,35 +15,31 @@ public class OrderMenuModel extends BaseModel {
 	//订单编号，自定义
 	private String orderid;
 
-	@Column(name = "orderid", length = 50, nullable = false)
-	public String getOrderid() {
-		return orderid;
-	}
-
-	public void setOrderid(String orderid) {
-		this.orderid = orderid;
-	}
-
+	//地址信息关联id
+	private String addrId;
+	
 	//用户主键id
 	private String buyerId;
 	//商店主键id
 	private String shopId;
 	//下单时间
 	private String orderdate;
-	private String finaladdr;
 	private String arrivtime;
 
 	/*
-	 * 0表示未处理（刚下单）， 1表示某个商店收到订单（确认）， 2表示已出货（出货）， 3买家确认收货（规定内自动确认）
+	 * 0表示未处理（刚下单）， 
+	 * 1表示某个商店收到订单（确认），
+	 *  2表示已出货（出货），
+	 *  3买家确认收货（规定内自动确认）
 	 * 4表示作废（买家在订单没被确认时，可以取消订单）
 	 */
-	private char status;
+	private String status;
 	// the total price
 	private double totalpris;
 	// the location of 2-dimensionalbarcode
 	private String qrcode;
 
-	@Column(name = "buyer_id", length = 64, nullable = false)
+	@Column(name = "buyer_id", length = 64, nullable = true)
 	public String getBuyerId() {
 		return buyerId;
 	}
@@ -61,15 +57,6 @@ public class OrderMenuModel extends BaseModel {
 		this.orderdate = orderdate;
 	}
 
-	@Column(name = "finaladdr", length = 16, nullable = false)
-	public String getFinaladdr() {
-		return finaladdr;
-	}
-
-	public void setFinaladdr(String finaladdr) {
-		this.finaladdr = finaladdr;
-	}
-
 	@Column(name = "arrivtime", length = 100, nullable = false)
 	public String getArrivtime() {
 		return arrivtime;
@@ -79,12 +66,12 @@ public class OrderMenuModel extends BaseModel {
 		this.arrivtime = arrivtime;
 	}
 
-	@Column(name = "status", length = 16, nullable = false)
-	public char getStatus() {
+	@Column(name = "status", length = 1, columnDefinition="varchar(1) default '0'")
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(char status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -113,6 +100,24 @@ public class OrderMenuModel extends BaseModel {
 
 	public void setShopId(String shopId) {
 		this.shopId = shopId;
+	}
+
+	@Column(name = "orderid", length = 50, nullable = false)
+	public String getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
+	}
+
+	@Column(name = "buyer_addr_id", length = 64, nullable = true)
+	public String getAddrId() {
+		return addrId;
+	}
+
+	public void setAddrId(String addrId) {
+		this.addrId = addrId;
 	}
 
 }

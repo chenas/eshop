@@ -60,5 +60,8 @@ public class TestUserBuyerService {
 	public void testFindAllObjList(){
 		List<UserBuyerModel> users = userBuyerService.findEntityList();
 		System.out.println(users.size());
+		for(int i=0; i<users.size(); i++){
+			userBuyerService.deleteEntity(users.get(i), null);
+		}
 	}
 }

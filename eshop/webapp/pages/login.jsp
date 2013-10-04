@@ -22,7 +22,7 @@
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
 			<h5>
-				<a href="javascript:void(0);" id = "cartList">&nbsp;我的购物车</a>
+				<a href="shopping/cartList.action" >&nbsp;我的购物车</a>
 			</h5>
 			<h5>|</h5>
 			<h5>

@@ -12,18 +12,18 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 
- * ÈÕÆÚÀàÐÍ×ª»¯¹¤¾ßÀà
+ * æ—¥æœŸå·¥å…·ç±»
  * 
  */
 public class DateUtil {
 
 	/**
-	 * ÈÕÆÚ¸ñÊ½
+	 * ï¿½ï¿½ï¿½Ú¸ï¿½Ê½
 	 */
 	private static String datePattern = "yyyy-MM-dd";
 
 	/**
-	 * Ê±¼ä¸ñÊ½
+	 * Ê±ï¿½ï¿½ï¿½Ê½
 	 */
 	private static String timePattern = "HH:mm:ss";
 
@@ -68,7 +68,7 @@ public class DateUtil {
 	 * @return a converted Date object
 	 * @see java.text.SimpleDateFormat
 	 * @throws ParseException
-	 *             ×ª»»Òì³£
+	 *             ×ªï¿½ï¿½ï¿½ì³£
 	 */
 	public static final Date convertStringToDate(String aMask, String strDate)
 			throws ParseException {
@@ -95,7 +95,7 @@ public class DateUtil {
 	 * @return a converted Date object
 	 * @see java.text.SimpleDateFormat
 	 * @throws ParseException
-	 *             ×ª»»Òì³£
+	 *             ×ªï¿½ï¿½ï¿½ì³£
 	 */
 	public static final Date convertStringToDateTime(String strDate)
 			throws ParseException {
@@ -138,7 +138,7 @@ public class DateUtil {
 	 * 
 	 * @return the current date
 	 * @throws ParseException
-	 *             ×ª»»Òì³£
+	 *             ×ªï¿½ï¿½ï¿½ì³£
 	 */
 	public static Calendar getToday() throws ParseException {
 		Date today = new Date();
@@ -221,7 +221,7 @@ public class DateUtil {
 	 * @return a date object
 	 * 
 	 * @throws ParseException
-	 *             ×ª»»Òì³£
+	 *             ×ªï¿½ï¿½ï¿½ì³£
 	 */
 	public static Date convertStringToDate(String strDate)
 			throws ParseException {
@@ -241,13 +241,13 @@ public class DateUtil {
 	}
 
 	/**
-	 * Èç¹ûdate1>date2 ·µ»Ø 1 = 0 < -1
+	 * ï¿½ï¿½ï¿½date1>date2 ï¿½ï¿½ï¿½ï¿½ 1 = 0 < -1
 	 * 
 	 * @param date1
-	 *            ÈÕÆÚ1
+	 *            ï¿½ï¿½ï¿½ï¿½1
 	 * @param date2
-	 *            ÈÕÆÚ2
-	 * @return ±È½Ï½á¹û
+	 *            ï¿½ï¿½ï¿½ï¿½2
+	 * @return ï¿½È½Ï½ï¿½ï¿½
 	 */
 	public static int compareDate(Date date1, Date date2) {
 		String d1 = getDateTime(datePattern, date1);
@@ -264,12 +264,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * ¸ø¶¨ÈÕÆÚ×ª»¯ÎªÖÐÎÄµÄÈÕÆÚÐÎÊ½yyyyÄêMMÔÂddÈÕ£¬Èç2009Äê11ÔÂ24ÈÕ
-	 * @param date ¸ø¶¨ÈÕÆÚ
-	 * @return ÖÐÎÄ¸ñÊ½µÄÈÕÆÚ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½yyyyï¿½ï¿½MMï¿½ï¿½ddï¿½Õ£ï¿½ï¿½ï¿½2009ï¿½ï¿½11ï¿½ï¿½24ï¿½ï¿½
+	 * @param date ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½ï¿½ï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public static String convertDateToChineseString(Date date) {
-		DateFormat df = new SimpleDateFormat("yyyyÄêMMÔÂddÈÕ");
+		DateFormat df = new SimpleDateFormat("yyyyï¿½ï¿½MMï¿½ï¿½ddï¿½ï¿½");
 
 		String strDate = df.format(date);
 
@@ -277,9 +277,9 @@ public class DateUtil {
 	}
 
 	/**
-	 * ¸ø¶¨ÔÂ·Ý£¬¼ÆËãËùÊô¼¾¶È
-	 * @param month ¸ø¶¨ÔÂ·Ý
-	 * @return ËùÊô¼¾¶È
+	 * ï¿½ï¿½ï¿½Â·Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param month ï¿½ï¿½ï¿½Â·ï¿½
+	 * @return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public static String getQuarterByMonth(String month) {
 		return "" + ((Integer.parseInt(month) - 1) / 3 + 1);
@@ -287,9 +287,9 @@ public class DateUtil {
 	}
 
 	/**
-	 * ¼ÆËãÕâ¸öÔÂµÄµÚÒ»Ìì
-	 * @param thisMonth ±¾ÔÂµÄÈÎºÎÒ»Ìì£¬±ÈÈç2009-12-13
-	 * @return ÈÕÆÚ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄµï¿½Ò»ï¿½ï¿½
+	 * @param thisMonth ï¿½ï¿½ï¿½Âµï¿½ï¿½Îºï¿½Ò»ï¿½ì£¬ï¿½ï¿½ï¿½ï¿½2009-12-13
+	 * @return ï¿½ï¿½ï¿½ï¿½
 	 */
 	public static String getThisMonthFirstDay(String thisMonth) {
 		String[] t = StringUtils.split(thisMonth, "-");
@@ -299,11 +299,11 @@ public class DateUtil {
 
 
 	/**
-	 * ÁªºÏÍ³¼ÆÈÕÆÚºÍÊ±¶Î
+	 * ï¿½ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½Úºï¿½Ê±ï¿½ï¿½
 	 * 
-	 * @param dateStr Í³¼ÆÈÕÆÚ´®
-	 * @param timeStr Ê±¶Î´®
-	 * @return Í³¼ÆÈÕÆÚºÍÊ±¶ÎÁªºÏ´®
+	 * @param dateStr Í³ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+	 * @param timeStr Ê±ï¿½Î´ï¿½
+	 * @return Í³ï¿½ï¿½ï¿½ï¿½ï¿½Úºï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
 	 */
 	public static String unionDateAndTime(String dateStr, String timeStr) {
 		Date date = null;
@@ -320,9 +320,9 @@ public class DateUtil {
 	}
 
 	/**
-	 * ¸ø¶¨ÈÕÆÚ£¬¼ÆËãÊÇÖÜ¼¸£¬ÖÐÎÄ¸ñÊ½µÄ£¬±ÈÈç2009-11-25ÊÇ¡°ÐÇÆÚÈý¡±
-	 * @param date ¸ø¶¨ÈÕÆÚ
-	 * @return ÖÜ¼¸
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½Ê½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½2009-11-25ï¿½Ç¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @param date ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * @return ï¿½Ü¼ï¿½
 	 */
 	public static String getWeek(Date date) {
 		SimpleDateFormat formatter = new SimpleDateFormat(" E ");

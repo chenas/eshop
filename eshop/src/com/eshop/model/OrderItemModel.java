@@ -44,7 +44,7 @@ public class OrderItemModel extends BaseModel {
 		this.ipAddr = ipAddr;
 	}
 
-	@Column(name = "is_finished", length = 1, columnDefinition="default '0'")
+	@Column(name = "is_finished", length = 1, columnDefinition="varchar(1) default '0'")
 	public String getIsFinished() {
 		return isFinished;
 	}
@@ -125,7 +125,7 @@ public class OrderItemModel extends BaseModel {
 		this.buyerId = buyerId;
 	}
 
-	@Column(name = "is_remain", length = 1, columnDefinition="default '1'")
+	@Column(name = "is_remain", length = 1, columnDefinition="varchar(1) default '1'")
 	public String getIsRemain() {
 		return isRemain;
 	}

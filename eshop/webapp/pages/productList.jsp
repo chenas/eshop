@@ -73,7 +73,14 @@
 			<h1><s:text name="com.eshop.header" /></h1>
 			<h5><a href="javascript:void(0);" id = "cartList">&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
+				<s:if test="#session.loginUser != null">
+					<h5><a href="javascript:void(0);"  id = "">&nbsp;您好！&nbsp;<s:property value="#session.loginUser.name" />&nbsp;&nbsp;</a></h5>
+				</s:if>
+				<s:else>
 			<h5><a href="pages/login.jsp" id="login">登&nbsp;&nbsp;录&nbsp;</a></h5>
+			<h5>|</h5>
+			<h5><a href="pages/register.jsp" id="login">注&nbsp;&nbsp;册&nbsp;</a></h5>
+			</s:else>
 		</div>
 	</div>
 	<div id="nav">

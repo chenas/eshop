@@ -33,6 +33,14 @@ public interface IUtilService {
 	 * @return 
 	 */
 	public String getSystemTimeString();
+
+	/**
+	 * 获取系统时间
+	 * 格式：yyMMdd
+	 * 
+	 * @return 
+	 */
+	public String getSystem2DateString();
 	
 	/**
 	 * md5加密字符串

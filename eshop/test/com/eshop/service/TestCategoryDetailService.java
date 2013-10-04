@@ -111,8 +111,8 @@ public class TestCategoryDetailService {
 			cms.add(cm4);
 
 			CategoryDetailModel cm5 = new CategoryDetailModel(); 
-			cm5.setName("牛奶乳品");
-			cm5.setDescription("牛奶乳品");
+			cm5.setName("果汁");
+			cm5.setDescription("果汁");
 			cm5.setCategoryId(c.getId());	
 			cms.add(cm5);
 			

@@ -28,7 +28,7 @@
 			<h5><a href="javascript:void(0);"  id = "cartList">&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
 				<s:if test="#session.loginUser != null">
-					<a href="javascript:void(0);"  id = "">&nbsp;您好！<s:property value="#session.loginUser.name" /></a>
+					<h5><a href="javascript:void(0);"  id = "">&nbsp;您好！&nbsp;<s:property value="#session.loginUser.name" />&nbsp;&nbsp;</a></h5>
 				</s:if>
 				<s:else>
 			<h5><a href="pages/login.jsp" id="login">登&nbsp;&nbsp;录&nbsp;</a></h5>
@@ -71,7 +71,7 @@
 				<form action="<%=basePath %>shopping/searchProduct.action" method="post" name="search">
 				&nbsp;
 				<input type="text" name="keyword" size="20" value="" onfocus="this.value=''"/>
-				<span><input type="button"   value="搜索" class="search" id="btn"/></span>
+				<span><input type="button"  onclick="document.search.submit();" value="搜索" class="search" id="btn"/></span>
 				</form>
 				</li>
 			</ul>

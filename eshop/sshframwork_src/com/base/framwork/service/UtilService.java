@@ -55,6 +55,17 @@ public class UtilService implements IUtilService{
 	public String getSystemTimeString(){
 		return DateUtil.getDateTime("yyMMddHHmmss" ,getSystemDateTime());
 	}
+	
+	/**
+	 * 获取系统时间
+	 * 格式：yyMMdd
+	 * 
+	 * @return 
+	 */
+	public String getSystem2DateString(){
+		return DateUtil.getDateTime("yyMMdd" ,getSystemDateTime());
+	}
+	
 	/**
 	 * md5加密字符串
 	 * @param resString
@@ -85,15 +96,15 @@ public class UtilService implements IUtilService{
 			return hexValue.toString();
 	}
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		UtilService us = new UtilService();
 //		String str = us.getMD5String("1234");
 //		System.out.println(str);
 //		System.out.println(us.getSystemDateTime());
 		for(int i=0; i<10; i++){
-			System.out.println(us.getSystemTimeString());
+			System.out.println(us.getSystem2DateString());
 		}
 		
-	}
+	}*/
 	
 }

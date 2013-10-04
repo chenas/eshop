@@ -37,33 +37,55 @@ public class TestProductService {
 	
 	@Test
 	public void testInsert(){
+		String[] names = {"康康", "国术", "青松"};
+		String[] cate = {"美味的食品", "好喝的饮品", "必备日用品", "土豪送的礼品"};
+		String[] d1 = {"饼干/糕点", "糖果/巧克力", "方便速食", "坚果/蜜饯", "肉/豆制品"};
+		String[] d2 = {"水", "碳酸饮料", "功能饮料", "茶/咖啡饮料", "牛奶乳品", "果汁"};
+		String[] d3 = {"插线板", "雨伞", "纸制品", "美容洗护", "清洁/收纳"};
+		String[] d4 = {"明信片", "书签", "挂件/饰品", "包包包包"};
 		UserBuyer user = new UserBuyer();
 		user.setName("jack");
 		user.setRealname("Tom");
 
-		CategoryFilter cf = new CategoryFilter();
-		cf.setQueryString(" where a.name='"+"美味的食品"+"'");
-		CategoryModel c = categoryService.findEntityListByFilter(cf).get(0);
-		
-		CategoryDetailFilter cdf = new CategoryDetailFilter();
-		cdf.setQueryString(" where a.name='"+"肉/豆制品"+"'");
-		CategoryDetailModel cdm = categoryDetailService.findEntityListByFilter(cdf).get(0);
 		
 		UserShopFilter usf = new UserShopFilter();
 		usf.setQueryString(" where a.name='"+"usst"+"'");
 		UserShopModel us =  userShopService.findEntityListByFilter(usf).get(0);
 		
-		for(int i=1; i<50; i++){
+		for(int i=1000; i<1400; i++){
 			ProductInfoModel p = new ProductInfoModel();
-			p.setName("H康康"+i);
+			p.setName(names[(int)(Math.random()*10%3)]+i);
 			p.setImageBig("images/t"+i%5+".jpg");
 			p.setRemainNumber(i);
 			p.setPrice(i);
 			p.setCounter(i);
 			p.setProductid("1234"+i);
-			p.setKeyword("不是康康康康"+i);
-			p.setDescription("土豆片土豆片");
+			p.setKeyword(names[(int)(Math.random()*10%3)]+i);
+			p.setDescription(names[(int)(Math.random()*10%3)]);
 			p.setIsSale("1");
+			
+			String category = cate[(int)(Math.random()*10%4)];
+
+			String dec = "";
+			
+			if(category.equals("美味的食品")){
+				dec = d1[(int)(Math.random()*10%4)];
+			}else if(category.equals("好喝的饮品")){
+				dec = d2[(int)(Math.random()*10%6)];
+			}else if(category.equals("必备日用品")){
+				dec = d3[(int)(Math.random()*10%5)];
+			}else if(category.equals("土豪送的礼品")){
+				dec = d4[(int)(Math.random()*10%4)];
+			}
+			
+			CategoryFilter cf = new CategoryFilter();
+			cf.setQueryString(" where a.name='"+category+"'");
+			CategoryModel c = categoryService.findEntityListByFilter(cf).get(0);
+			
+			CategoryDetailFilter cdf = new CategoryDetailFilter();
+			cdf.setQueryString(" where a.name='"+dec+"'");
+			CategoryDetailModel cdm = categoryDetailService.findEntityListByFilter(cdf).get(0);
+			
 			p.setCategoryId(c.getId());
 			p.setCategoryDetailId(cdm.getId());
 			p.setShopId(us.getId());

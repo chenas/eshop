@@ -18,7 +18,7 @@ jQuery(document).ready(function(){
 			return false;
 		else if(parseInt(pageNo) >1){
 			pageNo--;
-			console.log(pageNo);
+			//console.log(pageNo);
 			jQuery("#pageNo").attr('value', pageNo);
 			jQuery("#pageFrm").submit();
 			//document.pageFrm.submit();
@@ -32,7 +32,7 @@ jQuery(document).ready(function(){
 		else if(parseInt(pageNo) < parseInt(totalPage)){
 			pageNo++;
 			jQuery("#pageNo").attr('value', pageNo);
-			console.log(pageNo);
+			//console.log(pageNo);
 			jQuery("#pageFrm").submit();
 			//document.pageFrm2.submit();
 		}

@@ -28,25 +28,44 @@ public class RegAction extends BaseAction{
 	private IMailSenderService mailSenderService;
 	
 	//用于接收页面的参数
-	private UserBuyer userBuyer;
+	private String name;
+	private String email;
+	private String password;
+	private String password2;
 	
 	//验证码
 	private String securityCode;
 	
 	@Override
 	public String execute() {
+		if(null == name || "".equals(name)){
+			addFieldError("name", "请输入用户名");
+			return INPUT;
+		}
+		if(null == email || "".equals(email)){
+			addFieldError("email", "请输入邮箱地址");
+			return INPUT;
+		}
+		if(null == getPassword() || "".equals(getPassword())){
+			addFieldError("password", "请输入密码");
+			return INPUT;
+		}
+		if(!getPassword().equals(getPassword2())){
+			addFieldError("password2", "请确认密码");
+			return INPUT;
+		}
 		String serverCode = (String) doGetSessionObject("SESSION_SECURITY_CODE");
 		if(securityCode == null || securityCode.equals("") || !serverCode.equals(securityCode)){
 			addFieldError(securityCode, "验证码不正确");
 			return INPUT;
 		}
 		UserBuyerModel user = new UserBuyerModel();
-		user.setName(userBuyer.getName());
-		user.setEmail(userBuyer.getEmail());
-		user.setPassword(mdcrypt.MD5(userBuyer.getPassword())); //密码md5加密
+		user.setName(getName());
+		user.setEmail(email);
+		user.setPassword(mdcrypt.MD5(getPassword())); //密码md5加密
 		//保存注册信息
-		userBuyerService.insertEntity(user, userBuyer);
-		user = userBuyerService.findEntityById(userBuyerService.hasUser(userBuyer.getName(), null));
+		userBuyerService.insertEntity(user, null);
+		user = userBuyerService.findEntityById(userBuyerService.hasUser(getName(), null));
 		UserBuyer loginUser = new UserBuyer();
 		loginUser.setEmail(user.getEmail());
 		loginUser.setName(user.getName());
@@ -64,19 +83,11 @@ public class RegAction extends BaseAction{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void sendMail(UserBuyerModel user){
 		Map model = new HashMap();
-		model.put("username", userBuyer.getName());
-		model.put("toMailAddr", userBuyer.getEmail());
+		model.put("username", getName());
+		model.put("toMailAddr", email);
 		model.put("url", "http://localhost:8080/eshop/pages/commonsys/mailverify.action?id="+user.getId());
 		mailSenderService.setTemplateName("mail-register.vm");
 		mailSenderService.sendHtmlWithTemplate(user.getEmail(), model);
-	}
-	
-	public UserBuyer getUserBuyer() {
-		return userBuyer;
-	}
-
-	public void setUserBuyer(UserBuyer userBuyer) {
-		this.userBuyer = userBuyer;
 	}
 
 	public String getSecurityCode() {
@@ -85,6 +96,38 @@ public class RegAction extends BaseAction{
 
 	public void setSecurityCode(String securityCode) {
 		this.securityCode = securityCode;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
 	}
 	
 }
