@@ -42,7 +42,11 @@ jQuery(document).ready(function(){
 	jQuery("#forward").click(function(){
 		if(jQuery("#tempageNo").val() > totalPage){
 			return;
-		}else{
+		}else if(null == jQuery("#tempageNo").val() || ""==jQuery("#tempageNo").val()){
+			alert("please input the page number！");
+			return;
+		}
+		else{
 			jQuery("#pageNo").attr('value', jQuery("#tempageNo").val());
 			document.pageFrm2.submit();
 		}
@@ -52,6 +56,4 @@ jQuery(document).ready(function(){
 	jQuery("#cartList").click(function(){
 			window.location.href = "shopping/cartList.action";
 	});
-	
-	
 });

@@ -160,7 +160,12 @@
 			<div class="submit">
 				<form action="">
 					商品总价:&nbsp;￥<span><s:property value="#session.cartList.totalPrice" /></span>
+				<s:if test="#session.cartList != null && #session.cartList.items != null && #session.cartList.items.size()>0">
 					<input type="button"  onclick="window.location.href='<%=basePath %>pages/shopping/address.jsp'" value="结算"/>
+				</s:if>
+				<s:else>
+					<input type="button"  disabled="disabled" style="color: gray" value="结算"/>
+				</s:else>
 				</form>
 			</div>
 		</div>

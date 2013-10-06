@@ -69,5 +69,7 @@ a{text-decoration: none;color:#000;}ul{margin:0;padding:0#list-style-type: none;
 #register div p.normal span{background-position:-123px -40px;}
 #register div p.success span{background-position:-103px -40px;}
 #register div p.wrong span{background-position:-83px -40px;}
-#register #btn{float:right;height: 40px;width:196px;margin-top:5px;
+
+/* 将原来#btn 修改为.btn  */
+#register .btn{float:right;height: 40px;width:196px;margin-top:5px;
 	border:none;background: url("../images/btn.png") no-repeat scroll -103px 0;}

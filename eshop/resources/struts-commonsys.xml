@@ -42,6 +42,12 @@
 		<action name="mailverify" class="com.eshop.commonsys.action.MailVerifyAction">
 			<result name="success" >/pages/commonsys/mailVerify.jsp</result>
 		</action>
+		
+	<!-- excel文件上传 -->
+		<action name="excelContent" class="com.eshop.commonsys.action.ExcelAction" method="excelContent">
+			<result name="success" >/pages/demo/demos.jsp</result>
+		</action>
+		
 	</package>
 	
 </struts>

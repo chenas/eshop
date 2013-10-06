@@ -36,13 +36,13 @@
 						//Todd Mark
 						jQuery('#errorUserName').removeClass();
 						jQuery('#errorUserName').addClass('wrong');
-						//jQuery('#btn')[0].disabled = true;
+						jQuery('#submitBtn').attr('disabled', true);
 						return false;
 					} else {
 						//Todd Mark
 						jQuery('#errorUserName').removeClass();
 						jQuery('#errorUserName').addClass('success');
-					//	jQuery('#btn')[0].disabled = false;
+						jQuery('#submitBtn').attr('disabled', false);
 						return true;
 					}
 
@@ -60,7 +60,7 @@
 						jQuery('#errorMail').html('<span></span>该邮箱已被注册');
 						jQuery('#errorMail').removeClass();
 						jQuery('#errorMail').addClass('wrong');
-					//	jQuery('#btn')[0].disabled = true;
+						jQuery('#submitBtn').attr('disabled', true);
 						return false;
 					} else {
 						 //邮箱是否真实存在
@@ -73,7 +73,7 @@
 										jQuery('#errorMail').removeClass();		
 										jQuery('#errorMail').addClass('success');
 										jQuery('#errorMail').html('<span></span>');
-									//	jQuery('#btn')[0].disabled = false;
+										jQuery('#submitBtn').attr('disabled', false);
 										return true;
 									} else {
 										// alert("该邮箱不可用");
@@ -81,7 +81,7 @@
 										jQuery('#errorMail').html('<span></span>该邮箱不可用');
 										jQuery('#errorMail').removeClass();
 										jQuery('#errorMail').addClass('wrong');
-									//	jQuery('#btn')[0].disabled = true;
+										jQuery('#submitBtn').attr('disabled', true);
 										return false;
 									}
 								});
@@ -139,7 +139,7 @@
 				<form action="<%=basePath %>shopping/searchProduct.action" method="post" name="search">
 				&nbsp;
 				<input type="text" name="keyword" size="20" value="" onfocus="this.value=''"/>
-				<span><input type="button"  onclick="document.search.submit();" value="搜索" class="search" id="btn"/></span>
+				<span><input type="button"  onclick="document.search.submit();" value="搜索" class="search" class="btn"/></span>
 				</form>
 				</li>
 			</ul>
@@ -163,7 +163,7 @@
 				验证码&rarr; <img src="pages/commonsys/SecurityCodeImageAction.action" id="Verify"  style="cursor:hand;" alt="看不清，换一张" />
 				<input id="valiate" name="securityCode" type="text" />
 			</label>
-			<input type="submit" value="提交" id="btn"  />
+			<input type="submit" value="提交"  class="btn" id="submitBtn"  />
 		</form>
 		<div>
 			<p id="errorUserName" class="normal">

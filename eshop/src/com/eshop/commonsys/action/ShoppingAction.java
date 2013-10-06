@@ -73,7 +73,7 @@ public class ShoppingAction extends BaseAction {
 				}
 			}
 			for(OrderItemModel orderItemModel : orderItemModels){
-				productInfoModel = productInfoService.findEntityById(orderItemModel.getProductId());
+				productInfoModel = productInfoService.getEntityById(orderItemModel.getProductId());
 				productInfoModel.setRemainNumber(productInfoModel.getRemainNumber() - orderItemModel.getCount());
 				productInfoService.updateEntity(productInfoModel, user);
 			}

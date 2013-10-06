@@ -30,8 +30,11 @@ function initPage()
 	var oSpan = jQuery('#nav span')
 	if(oSearch){
 		oSearchText.bind('focus', function (){
-			oSearch.attr('disabled', false);
+			oSearch.attr('disabled', true);
 		});
+		if(null == oSearchText.val() || "" == oSearchText.val()){
+			oSearch.attr('disabled', true);
+		}
 		oSearchText.bind('blur', function (){
 			if(oSearchText.val() == ''){
 					oSearchText.val('请注意,不能搜索空值^_^');

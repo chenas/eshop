@@ -27,7 +27,7 @@
 	<div id="header">
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
-			<h5><!-- <a href="javascript:void(0);" id = "cartList">&nbsp;我的购物车</a> --></h5>
+			<h5><a href="shopping/cartList.action" >&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
 				<s:if test="#session.loginUser != null">
 					<h5><a href="javascript:void(0);"  id = "">&nbsp;您好！&nbsp;<s:property value="#session.loginUser.name" />&nbsp;&nbsp;</a></h5>

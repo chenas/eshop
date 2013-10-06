@@ -75,7 +75,12 @@ jQuery(function () {
 	   
    };
   </script> 
+<!-- 上传商品 -->
 
+<form action="pages/commonsys/excelContent.action" method="post" enctype="multipart/form-data">
+	<input type="file" name="fileExcel" size="50" />
+	<input class="submit_txt" name="submit_excel" type="submit" id="submit_excel" value="上传"  />
+</form>
 
 </body>
 </html>
