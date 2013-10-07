@@ -1,5 +1,6 @@
 package com.eshop.commonsys.action;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,10 +11,10 @@ import org.springframework.stereotype.Component;
 import com.base.framwork.action.BaseAction;
 import com.base.framwork.service.IUtilService;
 import com.eshop.domain.CartList;
-import com.eshop.domain.OrderMenu;
 import com.eshop.domain.UserBuyer;
 import com.eshop.model.BuyerAddrModel;
 import com.eshop.model.OrderItemModel;
+import com.eshop.model.OrderMenuModel;
 import com.eshop.model.ProductInfoModel;
 import com.eshop.service.IBuyerAddrService;
 import com.eshop.service.IOrderMenuService;
@@ -63,9 +64,20 @@ public class ShoppingAction extends BaseAction {
 		}
 		
 		List<OrderItemModel> orderItemModels = cartList.getItems();
+		//删除购买数量为0的商品
+		for(Iterator<OrderItemModel> iter = orderItemModels.iterator(); iter.hasNext();){
+			OrderItemModel item = iter.next();
+			if (0 == item.getCount()) {
+				iter.remove();
+			}
+		}
 		synchronized (orderItemModels) {
 			for(OrderItemModel orderItemModel : orderItemModels){
 				productInfoModel = productInfoService.findEntityById(orderItemModel.getProductId());
+				if(0 == orderItemModel.getCount()){
+					cartList.deleteItemById(orderItemModel.getProductId());
+					continue;
+				}
 				if(productInfoModel.getRemainNumber() < orderItemModel.getCount())
 				{
 					addActionMessage("抱歉，"+productInfoModel.getName()+"库存量不足");
@@ -79,7 +91,7 @@ public class ShoppingAction extends BaseAction {
 			}
 		}
 
-		OrderMenu orderMenu = new OrderMenu();
+		OrderMenuModel orderMenu = new OrderMenuModel();
 		BuyerAddrModel buyerAddr = new BuyerAddrModel();
 		buyerAddr.setSchoolArea(schoolArea);
 		buyerAddr.setBuilding(building);

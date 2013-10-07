@@ -31,12 +31,12 @@
 	 </field-validator>
   </field>
  
-<!--   <field name="phone"> 
+  <field name="phone"> 
   <field-validator type="regex"> 
    <param name="trim">true</param> 
-   <param name="expression"><![CDATA[(^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$)]]></param> 
+   <param name="expression"><![CDATA[(^((13[0-9])|(15[0-9])|(18[0-9]))\d{8}$)]]></param> 
    <message>请正确输入手机号码</message> 
   </field-validator> 
- </field>  -->
+ </field> 
   
 </validators>

@@ -33,6 +33,12 @@
 			</result>
 		</action>
 		
+		<!-- 设置购买数量 -->
+		<action name="*Product" class="com.eshop.action.OrderItemListAction" method="{1}Product">
+			<result name="success" type="json">
+			</result>
+		</action>
+		
 		<!-- 进入我的购物车 -->
 		<action name="cartList" class="com.eshop.action.OrderItemListAction" method="cartList">
 			<result name="list">

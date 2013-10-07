@@ -76,10 +76,27 @@ jQuery(function () {
    };
   </script> 
 <!-- 上传商品 -->
-
 <form action="pages/commonsys/excelContent.action" method="post" enctype="multipart/form-data">
 	<input type="file" name="fileExcel" size="50" />
 	<input class="submit_txt" name="submit_excel" type="submit" id="submit_excel" value="上传"  />
+</form>
+
+
+<!-- 设置购物车数量 -->
+<form action="shopping/addProduct.action" method="post" >
+	<input name="id" type="hidden" value="43077e69-02c5-45e6-8205-330105a7c8ac"/>
+	<input class="submit_txt" name="submit_excel" type="submit" id="submit_excel" value="提交"  />
+</form>
+<!-- 设置购物车数量 -->
+<form action="shopping/decProduct.action" method="post" >
+	<input name="id" type="hidden" value="43077e69-02c5-45e6-8205-330105a7c8ac"/>
+	<input class="submit_txt" name="submit_excel" type="submit" id="submit_excel" value="提交dec"  />
+</form>
+<!-- 设置购物车数量 -->
+<form action="shopping/setProduct.action" method="post" >
+	<input name="id" type="hidden" value="43077e69-02c5-45e6-8205-330105a7c8ac"/>
+	<label>购买数量</label><input name="buyNum" type="text" >
+	<input class="submit_txt" name="submit_excel" type="submit" id="submit_excel" value="提交set"  />
 </form>
 
 </body>

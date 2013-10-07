@@ -48,7 +48,7 @@ public class OrderMenuModel extends BaseModel {
 		this.buyerId = buyerId;
 	}
 
-	@Column(name = "orderdate", length = 16, nullable = false)
+	@Column(name = "orderdate", length = 30, nullable = false)
 	public String getOrderdate() {
 		return orderdate;
 	}
@@ -57,7 +57,7 @@ public class OrderMenuModel extends BaseModel {
 		this.orderdate = orderdate;
 	}
 
-	@Column(name = "arrivtime", length = 100, nullable = false)
+	@Column(name = "arrivtime", length = 100, nullable = true)
 	public String getArrivtime() {
 		return arrivtime;
 	}
@@ -84,7 +84,7 @@ public class OrderMenuModel extends BaseModel {
 		this.totalpris = totalpris;
 	}
 
-	@Column(name = "qrcode", length = 100, nullable = false)
+	@Column(name = "qrcode", length = 100, nullable = true)
 	public String getQrcode() {
 		return qrcode;
 	}

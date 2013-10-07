@@ -42,6 +42,9 @@ public class OrderItemListAction extends EntityListAction<OrderItemModel> {
 	//从页面传入的字符串，记录许多商品的购买数量（来自cookie）
 	private String buyNums;
 
+	//操作状态，加减商品是否成功.1表示成功
+	private String isSuccess = "1";
+	
 	//加入购物车
 	public String saveOrderItem() throws Exception{
 		IUser user = (IUser) doGetSessionObject("loginUser");
@@ -86,11 +89,61 @@ public class OrderItemListAction extends EntityListAction<OrderItemModel> {
 		}else if(null != id &&!"".equals(id) && null != buyNums && !"".equals(buyNums)){
 			cartList.getItems().addAll(getOrderItem(id, buyNums));
 		}
-		ServletActionContext.getContext().put("cartList", cartList);
+		doPutSessionObject("cartList", cartList);
 		return LIST;
 	}
 	
 
+	//增加数量
+	public String addProduct(){
+		cartList = (CartList) doGetSessionObject("cartList");
+		if(cartList == null){
+			isSuccess = "0";
+			return SUCCESS;
+		}
+		ProductInfoModel productInfoModel = productInfoService.findEntityById(id);
+		cartList.addNum(id, 1);
+		if(productInfoModel.getRemainNumber() < cartList.getItemById(id).getCount()){
+			cartList.decreasNum(id, 1);
+			isSuccess = "0";
+		}
+		isSuccess = "1";
+		doPutSessionObject("cartList", cartList);
+		return SUCCESS;
+	}
+
+	//减少数量
+	public String decProduct(){
+		cartList = (CartList) doGetSessionObject("cartList");
+		if(cartList == null){
+			isSuccess = "0";
+			return SUCCESS;
+		}
+		cartList.decreasNum(id, 1);
+		isSuccess = "1";
+		doPutSessionObject("cartList", cartList);
+		return SUCCESS;
+	}
+	
+	//设置购物车中某个商品的购买数量
+	public String setProduct(){
+		cartList = (CartList) doGetSessionObject("cartList");
+		if(cartList == null){
+			isSuccess = "0";
+			return SUCCESS;
+		}
+		if(buyNum < 0){
+			isSuccess = "0";
+			return SUCCESS;
+		}
+		OrderItemModel orderItemModel = cartList.getItemById(id);
+		orderItemModel.setCount(buyNum);
+		orderItemModel.setItempris(orderItemModel.getPrice()*buyNum);
+	//	cartList.addOrderItem(orderItemModel);
+		doPutSessionObject("cartList", cartList);
+		return SUCCESS;
+	}
+	
 	/**
 	 * 根据前台cookie传入的id字符串与购买数量字符串初始化购物车内容
 	 * @param productIds
@@ -149,5 +202,13 @@ public class OrderItemListAction extends EntityListAction<OrderItemModel> {
 
 	public void setBuyNums(String buyNums) {
 		this.buyNums = buyNums;
+	}
+
+	public String getIsSuccess() {
+		return isSuccess;
+	}
+
+	public void setIsSuccess(String isSuccess) {
+		this.isSuccess = isSuccess;
 	}
 }

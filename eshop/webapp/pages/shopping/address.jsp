@@ -18,6 +18,7 @@
 		
 	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/shopping.js"></script>
+	<script type="text/javascript" src="<%=basePath %>js/shopping/cartList.js"></script>
 
 	<script type="text/javascript">
 	
@@ -163,31 +164,31 @@
 							￥<s:property value='price' />
 						</div>
 						<div class="count">
-							<a href="javascript:void(0);">-</a>
-							<input type="text" size="1" value="<s:property value='count' />" />
-							<a href="javascript:void(0);">+</a>
+							<a href="javascript:void(0);"  onclick="decProduct('<s:property value='productId' />')" >-</a>
+							<input type="text" size="1" value="<s:property value='count' />" name="<s:property value='productId' />"  onblur="setProduct('<s:property value='productId' />')"/>
+							<a href="javascript:void(0);"  onclick="addProduct('<s:property value='productId' />')" >+</a>
 						</div>
 						<div class="discount">
 							￥0
 						</div>
 						<div class="sum">
-							￥ <span><s:property value='itempris' /></span> 
+							<div id="<s:property value='productId' />">￥ <span ><s:property value='itempris' /></span></div>
 						</div>
 				</li>
 				</s:iterator>
 			</ul>
-			<div  class="submit">
+			<div class="submit">
 					商品总价:&nbsp;￥<span><s:property value="#session.cartList.totalPrice" /></span>
 				<s:if test="#session.cartList != null && #session.cartList.items != null && #session.cartList.items.size()>0">
-					<input type="button" onclick="document.orderFrm.submit();" value="下单"/>
+					<input type="button"  onclick="document.orderFrm.submit();" value="结算"/>
 				</s:if>
 				<s:else>
-					<input type="button"  disabled="disabled" style="color: gray" value="下单"/>
+					<input type="button"  disabled="disabled" style="color: gray" value="结算"/>
 				</s:else>
 			</div>
 		</div>
 	</div>
 </form>
-<s:debug></s:debug>
+	<s:debug></s:debug>
 </body>
 </html>

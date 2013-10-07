@@ -24,8 +24,8 @@ public class CartList {
 			for (Iterator<OrderItemModel> iter = items.iterator(); iter.hasNext();) {
 				OrderItemModel item = iter.next();
 				if (item.getProductId().equals(ci.getProductId())) {
-					item.setCount(ci.getCount());
-					return;
+					iter.remove();
+					break;
 				}
 			}
 		}
@@ -57,9 +57,10 @@ public class CartList {
 			for (Iterator<OrderItemModel> iter = items.iterator(); iter.hasNext();) {
 				OrderItemModel item = iter.next();
 				if (item.getProductId().equals(productId)) {
-					if(item.getIsRemain().equals("1")){
+					//if(item.getIsRemain().equals("1")){
 						item.setCount(item.getCount() + num);
-					}
+						item.setItempris(item.getItempris()+item.getPrice()*num);
+				//	}
 				}
 			}
 		}
@@ -79,6 +80,7 @@ public class CartList {
 				if (item.getProductId().equals(productId)) {
 					if(item.getCount() >= num){
 						item.setCount(item.getCount() - num);
+						item.setItempris(item.getItempris()-item.getPrice()*num);
 					}
 				}
 			}
