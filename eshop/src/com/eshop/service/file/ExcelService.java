@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -115,10 +116,17 @@ public class ExcelService implements IExcelService{
 	 */
 	@Override
 	public double getDoubleValue(Cell cell) {
-		if(null == cell.getStringCellValue() || "".equals(cell.getStringCellValue())){
+		if(null == cell){
 			return 0;
 		}
-		return Double.valueOf(cell.getStringCellValue());
+		if(cell.getCellType() == HSSFCell.CELL_TYPE_STRING){
+			if(null == cell.getStringCellValue() || "".equals(cell.getStringCellValue())){
+				return 0;
+			}
+			return Double.valueOf(cell.getStringCellValue());
+		}else{
+			return cell.getNumericCellValue();
+		}
 	}
 
 	/**
@@ -128,10 +136,17 @@ public class ExcelService implements IExcelService{
 	 */
 	@Override
 	public int getIntValue(Cell cell) {
-		if(null == cell.getStringCellValue() || "".equals(cell.getStringCellValue())){
+		if(null == cell){
 			return 0;
 		}
-		return Integer.valueOf(cell.getStringCellValue());
+		if(cell.getCellType() == HSSFCell.CELL_TYPE_STRING){
+			if(null == cell.getStringCellValue() || "".equals(cell.getStringCellValue())){
+				return 0;
+			}
+			return Integer.valueOf(cell.getStringCellValue());
+		}else{
+			return Integer.valueOf(cell.getStringCellValue());
+		}
 	}
 	
 	/**
@@ -141,6 +156,12 @@ public class ExcelService implements IExcelService{
 	 */
 	@Override
 	public String getStrValue(Cell cell) {
+		if(null == cell){
+			return "";
+		}
+		if(null == cell.getStringCellValue() || "".equals(cell.getStringCellValue())){
+			return "";
+		}
 		return cell.getStringCellValue();
 	}
 

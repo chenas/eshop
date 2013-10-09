@@ -85,7 +85,7 @@ public class RegAction extends BaseAction{
 		Map model = new HashMap();
 		model.put("username", getName());
 		model.put("toMailAddr", email);//http://202.120.223.108/eshop/welcome.action
-		model.put("url", "http://202.120.223.108/eshop/pages/commonsys/mailverify.action?id="+user.getId());
+		model.put("url", "http://www.usstlife.com/eshop/pages/commonsys/mailverify.action?id="+user.getId());
 		mailSenderService.setTemplateName("mail-register.vm");
 		mailSenderService.sendHtmlWithTemplate(user.getEmail(), model);
 	}

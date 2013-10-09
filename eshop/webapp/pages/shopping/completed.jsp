@@ -107,7 +107,7 @@
 				&nbsp;&nbsp;您的订单号：<s:property value="#request.orderId" />
 			</span><br />
 			我们将尽快把您选购的商品送至<br />
-			<span><s:property value="#request.address" /></span><br />
+			<span><s:property value="#request.addressDetail" /></span><br />
 			请保持手机状态正常呦:)
 		</div>
 	</div>

@@ -42,7 +42,8 @@ jQuery(document).ready(function(){
 	jQuery("#forward").click(function(){
 		if(jQuery("#tempageNo").val() > totalPage){
 			return;
-		}else if(null == jQuery("#tempageNo").val() || ""==jQuery("#tempageNo").val()){
+		}else if(null == jQuery("#tempageNo").val() || ""==jQuery("#tempageNo").val() || isNaN(jQuery("#tempageNo").val())){
+			jQuery("#tempageNo").attr('value', ''); 
 			alert("please input the page number！");
 			return;
 		}

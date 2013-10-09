@@ -20,9 +20,10 @@ import org.xbill.DNS.Lookup;
 import org.xbill.DNS.Record;
 import org.xbill.DNS.Type;
 
+import com.base.framwork.service.BaseService;
 import com.base.framwork.util.ConfigUtil;
 
-public class MailSenderService implements IMailSenderService{
+public class MailSenderService extends BaseService implements IMailSenderService{
 	private JavaMailSender mailSender;//spring配置中定义
 	private VelocityEngine velocityEngine;//spring配置中定义
 	private SimpleMailMessage simpleMailMessage;//spring配置中定义
@@ -195,7 +196,7 @@ public class MailSenderService implements IMailSenderService{
 			messageHelper.setSubject(subject);
 			messageHelper.setText(content,true);
 			FileSystemResource file = new FileSystemResource(new File(filePath));
-//			System.out.println("file.getFilename==="+file.getFilename());
+//			log.info("file.getFilename==="+file.getFilename());
 			messageHelper.addAttachment(file.getFilename(),file);
 		} catch (MessagingException e) {
 			e.printStackTrace();
@@ -213,10 +214,10 @@ public class MailSenderService implements IMailSenderService{
 		if (!email.matches("[\\w\\.\\-]+@([\\w\\-]+\\.)+[\\w\\-]+")) {
 			return false;
 		}
-		String log = "";
+		String logStr = "";
 		String host = "";
 		String hostName = email.split("@")[1];// 去掉@后面的
-		System.out.println("hostName:" + hostName);
+		log.info("hostName:" + hostName);
 		Record[] result = null;
 		SMTPClient client = new SMTPClient();
 		try {
@@ -224,14 +225,13 @@ public class MailSenderService implements IMailSenderService{
 			Lookup lookup = new Lookup(hostName, Type.MX);
 			lookup.run();
 			if (lookup.getResult() != Lookup.SUCCESSFUL) {
-				System.out.println("找不到MX记录");
+				log.info("找不到MX记录");
 				return false;
 			} else {
 				result = lookup.getAnswers();
 				for (int i = 0; i < result.length; i++) {
-					System.out
-							.println(result[i].getAdditionalName().toString());
-					System.out.println(result[i]);
+					log.info(result[i].getAdditionalName().toString());
+					log.info(result[i]);
 				}
 			}
 			// 连接到邮箱服务器
@@ -242,19 +242,20 @@ public class MailSenderService implements IMailSenderService{
 					client.disconnect();
 					continue;
 				} else {
-					log += "邮箱mx记录" + hostName + "存在";
-					log += "成功连接到" + host;
-					break;
+					logStr += "邮箱mx记录" + hostName + "存在";
+					logStr += "成功连接到" + host;
+					return true;
+					//break;
 				}
 			}
-			System.out.println(client.getReplyString());
+			log.info(client.getReplyString());
 			client.login(ConfigUtil.getConfig("mail.properties", "mail.check.host"));
-			System.out.println(client.getReplyString());
+			log.info(client.getReplyString());
 			client.setSender(ConfigUtil.getConfig("mail.properties", "mail.check.sender"));// 发件人
-			log += "=" + client.getReplyString();
+			logStr += "=" + client.getReplyString();
 			client.addRecipient(email);
-			log += ">RCPT TO: <" + email + ">\n";
-			log += "=" + client.getReplyString();
+			logStr += ">RCPT TO: <" + email + ">\n";
+			logStr += "=" + client.getReplyString();
 			if (250 == client.getReplyCode()) {
 				return true;
 			}
@@ -265,6 +266,7 @@ public class MailSenderService implements IMailSenderService{
 				client.disconnect();
 			} catch (IOException e) {
 			} // 打印日志
+			log.info(logStr);
 		}
 		return false;
 	}

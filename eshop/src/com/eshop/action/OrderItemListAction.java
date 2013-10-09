@@ -54,6 +54,8 @@ public class OrderItemListAction extends EntityListAction<OrderItemModel> {
 			buyNum = 0;
 			return SUCCESS;
 		}
+		//点击量加1
+		productInfoModel.setCounter(productInfoModel.getCounter()+1);
 		OrderItemModel orderItemModel = new OrderItemModel();
 		orderItemModel.setProductId(productInfoModel.getId());
 		log.info("product id："+productInfoModel.getId()+"  name:  "+productInfoModel.getName());
@@ -73,6 +75,7 @@ public class OrderItemListAction extends EntityListAction<OrderItemModel> {
 			cartList = new CartList();
 		}
 		cartList.addOrderItem(orderItemModel);
+		productInfoService.insertEntity(productInfoModel, null);
 		doPutSessionObject("cartList", cartList);
 		return SUCCESS;
 	}

@@ -9,5 +9,12 @@ import com.eshop.model.CategoryDetailModel;
  */
 
 public interface ICategoryDetailService   extends IEntityService<CategoryDetailModel>{
+	
+	/**
+	 * 由名字获取CategoryDtailModel
+	 * @param cateName
+	 * @return
+	 */
+	public CategoryDetailModel getByName(String cateName);
 
 }

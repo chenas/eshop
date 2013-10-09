@@ -34,12 +34,16 @@ function initPage()
 		});
 		if(null == oSearchText.val() || "" == oSearchText.val()){
 			oSearch.attr('disabled', true);
+		}else{
+			oSearch.attr('disabled', false);
 		}
 		oSearchText.bind('blur', function (){
 			if(oSearchText.val() == ''){
 					oSearchText.val('请注意,不能搜索空值^_^');
 					oSearch.attr('disabled', true);
-			};
+			}else{
+				oSearch.attr('disabled', false);
+			}
 		});
 	};
 };
@@ -68,8 +72,8 @@ function getNavValue(obj){
 			var value = this.innerHTML;
 			if(value != ''){
 				//console.log(value);
-				window.location.href = "shopping/showProduct.action?isShowProduct=1&keyword="+encodeURI(encodeURI(value));
-				return value;
+				window.location.href = "/eshop/shopping/showProduct.action?keyword="+encodeURI(encodeURI(value))+"&isShowProduct=1";
+				return true;
 			}else{
 				//console.log('空值');
 				return false;

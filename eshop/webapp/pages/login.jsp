@@ -88,13 +88,5 @@
 			</div>
 		</form>
 	</div>
-	<%  
-String path1=application.getRealPath(request.getRequestURI());  
-String realPath1 = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);   
-out.println("web URL 路径:"+realPath1); 
-String url = request.getScheme()+"://"+ request.getServerName()+request.getRequestURI();
-out.println("web URL 路径:"+url); 
-%> 
-	
 </body>
 </html>

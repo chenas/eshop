@@ -24,7 +24,7 @@ public class TestCategoryService {
 	@Test
 	public void testInsert(){
 		UserBuyer user = new UserBuyer();
-		user.setRealname("jack");
+		user.setRealname("Admin");
 		List<CategoryModel> cms = new ArrayList<CategoryModel>();
 			CategoryModel cm = new CategoryModel(); 
 			cm.setName("美味的食品");

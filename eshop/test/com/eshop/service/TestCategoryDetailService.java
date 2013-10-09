@@ -33,7 +33,7 @@ public class TestCategoryDetailService {
 		cdf.setQueryString(" where a.name='"+"美味的食品"+"'");
 		System.out.println( categoryService.findEntityListByFilter(cdf));
 		CategoryModel c = categoryService.findEntityListByFilter(cdf).get(0);
-		user.setRealname("jack");
+		user.setRealname("Admin");
 		List<CategoryDetailModel> cms = new ArrayList<CategoryDetailModel>();
 			CategoryDetailModel cm = new CategoryDetailModel(); 
 			cm.setName("饼干/糕点");
@@ -78,7 +78,7 @@ public class TestCategoryDetailService {
 		CategoryDetailFilter cdf = new CategoryDetailFilter();
 		cdf.setQueryString(" where a.name='"+"好喝的饮品"+"'");
 		CategoryModel c = categoryService.findEntityListByFilter(cdf).get(0);
-		user.setRealname("jack");
+		user.setRealname("Admin");
 		List<CategoryDetailModel> cms = new ArrayList<CategoryDetailModel>();
 			CategoryDetailModel cm = new CategoryDetailModel(); 
 			cm.setName("水");
@@ -130,7 +130,7 @@ public class TestCategoryDetailService {
 		cdf.setQueryString(" where a.name='"+"必备日用品"+"'");
 		System.out.println( categoryService.findEntityListByFilter(cdf));
 		CategoryModel c = categoryService.findEntityListByFilter(cdf).get(0);
-		user.setRealname("jack");
+		user.setRealname("Admin");
 		List<CategoryDetailModel> cms = new ArrayList<CategoryDetailModel>();
 			CategoryDetailModel cm = new CategoryDetailModel(); 
 			cm.setName("插线板");
@@ -176,7 +176,7 @@ public class TestCategoryDetailService {
 		cdf.setQueryString(" where a.name='"+"土豪送的礼品"+"'");
 		System.out.println( categoryService.findEntityListByFilter(cdf));
 		CategoryModel c = categoryService.findEntityListByFilter(cdf).get(0);
-		user.setRealname("jack");
+		user.setRealname("Admin");
 		List<CategoryDetailModel> cms = new ArrayList<CategoryDetailModel>();
 			CategoryDetailModel cm = new CategoryDetailModel(); 
 			cm.setName("明信片");
@@ -212,7 +212,7 @@ public class TestCategoryDetailService {
 /*	@Test
 	public void testFindAll(){
 		UserBuyer user = new UserBuyer();
-		user.setRealname("jack");
+		user.setRealname("Admin");
 		List<CategoryDetailModel> cms = categoryDetailService.findEntityList();
 		System.out.println(cms.size());
 		for(int i=0; i<cms.size(); i++){

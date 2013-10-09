@@ -1,6 +1,7 @@
 /**
  * 操作购物车列表
  */
+
 function addProduct(id) {
 	jQuery.ajax({
 		url : 'shopping/addProduct.action',
@@ -64,6 +65,10 @@ function decProduct(id) {
 function setProduct(id) {
 	var num = 0;
 	num = document.getElementsByName(id)[0].value;
+	if(isNaN(num)){
+		alert("亲！请输入数字，要不然就按照之前的购买数量算账。。。");
+		return false;
+	}
 	jQuery.ajax({
 		url : 'shopping/setProduct.action',
 		type : 'post',

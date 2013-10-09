@@ -14,8 +14,15 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.struts2.ServletActionContext;
 
 import com.base.framwork.action.BaseAction;
+import com.eshop.domain.UserShop;
+import com.eshop.filter.CategoryDetailFilter;
+import com.eshop.model.CategoryModel;
 import com.eshop.model.ProductInfoModel;
+import com.eshop.model.UserShopModel;
+import com.eshop.service.ICategoryDetailService;
+import com.eshop.service.ICategoryService;
 import com.eshop.service.IProductInfoService;
+import com.eshop.service.IUserShopService;
 import com.eshop.service.file.IExcelService;
 
 /**
@@ -30,6 +37,15 @@ public class ExcelAction extends BaseAction {
 
 	@Resource
 	private IProductInfoService productInfoService;
+	
+	@Resource
+	private ICategoryService categoryService;
+	
+	@Resource
+	private ICategoryDetailService categoryDetailService;
+	
+	@Resource
+	private IUserShopService userShopService;
 	
 	//excel表格
 	private File fileExcel;
@@ -46,10 +62,24 @@ public class ExcelAction extends BaseAction {
 		
 		List<ProductInfoModel> productInfoModels = new ArrayList<ProductInfoModel>();
 		
+
+		CategoryDetailFilter cdf = new CategoryDetailFilter();
+		cdf.setQueryString(" where a.name='"+"美味的食品"+"'");
+		CategoryModel c1 = categoryService.findEntityListByFilter(cdf).get(0);
+		cdf.setQueryString(" where a.name='"+"好喝的饮品"+"'");
+		CategoryModel c2 = categoryService.findEntityListByFilter(cdf).get(0);
+		cdf.setQueryString(" where a.name='"+"必备日用品"+"'");
+		CategoryModel c3 = categoryService.findEntityListByFilter(cdf).get(0);
+		cdf.setQueryString(" where a.name='"+"土豪送的礼品"+"'");
+		CategoryModel c4 = categoryService.findEntityListByFilter(cdf).get(0);
+		
+		UserShopModel shop = (UserShopModel) userShopService.findEntityList().get(0);
+		
 		Workbook workbook = excelService.getWorkbook(fileExcel);
 		Sheet sheet = workbook.getSheetAt(0);
 		int rowNum = sheet.getLastRowNum();
-		for(int i=1; i<=rowNum; i++){
+		System.out.println(rowNum);
+		for(int i=1; i<rowNum; i++){
 			Row row = sheet.getRow(i);
 			ProductInfoModel productInfoModel = new ProductInfoModel();
 			productInfoModel.setProductid(excelService.getStrValue(row.getCell(0)));
@@ -59,7 +89,26 @@ public class ExcelAction extends BaseAction {
 			productInfoModel.setRemainNumber(excelService.getIntValue(row.getCell(4)));
 			productInfoModel.setImageBig(excelService.getStrValue(row.getCell(5)));
 			productInfoModel.setDescription(excelService.getStrValue(row.getCell(6)));
-			productInfoModel.setKeyword(excelService.getStrValue(row.getCell(7)));
+			//productInfoModel.setKeyword(excelService.getStrValue(row.getCell(7)));
+			if("美味的食品".equals(excelService.getStrValue(row.getCell(8)).trim())){
+				productInfoModel.setCategoryId(c1.getId());
+			}else if("好喝的饮品".equals(excelService.getStrValue(row.getCell(8)).trim())){
+				productInfoModel.setCategoryId(c2.getId());
+				
+			}else if("必备日用品".equals(excelService.getStrValue(row.getCell(8)).trim())){
+				productInfoModel.setCategoryId(c3.getId());
+				
+			}else if("土豪送的礼品".equals(excelService.getStrValue(row.getCell(8)).trim())){
+				productInfoModel.setCategoryId(c4.getId());
+			}
+			String c2name = excelService.getStrValue(row.getCell(9)).trim();
+			
+			productInfoModel.setIsOnsale("0");
+			productInfoModel.setIsSale("1");
+			productInfoModel.setCategoryDetailId(categoryDetailService.getByName(c2name).getId());
+			
+			productInfoModel.setShopId(shop.getId());
+			
 			productInfoModels.add(productInfoModel);
 		}
 		for(int i=0; i<productInfoModels.size(); i++){

@@ -92,7 +92,7 @@ function clickStyle()
 		};
 	};
 };
-
+//加减商品
 function validateStock()
 {
 	var aStock = jQuery('.details  span  strong');
@@ -115,7 +115,7 @@ function validateStock()
 		aInput[i].onblur = function ()
 		{	
 			var value = this.value;
-			if(isNaN(value) || value > aStock[this.index].innerHTML){
+			if(isNaN(value) || value<0 || value > aStock[this.index].innerHTML){
 				this.value = 1;
 				alert('请注意您输入的格式！');
 			};

@@ -2,7 +2,9 @@ package com.base.framwork.service.mail;
 
 import java.util.Map;
 
-public interface IMailSenderService{
+import com.base.framwork.service.IBaseService;
+
+public interface IMailSenderService extends IBaseService{
 	
 
 	/**

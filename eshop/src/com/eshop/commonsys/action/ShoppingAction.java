@@ -120,7 +120,7 @@ public class ShoppingAction extends BaseAction {
 		
 		orderMenuService.insertEntity(orderMenu, user);
 		ServletActionContext.getContext().put("orderId", orderMenu.getOrderid());
-		ServletActionContext.getContext().put("address", schoolArea+"  "+building+" "+address);
+		ServletActionContext.getContext().put("addressDetail", schoolArea+"  "+building+" "+address);
 		getSession().remove("cartList");
 		return SUCCESS;
 	}

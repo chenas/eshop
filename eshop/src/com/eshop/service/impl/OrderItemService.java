@@ -27,7 +27,7 @@ public class OrderItemService extends EntityService<OrderItemModel> implements I
 	public List findOrderItemByUserId(String userId){
 		OrderItemFilter ItemFilter = new OrderItemFilter();
 		List<OrderItemModel> itemList = new ArrayList<OrderItemModel>();
-		ItemFilter.setQueryString(" where a.buyer_id='"+userId+"' and a.is_finished='1'");
+		ItemFilter.setQueryString(" where a.buyerId='"+userId+"' and a.isFinished='1'");
 		List<OrderItemModel> items = findEntityListByFilter(ItemFilter);
 		if(null != items && items.size()>0){
 			itemList.addAll(items);

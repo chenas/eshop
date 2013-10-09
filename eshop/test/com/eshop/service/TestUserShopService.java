@@ -23,14 +23,14 @@ public class TestUserShopService {
 	@Test
 	public void testInsert(){
 		UserBuyer user = new UserBuyer();
-		user.setName("jack");
-		user.setRealname("Tom");
+		user.setName("Admin");
+		user.setRealname("Admin");
 		 
 		UserShopModel us = new UserShopModel();
-		us.setName("usst");
-		us.setStoreName("my");
-		us.setStoreId("123");
-		us.setPassword("1232455654");
+		us.setName("shop1");
+		us.setStoreName("shop1");
+		us.setStoreId("A-001");
+		us.setPassword("usstshop1");
 		us.setIsEshop("0");
 		userShopService.insertEntity(us, user);
 		
