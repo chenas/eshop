@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Component;
 
 import com.base.framwork.action.EntityListAction;
@@ -14,9 +13,9 @@ import com.eshop.domain.CartList;
 import com.eshop.filter.OrderItemFilter;
 import com.eshop.model.OrderItemModel;
 import com.eshop.model.ProductInfoModel;
-import com.eshop.model.UserBuyerModel;
 import com.eshop.service.IOrderItemService;
 import com.eshop.service.IProductInfoService;
+import com.eshop.util.DoubleUtil;
 import com.eshop.util.GetMacAddrUtil;
 
 @Component
@@ -61,7 +60,7 @@ public class OrderItemListAction extends EntityListAction<OrderItemModel> {
 		log.info("product id："+productInfoModel.getId()+"  name:  "+productInfoModel.getName());
 		orderItemModel.setProductName(productInfoModel.getName());
 		orderItemModel.setPrice(productInfoModel.getPrice());
-		orderItemModel.setItempris(buyNum*productInfoModel.getPrice());
+		orderItemModel.setItempris(DoubleUtil.mul(buyNum, productInfoModel.getPrice()));
 		orderItemModel.setCount(buyNum);
 		orderItemModel.setImageurl(productInfoModel.getImageBig());
 		orderItemModel.setIpAddr(getRequest().getRemoteAddr()); //设置ip地址
@@ -139,9 +138,15 @@ public class OrderItemListAction extends EntityListAction<OrderItemModel> {
 			isSuccess = "0";
 			return SUCCESS;
 		}
+		ProductInfoModel productInfoModel = productInfoService.findEntityById(id);
+		if(productInfoModel.getRemainNumber() < buyNum){
+			isSuccess = "0";
+			return SUCCESS;
+		}
 		OrderItemModel orderItemModel = cartList.getItemById(id);
 		orderItemModel.setCount(buyNum);
-		orderItemModel.setItempris(orderItemModel.getPrice()*buyNum);
+		orderItemModel.setItempris(DoubleUtil.mul(orderItemModel.getPrice(),buyNum));
+		isSuccess = "1";
 	//	cartList.addOrderItem(orderItemModel);
 		doPutSessionObject("cartList", cartList);
 		return SUCCESS;
@@ -166,7 +171,7 @@ public class OrderItemListAction extends EntityListAction<OrderItemModel> {
 			orderItemModel.setProductId(productInfoModel.getId());
 			orderItemModel.setProductName(productInfoModel.getName());
 			orderItemModel.setPrice(productInfoModel.getPrice());
-			orderItemModel.setItempris(Integer.parseInt(buyNum[i])*productInfoModel.getPrice());
+			orderItemModel.setItempris(DoubleUtil.mul(Integer.parseInt(buyNum[i]), productInfoModel.getPrice()));
 			orderItemModel.setCount(Integer.parseInt(buyNum[i]));
 			orderItemModel.setImageurl(productInfoModel.getImageBig());
 			orderItemModel.setIpAddr(getRequest().getRemoteAddr()); //设置ip地址

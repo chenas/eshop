@@ -8,7 +8,7 @@
 	<title>注册成功</title>
 </head>
 <body>
-		<a>贡献您注册成功，请尽快登录注册邮箱完成邮箱验证！正在为您跳转...&nbsp;&nbsp;&nbsp;&nbsp; <font size="20" color="black" id="timer">5</font></a>
+		<a>恭喜您注册成功，请尽快登录注册邮箱完成邮箱验证！正在为您跳转...&nbsp;&nbsp;&nbsp;&nbsp; <font size="20" color="black" id="timer">5</font></a>
 	
 		<script type="text/javascript">
 	//	setInterval("show()", 1000);

@@ -79,7 +79,7 @@ public class EntityService<T extends BaseModel> extends BaseService implements I
 		beforeInsertEntity(entity, optUser);
 		crudDao.save(entity);
 		afterInsertEntity(entity, optUser);;
-		return null;
+		return null;//(T) crudDao.findObjListByHql("from "+getTClass().getName()+" as a where a.createTime = '"+entity.getCreateTime()+"'").get(0);
 	}
 
 	//����һ����¼֮ǰ�Ĳ���

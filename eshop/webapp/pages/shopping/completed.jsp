@@ -19,8 +19,13 @@
 	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/shopping.js"></script>
 
+	<meta name="baidu-site-verification" content="5h4Yx0RLb5" />
+	<meta name="Keywords" content="上理生活，usstlife，零食，校园购物，校园淘宝，学生超市，礼品" />
+	<meta name="Description" content="
+上理生活 USSTlife是上海理工大学勤工助学中心网络事业部搭建的校园电子商务平台，竭诚服务上理师生。" />
 	<script type="text/javascript">
-	
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F901a05d7f349b8a0909a0a43560f9168' type='text/javascript'%3E%3C/script%3E"));
 	</script>
 </head>
 <body>
@@ -47,7 +52,7 @@
 					<a href="main.jsp">首&nbsp;&nbsp;页</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);">活&nbsp;&nbsp;动</a>
+					<a href="pages/activity.jsp">活&nbsp;&nbsp;动</a>
 				</li>
 				<li>
 					<a href="shopping/allProduct.action">全部商品</a>
@@ -67,7 +72,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:void(0);">关于我们</a>
+					<a href="pages/aboutUs.jsp">关于我们</a>
 				</li>
 				<li>
 				<form action="<%=basePath %>shopping/searchProduct.action" method="post" name="search">

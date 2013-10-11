@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.eshop.model.OrderItemModel;
+import com.eshop.util.DoubleUtil;
 
 /**
  * 购物车
@@ -59,7 +60,7 @@ public class CartList {
 				if (item.getProductId().equals(productId)) {
 					//if(item.getIsRemain().equals("1")){
 						item.setCount(item.getCount() + num);
-						item.setItempris(item.getItempris()+item.getPrice()*num);
+						item.setItempris(DoubleUtil.add(item.getItempris(), DoubleUtil.mul(item.getPrice(), num)));
 				//	}
 				}
 			}
@@ -80,7 +81,7 @@ public class CartList {
 				if (item.getProductId().equals(productId)) {
 					if(item.getCount() >= num){
 						item.setCount(item.getCount() - num);
-						item.setItempris(item.getItempris()-item.getPrice()*num);
+						item.setItempris(DoubleUtil.sub(item.getItempris(), DoubleUtil.mul(item.getPrice(), num)));
 					}
 				}
 			}
@@ -108,7 +109,7 @@ public class CartList {
 		totalPrice = 0.0;
 		for (Iterator<OrderItemModel> it = items.iterator(); it.hasNext();) {
 			OrderItemModel current = it.next();
-			totalPrice += current.getItempris();
+			totalPrice = DoubleUtil.add(totalPrice, current.getItempris());
 		}
 		return totalPrice;
 	}

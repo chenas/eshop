@@ -27,10 +27,10 @@ public class TestUserShopService {
 		user.setRealname("Admin");
 		 
 		UserShopModel us = new UserShopModel();
-		us.setName("shop1");
-		us.setStoreName("shop1");
-		us.setStoreId("A-001");
-		us.setPassword("usstshop1");
+		us.setName("shop2");
+		us.setStoreName("shop2");
+		us.setStoreId("A-002");
+		us.setPassword("usstshop2");
 		us.setIsEshop("0");
 		userShopService.insertEntity(us, user);
 		
@@ -43,7 +43,8 @@ public class TestUserShopService {
 		user.setRealname("Tom");
 		List<UserShopModel> lists = userShopService.findEntityList();
 		for(int i=0; i<lists.size(); i++){
-			userShopService.deleteEntity(lists.get(i), user);
+			System.out.println(lists.get(i).getId()+"  "+lists.get(i).getName());
+			//userShopService.deleteEntity(lists.get(i), user);
 		}
 	}
 

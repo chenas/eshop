@@ -19,6 +19,14 @@
 	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/pagelist.js"></script>
 
+	<meta name="baidu-site-verification" content="5h4Yx0RLb5" />
+	<meta name="Keywords" content="上理生活，usstlife，零食，校园购物，校园淘宝，学生超市，礼品" />
+	<meta name="Description" content="
+上理生活 USSTlife是上海理工大学勤工助学中心网络事业部搭建的校园电子商务平台，竭诚服务上理师生。" />
+	<script type="text/javascript">
+	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F901a05d7f349b8a0909a0a43560f9168' type='text/javascript'%3E%3C/script%3E"));
+	</script>
 	<script type="text/javascript">
 	var i=0;
 	jQuery(document).ready(function (){
@@ -91,7 +99,7 @@
 					<a href="main.jsp">首&nbsp;&nbsp;页</a>
 				</li>
 				<li>
-					<a href="javascript:void(0);">活&nbsp;&nbsp;动</a>
+					<a href="pages/activity.jsp">活&nbsp;&nbsp;动</a>
 				</li>
 				<li>
 					<a href="shopping/allProduct.action">全部商品</a>
@@ -111,7 +119,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="javascript:void(0);">关于我们</a>
+					<a href="pages/aboutUs.jsp">关于我们</a>
 				</li>
 				<li>
 				<form action="<%=basePath %>shopping/searchProduct.action" method="post" name="search">
@@ -143,6 +151,27 @@
 		</div>
 	</div>
 	
+	<!--begin mask  -->
+	<div id="mask" >
+	</div>
+	<div id="details" class="details">
+		<form action="">
+			<input type="hidden" value="dsfasdfasdfsdaf"/>
+			<!-- <h1></h1> -->
+			<img src="../images/t4.jpg" alt="" />
+			<div class="info">
+				<!-- ￥ <strong>10.10</strong> -->
+				<h5 id="up">+</h5>
+				<input type="text" size="1" value="1" max="10"/>
+				<h5 id="down">-</h5>
+			</div>
+			<span>库存量:<strong>10</strong></span>
+			<div class="add">
+				<a href="javascript:void(0);">添加</a>
+			</div>
+		</form>
+	</div>
+	<!--end mask-->
 	<div id="products">
 	<div id="productList">
 		<s:iterator value="#request.productList.list" status="i">

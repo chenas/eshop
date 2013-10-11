@@ -15,15 +15,17 @@ function addProduct(id) {
 			if (data.isSuccess == 0) {
 				alert("抱歉！物理不给力，库存不足");
 			} else {
-				var num = 0;
-				num = document.getElementsByName(id)[0].value;
-				num++;
-				document.getElementsByName(id)[0].value = num;
+			//	var num = 0;
+				//num = document.getElementsByName(id)[0].value;
+				//num++;
+				//document.getElementsByName(id)[0].value = num;
 				var items = data.cartList.items;
 				for ( var i = 0; i < items.length; i++) {
 					if (id == items[i].productId) {
+						document.getElementsByName(id)[0].value = items[i].count;
 						document.getElementById(id).innerHTML = "￥ <span >"
 								+ items[i].itempris + "</span>";
+						break;
 					}
 				}
 				jQuery(".submit span:first").html(data.cartList.totalPrice);
@@ -66,7 +68,7 @@ function setProduct(id) {
 	var num = 0;
 	num = document.getElementsByName(id)[0].value;
 	if(isNaN(num)){
-		alert("亲！请输入数字，要不然就按照之前的购买数量算账。。。");
+		alert("亲！请输入数字，我们将按照之前的购买数量算账。。。");
 		return false;
 	}
 	jQuery.ajax({
@@ -80,7 +82,7 @@ function setProduct(id) {
 		timeout : 2000,
 		success : function(data) {
 			if (data.isSuccess == 0) {
-				alert("亲，我们不能接受您的输入");
+				alert("亲，物流不给力，库存不足...");
 			} else {
 				var items = data.cartList.items;
 				for ( var i = 0; i < items.length; i++) {

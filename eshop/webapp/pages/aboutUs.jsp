@@ -3,7 +3,8 @@
 <html>
 <head>
 	<base href="<%=basePath%>">
-	<title>EShop</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>关于我们</title>
 	<meta name="baidu-site-verification" content="5h4Yx0RLb5" />
 	<meta name="Keywords" content="上理生活，usstlife，零食，校园购物，校园淘宝，学生超市，礼品" />
 	<meta name="Description" content="
@@ -26,11 +27,10 @@
 	</script>
 </head>
 <body>
-<!-- finished -->
 	<div id="header">
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
-			<h5><a href="javascript:void(0);"  id = "cartList">&nbsp;我的购物车</a></h5>
+			<h5><a href="shopping/cartList.action"  >&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
 				<s:if test="#session.loginUser != null">
 					<h5><a href="javascript:void(0);"  id = "">&nbsp;您好！&nbsp;<s:property value="#session.loginUser.name" />&nbsp;&nbsp;</a></h5>
@@ -82,24 +82,10 @@
 			</ul>
 		</div>
 	</div>
-	<div id="content">
-		<ul>
-			<s:iterator value="#request.pageList.list" status="i">
-			<li>
-				<img src="<s:property value='imageurl' />" alt="" />			
-			</li>
-			</s:iterator>
-		</ul>
-		<span class="left"></span>
-		<span class="right"></span>
-		<div>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</div>
+
+	<div class="about">
+		<img src="images/about.png" alt="" /><hr />
+		<p>忙……木有时间介绍自己。团队的美女和直男们随时欢迎你的加入(^_^)</p>
 	</div>
 </body>
 </html>

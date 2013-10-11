@@ -17,6 +17,7 @@ import com.eshop.model.OrderItemModel;
 import com.eshop.model.OrderMenuModel;
 import com.eshop.model.ProductInfoModel;
 import com.eshop.service.IBuyerAddrService;
+import com.eshop.service.IOrderItemService;
 import com.eshop.service.IOrderMenuService;
 import com.eshop.service.IProductInfoService;
 import com.eshop.service.IUserBuyerService;
@@ -30,6 +31,9 @@ public class ShoppingAction extends BaseAction {
 	
 	@Resource
 	private IOrderMenuService orderMenuService;
+	
+	@Resource
+	private IOrderItemService orderItemService;
 	
 	@Resource
 	private IProductInfoService productInfoService;
@@ -74,10 +78,6 @@ public class ShoppingAction extends BaseAction {
 		synchronized (orderItemModels) {
 			for(OrderItemModel orderItemModel : orderItemModels){
 				productInfoModel = productInfoService.findEntityById(orderItemModel.getProductId());
-				if(0 == orderItemModel.getCount()){
-					cartList.deleteItemById(orderItemModel.getProductId());
-					continue;
-				}
 				if(productInfoModel.getRemainNumber() < orderItemModel.getCount())
 				{
 					addActionMessage("抱歉，"+productInfoModel.getName()+"库存量不足");
@@ -100,15 +100,16 @@ public class ShoppingAction extends BaseAction {
 		buyerAddr.setAddress(address);
 		//设置为默认地址
 		buyerAddr.setIsDefault("1");
-		String buyerAddrId = "";
 		if(user != null){
 			orderMenu.setBuyerId(user.getId());
 			buyerAddr.setBuyerId(user.getId());
-			buyerAddrId = buyerAddrService.insertEntity(buyerAddr, user);
+			buyerAddrService.insertEntity(buyerAddr, user);
 		}else{
-			buyerAddrId = buyerAddrService.insertEntity(buyerAddr, null);
+			buyerAddrService.insertEntity(buyerAddr, null);
 		}
 
+		log.info(buyerAddr.getId());
+		
 		//下单时间
 		orderMenu.setOrderdate(utilService.getSystemDateTimeString());
 		//订单编号
@@ -116,9 +117,17 @@ public class ShoppingAction extends BaseAction {
 		orderMenu.setTotalpris(cartList.getTotalPrice());
 		orderMenu.setStatus("o");
 		orderMenu.setShopId(productInfoModel.getShopId());
-		orderMenu.setAddrId(buyerAddrId);
+		orderMenu.setAddrId(buyerAddr.getId());
 		
 		orderMenuService.insertEntity(orderMenu, user);
+
+		log.info(orderMenu.getId());
+		
+		for(OrderItemModel orderItemModel : orderItemModels){
+			//设置订单与订单项的关联
+			orderItemModel.setOrderId(orderMenu.getId());
+			orderItemService.insertEntity(orderItemModel, user);
+		}
 		ServletActionContext.getContext().put("orderId", orderMenu.getOrderid());
 		ServletActionContext.getContext().put("addressDetail", schoolArea+"  "+building+" "+address);
 		getSession().remove("cartList");

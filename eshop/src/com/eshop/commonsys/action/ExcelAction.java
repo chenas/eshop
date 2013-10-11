@@ -74,6 +74,9 @@ public class ExcelAction extends BaseAction {
 		CategoryModel c4 = categoryService.findEntityListByFilter(cdf).get(0);
 		
 		UserShopModel shop = (UserShopModel) userShopService.findEntityList().get(0);
+		if(!"shop1".equals(shop.getName())){
+			return SUCCESS;
+		}
 		
 		Workbook workbook = excelService.getWorkbook(fileExcel);
 		Sheet sheet = workbook.getSheetAt(0);
@@ -87,22 +90,22 @@ public class ExcelAction extends BaseAction {
 			productInfoModel.setPrice(excelService.getDoubleValue(row.getCell(2)));
 			productInfoModel.setInprice(excelService.getDoubleValue(row.getCell(3)));
 			productInfoModel.setRemainNumber(excelService.getIntValue(row.getCell(4)));
-			productInfoModel.setImageBig(excelService.getStrValue(row.getCell(5)));
+			productInfoModel.setImageBig(excelService.getStrValue(row.getCell(5))+".JPG");
 			productInfoModel.setDescription(excelService.getStrValue(row.getCell(6)));
-			//productInfoModel.setKeyword(excelService.getStrValue(row.getCell(7)));
-			if("美味的食品".equals(excelService.getStrValue(row.getCell(8)).trim())){
+			//productInfoModel.setKeyword(excelService.getStrValue(row.getCell(6)));
+			if("美味的食品".equals(excelService.getStrValue(row.getCell(7)).trim())){
 				productInfoModel.setCategoryId(c1.getId());
-			}else if("好喝的饮品".equals(excelService.getStrValue(row.getCell(8)).trim())){
+			}else if("好喝的饮品".equals(excelService.getStrValue(row.getCell(7)).trim())){
 				productInfoModel.setCategoryId(c2.getId());
 				
-			}else if("必备日用品".equals(excelService.getStrValue(row.getCell(8)).trim())){
+			}else if("必备日用品".equals(excelService.getStrValue(row.getCell(7)).trim())){
 				productInfoModel.setCategoryId(c3.getId());
 				
-			}else if("土豪送的礼品".equals(excelService.getStrValue(row.getCell(8)).trim())){
+			}else if("土豪送的礼品".equals(excelService.getStrValue(row.getCell(7)).trim())){
 				productInfoModel.setCategoryId(c4.getId());
 			}
-			String c2name = excelService.getStrValue(row.getCell(9)).trim();
-			
+			String c2name = excelService.getStrValue(row.getCell(8)).trim();
+	System.out.println(c2name);
 			productInfoModel.setIsOnsale("0");
 			productInfoModel.setIsSale("1");
 			productInfoModel.setCategoryDetailId(categoryDetailService.getByName(c2name).getId());

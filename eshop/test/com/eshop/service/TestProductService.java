@@ -96,11 +96,19 @@ public class TestProductService {
 	@Test
 	public void testFindAllList(){
 		UserBuyer user = new UserBuyer();
-		user.setName("jack");
-		user.setRealname("Tom");
+		user.setName("Admin");
+		user.setRealname("Admin");
 		List<ProductInfoModel> lists = productInfoService.findEntityList();
+		System.out.println(lists.size());
 		for(int i=0; i<lists.size(); i++){
-			productInfoService.deleteEntity(lists.get(i), user);
+			ProductInfoModel p = lists.get(i);
+			String str = p.getImageBig();
+			if(str.indexOf(".JPG") != -1 && str.indexOf(".jpg")!=-1){
+				str = str.replace(".JPG", "");
+				System.out.println(str);
+				p.setImageBig(str);
+				productInfoService.updateEntity(p, user);
+			}
 		}
 	}
 

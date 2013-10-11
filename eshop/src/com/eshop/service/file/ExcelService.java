@@ -145,7 +145,7 @@ public class ExcelService implements IExcelService{
 			}
 			return Integer.valueOf(cell.getStringCellValue());
 		}else{
-			return Integer.valueOf(cell.getStringCellValue());
+			return Integer.valueOf((int) cell.getNumericCellValue());
 		}
 	}
 	

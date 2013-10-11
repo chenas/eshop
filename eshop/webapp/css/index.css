@@ -13,7 +13,7 @@
 #content div li.active{background: #333}
 
 /*productList.html*/
-#sideBar{position: absolute;left:170px;top:142px;width:150px;height:500px;background: #414141;}
+#sideBar{position: absolute;left:170px;top:160px;width:150px;height:500px;background: #414141;}
 #sideBar div{position: absolute;top:100px;width:100%;
 	font-size: 18px;font-family: "Microsoft YaHei";font-weight: bold;}
 #sideBar ul{width:100%;}
@@ -26,10 +26,17 @@
 	background: #272727;}
 #sideBar div div a{display: block;padding-left: 15px;}
 #sideBar div div a:hover{text-decoration: underline;background: #FFA335}
+/*弹出层样式*/
+#mask{display:none;position:absolute;left:0px;top:0px;height:600px;background:#fff;z-index:9;opacity: 0.8;}
+#details{display:none;position:absolute;left:400px;z-index:99;width:372px;height:400px;margin:0 auto;
+	border-bottom:none;}
+#details img{width:372px;height:372px;}
+#details .info{display: none}
+#details .info h5,#details .info input,#details .add,#details span{display: none;}
 
-#products{position:absolute;left:340px;top:160px;width:1000px;}
-.details{float:left;margin-right:15px;margin-bottom:15px;width:186px;height:260px;
-	cursor:pointer;font-family: "黑体";}
+#products{position:absolute;left:330px;top:160px;width:1000px;}
+.details{float:left;margin-right:30px;margin-bottom:10px;padding-bottom:10px;width:186px;height:260px;
+	cursor:pointer;font-family: "黑体";border-bottom:1px dashed #ccc;}
 .details h1{width:100%;height:30px;background: #42baff;line-height: 30px;font-size:18px;
 	color:#fff;text-align: center;}
 .details img{width:186px;height:186px;}
@@ -40,7 +47,21 @@
 .details span{float:left;position:relative;left:6px;top:2px;display: inline-block;color:#c6c6c6;font-size: 16px;}
 .details .add{float:right;display:inline-block;width:62px;height:20px;background: #42baff;text-align: center;}
 .details .add a{color:#fff;font-size: 16px;height:20px;line-height: 20px;}
-#panelPage{position: absolute;bottom: -50px;margin-left:450px;padding-bottom:20px;}
+/*分页*/
+#panelPage{bottom: -50px; margin-left: 250px; padding-bottom: 20px; position: absolute; width: 600px;}
 #panelPage li{float: left;margin:0 5px;}
-#panelPage li a{display:block;color:#bbb;color:#333;font-size: 22px;}
+#panelPage li a{display:inline-`block;color:#bbb;color:#333;font-size: 22px;}
 #panelPage li:hover a{text-decoration: underline;}
+
+/*aboutUs.html*/
+.about{width:1000px;margin:0 auto;text-align: center;}
+.about img{height:400px;margin-top:10px;}
+.about p{font-size:26px;color:#333;font-family: "华文行楷"}
+
+/*activity.html*/
+#activity{width:1000px;margin:0 auto;font-family: "Microsoft YaHei";line-height: 50px;font-size:26px;}
+#activity h1{text-align: center;font-size: 36px;}
+#activity h2 a,#activity h3 a{color:#f00;}
+#activity h2 a:hover,#activity h3 a:hover{border-bottom:2px dotted #f00;}
+#activity h3{text-align: right;}
+

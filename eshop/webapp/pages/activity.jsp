@@ -3,7 +3,8 @@
 <html>
 <head>
 	<base href="<%=basePath%>">
-	<title>EShop</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>活动</title>
 	<meta name="baidu-site-verification" content="5h4Yx0RLb5" />
 	<meta name="Keywords" content="上理生活，usstlife，零食，校园购物，校园淘宝，学生超市，礼品" />
 	<meta name="Description" content="
@@ -26,11 +27,10 @@
 	</script>
 </head>
 <body>
-<!-- finished -->
 	<div id="header">
 		<div>
 			<h1><s:text name="com.eshop.header" /></h1>
-			<h5><a href="javascript:void(0);"  id = "cartList">&nbsp;我的购物车</a></h5>
+			<h5><a href="shopping/cartList.action"  >&nbsp;我的购物车</a></h5>
 			<h5>|</h5>
 				<s:if test="#session.loginUser != null">
 					<h5><a href="javascript:void(0);"  id = "">&nbsp;您好！&nbsp;<s:property value="#session.loginUser.name" />&nbsp;&nbsp;</a></h5>
@@ -82,24 +82,16 @@
 			</ul>
 		</div>
 	</div>
-	<div id="content">
-		<ul>
-			<s:iterator value="#request.pageList.list" status="i">
-			<li>
-				<img src="<s:property value='imageurl' />" alt="" />			
-			</li>
-			</s:iterator>
-		</ul>
-		<span class="left"></span>
-		<span class="right"></span>
-		<div>
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</div>
+
+	&nbsp;
+	<div id="activity">
+		<h1> USSTlife 上理生活———注册送代金券啦！！</h1>
+		<h2>如果你觉得对我们的活动还不够心动的话！</h2>
+		<h2>如果你觉得还不够优惠方便的话！！</h2>
+		<h2>现在注册网站&nbsp;&lt;&nbsp;USSTlife 上理生活：<a href="http://www.usstlife.com">www.usstlife.com</a>&nbsp;&gt;&nbsp;即送 5 元代金券！！</h2>
+		<img src="images/a1.jpg" alt="" />
+		<img src="images/a2.jpg" alt="" />
+		<h3>数量有限,小伙伴们赶快<a href="pages/register.jsp">注册</a>起来吧！！！~~~</h3>
 	</div>
 </body>
 </html>

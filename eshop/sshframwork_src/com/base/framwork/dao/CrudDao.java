@@ -35,7 +35,7 @@ public class CrudDao extends BaseDao implements ICrudDao{
 	@Override
 	public Boolean save(Object obj) {
 		try{
-			hibernateTemplate.save(obj);
+			hibernateTemplate.saveOrUpdate(obj);
 		}catch(DataAccessException ex){
 			return false;
 		}

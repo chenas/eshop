@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <session-config> 
-   <session-timeout>5</session-timeout> 
+   <session-timeout>60</session-timeout> 
   </session-config> 
 	<!-- tomcat默认生成的地方是classes下面 -->
   <context-param>

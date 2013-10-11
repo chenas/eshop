@@ -8,6 +8,8 @@ var List = {
 
 function initPage()
 {
+	// 2013.10.10 百度统计图表Bug
+	refuseBaiDu();
 
 	//index.html
 	var aLi = jQuery('#list li');
@@ -45,6 +47,14 @@ function initPage()
 				oSearch.attr('disabled', false);
 			}
 		});
+	};
+};
+
+//屏蔽百度图标
+function refuseBaiDu(){
+	var a = document.getElementsByTagName('a')[0];
+	if(a.target == '_blank'){
+		a.style.display = 'none';
 	};
 };
 

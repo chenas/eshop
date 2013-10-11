@@ -6,11 +6,12 @@ function initPage()
 	};
 	//productList.html
 	if(jQuery('#sideBar')[0]){
-		clickStyle();
+		hoverStyle();
 		observerScroll();
 	};
 	if(jQuery('#products')[0]){
 		validateStock();
+		popupLayer();
 	};
 };
 
@@ -36,7 +37,7 @@ function bannerRoll()
 		};
 		checkCount(count);
 		startMove(oUl, {left: -1000*count});
-	},3000);
+	},5000);
 	addEvent(left, 'click', function (){
 		count--;
 		if(count <= 0){
@@ -64,7 +65,7 @@ function bannerRoll()
 	};
 };
 
-function clickStyle()
+function hoverStyle()
 {
 	var btnLi = jQuery('#sideBar li');
 	var aDiv = jQuery('#sideBar li div');
@@ -92,7 +93,7 @@ function clickStyle()
 		};
 	};
 };
-//加减商品
+
 function validateStock()
 {
 	var aStock = jQuery('.details  span  strong');
@@ -115,7 +116,8 @@ function validateStock()
 		aInput[i].onblur = function ()
 		{	
 			var value = this.value;
-			if(isNaN(value) || value<0 || value > aStock[this.index].innerHTML){
+			var max = parseInt(aStock[this.index].innerHTML);
+			if(isNaN(value) || value > max){
 				this.value = 1;
 				alert('请注意您输入的格式！');
 			};
@@ -130,7 +132,7 @@ function validateStock()
 					return false;
 				}else{
 					aInput[obj.index].value++;
-				}
+				};
 				break;
 			case '-':
 				if(nInput <= 1){
@@ -146,29 +148,58 @@ function validateStock()
 function observerScroll(){
 	jQuery(window).scroll(function() {
 		var nScroll = jQuery(document).scrollTop();
-		var oProd = jQuery('#products');
 		var sWidth = jQuery(window).width()-100;
 		var oSide = jQuery('#sideBar');
-		if(nScroll >= 400){
-			oProd.show('slow').css({
-				'position': 'absolute',
-				'left': '100px',
-				'width': sWidth
-			});
-			oSide.fadeOut('fast');
-		};
-		if(nScroll <= 400){
-			oProd.css({
-				'position': 'absolute',
-				'left': '340px',
-				'width': '1000px'
-			});
-			oSide.fadeIn('slow');
+		var mask = jQuery('#mask');
+		var popupLayer = jQuery('#details');
+		mask.fadeOut('fast');
+		popupLayer.fadeOut('fast');
+		oSide = oSide[0];
+		console.log(oSide);
+		if(nScroll > 160){
+			startMove(oSide, {top: nScroll});
+		}else{
+			startMove(oSide, {top: 160});
 		};
 	});
 };
 
+function popupLayer(){
+	var mask = jQuery('#mask');
+	var popupLayer = jQuery('#details');
+	var IdImg = jQuery('#details img')[0];
+	var aDetalis = jQuery('.details');
+	var aImg = jQuery('.details img');
+	var sWidth = jQuery(window).width();
+	var sHeight = jQuery(window).height();
 
-
+	for(var i=1;i<aDetalis.length;i++){
+		aImg[i] = jQuery(aImg[i]);
+		aImg[i].bind('click', function (){
+			var ScrollTop = jQuery(document).scrollTop();
+			IdImg.src =  this.src;
+			mask.css({
+				'width': sWidth,
+				'height': sHeight,
+				'top': ScrollTop
+			});
+			popupLayer.css({
+				'top': ScrollTop+100,
+				'left': sWidth/2-186
+			})
+			mask.fadeIn('slow');
+			popupLayer.fadeIn('slow');
+		});
+	};
+	mask.bind('click', function (){
+		popupLayer.fadeOut('slow');
+		mask.fadeOut('slow');
+	});
+	popupLayer.bind('click', function (e){
+		popupLayer.fadeOut('slow');
+		mask.fadeOut('slow');
+		stopPropagation(e);
+	});
+};
 
 addEvent(window, 'load', initPage);

@@ -31,12 +31,15 @@
 #cart .submit span{font-size: 24px;color:#f00;}
 #cart .submit input{width:102px;height:32px;border:none;background: url(../images/btn.png) no-repeat 0 -73px;
 	color:#fff;font-size:28px;cursor:pointer;}
+#errorMessage{position: absolute;top:2px;left:350px;width:200px;height:300px;}
+#errorMessage h1{height:28px;margin-top:2px;color:#f00;font-size: 18px;}
 
 /*address.html*/
-#addInfo{width:330px;height:220px;margin-left:350px;}
+#addInfo{width:330px;height:260px;margin-left:350px;}
 #addInfo ul{}
 #addInfo li{}
-#addInfo li label{display:inline-block;height:30px;line-height:30px;font-size: 16px}
+#addInfo li label{display:block;height:30px;line-height:30px;font-size: 16px}
+#addInfo li label label{display:inline-block;}
 #addInfo li label span{display:inline-block;margin-right:16px;width:100px;height:30px;color:#969595;
 	font-size:18px;text-align:right;}
 #addInfo li #address,#addInfo li #name,#addInfo li #number,#addInfo li #remark{float: right;width:200px;}
