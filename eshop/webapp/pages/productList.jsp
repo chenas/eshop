@@ -18,15 +18,9 @@
 		
 	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
 	<script type="text/javascript" src="<%=basePath %>js/pagelist.js"></script>
-
-	<meta name="baidu-site-verification" content="5h4Yx0RLb5" />
-	<meta name="Keywords" content="上理生活，usstlife，零食，校园购物，校园淘宝，学生超市，礼品" />
-	<meta name="Description" content="
-上理生活 USSTlife是上海理工大学勤工助学中心网络事业部搭建的校园电子商务平台，竭诚服务上理师生。" />
-	<script type="text/javascript">
-	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F901a05d7f349b8a0909a0a43560f9168' type='text/javascript'%3E%3C/script%3E"));
-	</script>
+	
+	<s:text name="com.eshop.head.meta" />
+	<s:text name="com.eshop.head.javascript" />
 	<script type="text/javascript">
 	var i=0;
 	jQuery(document).ready(function (){
@@ -36,6 +30,19 @@
 			var aInput = oForm.getElementsByTagName('input');
 			var id = aInput[0].value;
 			var num = aInput[1].value;
+			//mask style
+			var sWidth = jQuery(window).width();
+			var sHeight = jQuery(window).height();
+			var mask = jQuery('#mask');
+				jQuery(this).ajaxStart(function (){
+					var ScrollTop = jQuery(document).scrollTop();
+					mask.css({
+						'width': sWidth,
+						'height': sHeight,
+						'top': ScrollTop
+					});
+					mask.fadeIn('slow');
+				});
 				jQuery.ajax({
 					url : '<%=basePath %>shopping/saveOrderItem.action',
 					type : 'post',
@@ -47,8 +54,13 @@
 						if(data.buyNum == 0){
 							alert("亲！物流暂时不给力，欢迎以后来选购！")
 						}else
-							alert("成功加入购物车");
+							console.log("成功加入购物车!");
 					}
+				});
+				jQuery(this).ajaxStop(function (){
+					console.log('请求结束!');
+					mask.fadeOut('slow');
+					mask.text('正在添加商品……请稍后');
 				});
 			});
 		});
@@ -68,7 +80,7 @@
 					if (reply.getResult()) 
 					{
 						alert(reply.getResult());
-					}
+					};
 
 				});
 	};
@@ -157,7 +169,7 @@
 	<div id="details" class="details">
 		<form action="">
 			<input type="hidden" value="dsfasdfasdfsdaf"/>
-			<!-- <h1></h1> -->
+			<h1></h1>
 			<img src="../images/t4.jpg" alt="" />
 			<div class="info">
 				<!-- ￥ <strong>10.10</strong> -->

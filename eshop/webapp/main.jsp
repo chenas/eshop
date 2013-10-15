@@ -4,6 +4,8 @@
 <head>
 	<base href="<%=basePath%>">
 	<title>welcome</title>
+	<s:text name="com.eshop.head.meta" />
+	<s:text name="com.eshop.head.javascript" />
 </head>
 <body>
 	<script type="text/javascript">

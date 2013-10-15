@@ -5,10 +5,6 @@
 	<base href="<%=basePath%>">
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>关于我们</title>
-	<meta name="baidu-site-verification" content="5h4Yx0RLb5" />
-	<meta name="Keywords" content="上理生活，usstlife，零食，校园购物，校园淘宝，学生超市，礼品" />
-	<meta name="Description" content="
-上理生活 USSTlife是上海理工大学勤工助学中心网络事业部搭建的校园电子商务平台，竭诚服务上理师生。" />
 	<!-- begin cssStyle -->
 	<link rel="stylesheet" href="<%=basePath %>css/reset.css" />
 	<link rel="stylesheet" href="<%=basePath %>css/common.css" />
@@ -21,10 +17,8 @@
 	<script type="text/javascript" src="<%=basePath %>js/index.js"></script>
 	
 	<script type="text/javascript" src="<%=basePath %>js/pagelist.js"></script>
-	<script type="text/javascript">
-	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F901a05d7f349b8a0909a0a43560f9168' type='text/javascript'%3E%3C/script%3E"));
-	</script>
+	<s:text name="com.eshop.head.meta" />
+	<s:text name="com.eshop.head.javascript" />
 </head>
 <body>
 	<div id="header">
@@ -86,6 +80,8 @@
 	<div class="about">
 		<img src="images/about.png" alt="" /><hr />
 		<p>忙……木有时间介绍自己。团队的美女和直男们随时欢迎你的加入(^_^)</p>
+		邮箱联系：shopusst@163.com <br />
+		QQ群号: 140343966
 	</div>
 </body>
 </html>
