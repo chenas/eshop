@@ -14,7 +14,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.struts2.ServletActionContext;
 
 import com.base.framwork.action.BaseAction;
-import com.eshop.domain.UserShop;
 import com.eshop.filter.CategoryDetailFilter;
 import com.eshop.model.CategoryModel;
 import com.eshop.model.ProductInfoModel;
@@ -73,8 +72,9 @@ public class ExcelAction extends BaseAction {
 		cdf.setQueryString(" where a.name='"+"土豪送的礼品"+"'");
 		CategoryModel c4 = categoryService.findEntityListByFilter(cdf).get(0);
 		
-		UserShopModel shop = (UserShopModel) userShopService.findEntityList().get(0);
-		if(!"shop1".equals(shop.getName())){
+		UserShopModel shop = (UserShopModel) userShopService.findByStoreId("A-001");
+		if(!"校铭".equals(shop.getStoreName())){
+			System.out.println(shop.getStoreName());
 			return SUCCESS;
 		}
 		
@@ -85,31 +85,43 @@ public class ExcelAction extends BaseAction {
 		for(int i=1; i<rowNum; i++){
 			Row row = sheet.getRow(i);
 			ProductInfoModel productInfoModel = new ProductInfoModel();
+			//商品编号
 			productInfoModel.setProductid(excelService.getStrValue(row.getCell(0)));
+			//名称
 			productInfoModel.setName(excelService.getStrValue(row.getCell(1)));
+			//价格
 			productInfoModel.setPrice(excelService.getDoubleValue(row.getCell(2)));
+			//进价
 			productInfoModel.setInprice(excelService.getDoubleValue(row.getCell(3)));
+			//库存
 			productInfoModel.setRemainNumber(excelService.getIntValue(row.getCell(4)));
-			productInfoModel.setImageBig(excelService.getStrValue(row.getCell(5))+".JPG");
+			//图片路径
+			productInfoModel.setImageBig(excelService.getStrValue(row.getCell(5)));
+			//描述
 			productInfoModel.setDescription(excelService.getStrValue(row.getCell(6)));
-			//productInfoModel.setKeyword(excelService.getStrValue(row.getCell(6)));
-			if("美味的食品".equals(excelService.getStrValue(row.getCell(7)).trim())){
+			//关键词
+			productInfoModel.setKeyword(excelService.getStrValue(row.getCell(7)));
+			
+			if("美味的食品".equals(excelService.getStrValue(row.getCell(8)).trim())){
 				productInfoModel.setCategoryId(c1.getId());
-			}else if("好喝的饮品".equals(excelService.getStrValue(row.getCell(7)).trim())){
+			}else if("好喝的饮品".equals(excelService.getStrValue(row.getCell(8)).trim())){
 				productInfoModel.setCategoryId(c2.getId());
 				
-			}else if("必备日用品".equals(excelService.getStrValue(row.getCell(7)).trim())){
+			}else if("必备日用品".equals(excelService.getStrValue(row.getCell(8)).trim())){
 				productInfoModel.setCategoryId(c3.getId());
 				
-			}else if("土豪送的礼品".equals(excelService.getStrValue(row.getCell(7)).trim())){
+			}else if("土豪送的礼品".equals(excelService.getStrValue(row.getCell(8)).trim())){
 				productInfoModel.setCategoryId(c4.getId());
 			}
-			String c2name = excelService.getStrValue(row.getCell(8)).trim();
+			String c2name = excelService.getStrValue(row.getCell(9)).trim();
 	System.out.println(c2name);
+			//设置商品的默认状态，不进行促销
 			productInfoModel.setIsOnsale("0");
+			//设置商品的默认状态，上架
 			productInfoModel.setIsSale("1");
+			//设置与一级分类关联
 			productInfoModel.setCategoryDetailId(categoryDetailService.getByName(c2name).getId());
-			
+			//设置对应的所属商店
 			productInfoModel.setShopId(shop.getId());
 			
 			productInfoModels.add(productInfoModel);

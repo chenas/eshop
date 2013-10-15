@@ -1,7 +1,5 @@
 package com.eshop.filter;
 
-import org.springframework.stereotype.Component;
-
 import com.base.framwork.queryfilter.QueryFilter;
 
 public class ProductViewFilter extends QueryFilter {

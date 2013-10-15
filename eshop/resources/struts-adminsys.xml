@@ -19,4 +19,13 @@
 			<result name="error">/pages/commonsys/login.jsp</result>
 		</action>
 	</package>
+	
+	
+	<package name="shop" namespace="/pages/adminsys/order" extends="default">
+		<action name="shopOrder" class="com.eshop.action.ShopOrderMenuViewListAction" method="shopOrder">
+			<result name="list" >/pages/adminsys/order/orderList.jsp</result>
+			<result name="error">/pages/commonsys/login.jsp</result>
+		</action>
+	</package>
+	
 </struts>

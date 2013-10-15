@@ -12,5 +12,15 @@ import com.eshop.service.IUserShopService;
  */
 @Component
 public class UserShopService extends EntityService<UserShopModel> implements IUserShopService{
+	
+	/**
+	 * 根据商店编号找到商店实体
+	 * @param storeId
+	 * @return
+	 * 			UserShopModel
+	 */
+	public UserShopModel findByStoreId(String storeId){
+		return (UserShopModel) crudDao.findObjListByHql("from USER_SHOP as a where a.storeId='"+storeId+"'").get(0);
+	}
 
 }

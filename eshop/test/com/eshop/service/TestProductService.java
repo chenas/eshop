@@ -111,5 +111,15 @@ public class TestProductService {
 			}
 		}
 	}
+	
+	@Test
+	public void testFindByShopId(){
+		//校铭
+		UserShopModel shop = userShopService.findByStoreId("A-001");
+		List<ProductInfoModel> ps = productInfoService.findByShopId(shop.getId());
+		for(int i=0; i<ps.size(); i++){
+			productInfoService.deleteEntity(ps.get(i), null);
+		}
+	}
 
 }
